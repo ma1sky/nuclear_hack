@@ -1,0 +1,27 @@
+# Local tools and credentials
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+local.properties
+*.jks
+*.keystore
+
+# JavaScript / Expo / Android build output
+node_modules/
+.expo/
+.gradle/
+.kotlin/
+**/build/
+dist/
+*.apk
+*.aab
+*.log
+
+# Large local assets and personal recordings
+/models/
+/recordings/
+/app/models/
+/app/recordings/
+/app/android/app/src/main/assets/models/
