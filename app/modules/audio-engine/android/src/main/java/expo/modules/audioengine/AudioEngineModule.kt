@@ -1,39 +1,74 @@
 package expo.modules.audioengine
 
+import android.net.Uri
+import android.os.SystemClock
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
-import expo.modules.audioengine.models.BundledModelStore
-import expo.modules.audioengine.models.ModelFile
+import expo.modules.audioengine.audio.*
 import java.io.File
-import org.json.JSONObject
+import java.util.concurrent.atomic.AtomicBoolean
 
 class AudioEngineModule : Module() {
-  private val modelPreparationLock = Any()
+  private val running = AtomicBoolean(false)
+  @Volatile private var cancellation = ProcessingCancellation()
+
+  private fun <T> processing(block: () -> T): T {
+    check(running.compareAndSet(false, true)) { "Другая запись ещё обрабатывается." }
+    cancellation = ProcessingCancellation()
+    return try { block() } finally { running.set(false) }
+  }
+
+  private fun readAudio(fileUri: String): PreparedAudio {
+    val context = requireNotNull(appContext.reactContext)
+    val uri = Uri.parse(fileUri)
+    if (uri.scheme == "content") {
+      val copy = File.createTempFile("recording-", ".audio", context.cacheDir)
+      try {
+        requireNotNull(context.contentResolver.openInputStream(uri)).use { source ->
+          copy.outputStream().use { source.copyTo(it) }
+        }
+        return AndroidAudioPreparer.prepare(copy, cancellation)
+      } finally { copy.delete() }
+    }
+    require(uri.scheme == "file" || uri.scheme == null) { "Нужна локальная аудиозапись." }
+    return AndroidAudioPreparer.prepare(File(requireNotNull(if (uri.scheme == "file") uri.path else fileUri)), cancellation)
+  }
 
   override fun definition() = ModuleDefinition {
     Name("AudioEngine")
+    Events("onProgress")
+    Function("getCapabilities") { mapOf("asr" to true, "diarization" to true, "llm" to false) }
+    AsyncFunction("prepareModels") { ModelAssets.prepare(requireNotNull(appContext.reactContext)) }
+    Function("cancel") { cancellation.cancel(); true }
 
-    Function("getCapabilities") {
-      // Model files and working inference are different capabilities.
-      mapOf("asr" to false, "diarization" to false, "llm" to false)
-    }
+    AsyncFunction("diarize") { fileUri: String -> processing {
+      val start = SystemClock.elapsedRealtime()
+      val audio = readAudio(fileUri)
+      val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
+      cancellation.check()
+      val intervals = SpeakerDiarizer.process(audio.samples, models)
+      cancellation.check()
+      mapOf("durationMs" to audio.durationMs, "elapsedMs" to SystemClock.elapsedRealtime() - start,
+        "intervals" to intervals.map { mapOf("startMs" to it.startMs, "endMs" to it.endMs, "speakerId" to it.speakerId) })
+    } }
 
-    AsyncFunction("prepareModels") {
-      synchronized(modelPreparationLock) {
-        val context = requireNotNull(appContext.reactContext) { "Android context unavailable" }
-        val manifest = try {
-          context.assets.open("models/manifest.json").bufferedReader().use { JSONObject(it.readText()) }
-        } catch (error: Exception) {
-          throw IllegalStateException("MODEL_BUNDLE_MISSING: APK does not contain a readable model manifest", error)
-        }
-        require(manifest.getInt("version") == 1 && manifest.getString("language") == "ru") { "Unsupported model bundle" }
-        val entries = manifest.getJSONArray("files")
-        val files = (0 until entries.length()).map { index ->
-          val entry = entries.getJSONObject(index)
-          ModelFile(entry.getString("id"), entry.getString("file"), entry.getLong("size"), entry.getString("sha256"))
-        }
-        BundledModelStore(File(context.filesDir, "models")) { context.assets.open(it) }.prepare(files)
+    AsyncFunction("transcribe") { fileUri: String -> processing {
+      sendEvent("onProgress", mapOf("stage" to "preparing"))
+      val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
+      val audio = readAudio(fileUri)
+      cancellation.check()
+      sendEvent("onProgress", mapOf("stage" to "diarizing"))
+      // SpeakerDiarizer releases native resources before returning; only then create ASR.
+      val intervals = SpeakerDiarizer.process(audio.samples, models)
+      cancellation.check()
+      val ids = linkedMapOf<String, Int>()
+      val mapped = intervals.map {
+        expo.modules.audioengine.audio.SpeakerInterval(it.startMs, it.endMs,
+          ids.getOrPut(it.speakerId) { ids.size })
       }
-    }
+      IntervalTranscriber { GigaAmRecognizer(models) }.transcribe(audio, mapped, cancellation) { event ->
+        sendEvent("onProgress", mapOf("stage" to event.stage, "completed" to event.completed, "total" to event.total))
+      }
+    } }
   }
 }

@@ -35,14 +35,21 @@ async function pack(source, destination) {
     if (await sha256(output) !== hash) throw new Error(`Model copy failed: ${file}`);
     files.push({ id, file, size: fs.statSync(output).size, sha256: hash });
   }
+  for (const name of fs.readdirSync(source).filter(name => name.startsWith('LICENSE'))) {
+    fs.copyFileSync(path.join(source, name), path.join(destination, name));
+  }
   const manifest = { version: 1, language: 'ru', files };
   fs.writeFileSync(path.join(destination, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   return manifest;
 }
-module.exports = { definitions, pack, sha256 };
+function sourceDirectory(root) {
+  const full = path.join(root, 'models/bundles/full/models');
+  return fs.existsSync(path.join(full, definitions[0][1])) ? full : path.join(root, 'models');
+}
+module.exports = { definitions, pack, sha256, sourceDirectory };
 if (require.main === module) {
   const root = path.resolve(__dirname, '..');
-  pack(path.join(root, 'models'), path.join(root, 'modules/audio-engine/android/src/main/assets/models'))
+  pack(sourceDirectory(root), path.join(root, 'modules/audio-engine/android/src/main/assets/models'))
     .then(() => console.log('All 5 bundled model files verified.'))
     .catch(error => { console.error(error.message); process.exitCode = 1; });
 }

@@ -1,17 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'expo-module-gradle-plugin'
-
 group = 'expo.modules.audioengine'
 version = '0.1.0'
-
+def sherpaAar = file('../../../models/downloads/sherpa-onnx-2.0.1.aar')
 android {
   namespace 'expo.modules.audioengine'
-  defaultConfig {
-    versionCode 1
-    versionName '0.1.0'
+  defaultConfig { versionCode 1; versionName '0.1.0'; consumerProguardFiles 'consumer-rules.pro' }
+}
+dependencies { implementation files(sherpaAar) }
+tasks.matching { it.name == 'preBuild' }.configureEach {
+  doFirst {
+    if (!sherpaAar.isFile()) throw new GradleException('Run npm run models:android from app/: sherpa AAR is missing.')
+    if (providers.gradleProperty('diarizationOnly').orNull == 'true') throw new GradleException('Diagnostic-only APK is not a submission build. Use the full bundle.')
   }
 }
-
 // Checking APKs must contain the complete offline bundle, even when Gradle is called directly.
 def verifyBundledModels = tasks.register('verifyBundledModels') {
   doLast {

@@ -83,7 +83,7 @@ object WavPreparer {
   }
 
   /** Windowed-sinc low-pass interpolation, with anti-aliasing when downsampling. */
-  private fun resample(source: FloatArray, rate: Int, cancellation: CancellationCheck): FloatArray {
+  internal fun resample(source: FloatArray, rate: Int, cancellation: CancellationCheck): FloatArray {
     if (rate == 16000 || source.isEmpty()) return source
     val length = source.size.toLong() * 16000 / rate
     require(length <= Int.MAX_VALUE) { "Resampled audio is too large" }

@@ -9,6 +9,7 @@
     "expo-file-system": "~58.0.13",
     "expo-sharing": "~58.0.22",
     "expo-status-bar": "~58.0.4",
+    "llama.rn": "0.12.9",
     "react": "19.3.0",
     "react-native": "0.88.1"
   },
@@ -19,14 +20,16 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "models:android": "node scripts/prepare-android-models.mjs",
     "start": "expo start",
     "android": "npm run models:pack && expo run:android",
-    "ios": "expo start --ios",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
     "models:pack": "node scripts/model-bundle.cjs",
-    "test:models": "node --test scripts/model-bundle.test.cjs"
+    "test:models": "node --test scripts/model-bundle.test.cjs",
+    "test:integration": "node --test scripts/integration.test.cjs"
   },
   "private": true
 }

@@ -24,7 +24,14 @@
     },
     "plugins": [
       "expo-sharing",
-      "./plugins/withBundledModels.cjs"
+      "./plugins/withBundledModels.cjs",
+      [
+        "llama.rn",
+        {
+          "enableOpenCLAndHexagon": false,
+          "enableEntitlements": false
+        }
+      ]
     ]
   }
 }

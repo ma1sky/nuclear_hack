@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-06",
+  "base": "f13805f",
+  "integrated_remote": "cbb07dd",
+  "checks": {
+    "typescript": "passed",
+    "eslint": "passed",
+    "model_bundle_node_tests": "passed",
+    "strict_export_and_no_simulation_tests": "passed",
+    "jvm_audio_checks": 11,
+    "jvm_model_store_checks": "passed",
+    "native_audio_compile_sherpa_2_0_1_android_37": "passed",
+    "full_model_download_sha256": "passed",
+    "expo_android_prebuild": "passed"
+  },
+  "release_build": {
+    "status": "blocked",
+    "stage": "Gradle plugin compileClasspath dependency resolution",
+    "reason": "Maven Central TLS handshake terminated; dependencies could not be downloaded",
+    "apk_verified": false
+  },
+  "device_inference": {
+    "status": "not_run",
+    "wer": null,
+    "rtf": null,
+    "peak_memory": null
+  },
+  "limitations": [
+    "No Redmi runtime acceptance yet",
+    "No WER/RTF measurements for integrated pipeline",
+    "No final APK or demo video produced by this integration check"
+  ]
+}
