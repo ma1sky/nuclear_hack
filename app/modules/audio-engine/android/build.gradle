@@ -11,3 +11,31 @@ android {
     versionName '0.1.0'
   }
 }
+
+// Checking APKs must contain the complete offline bundle, even when Gradle is called directly.
+def verifyBundledModels = tasks.register('verifyBundledModels') {
+  doLast {
+    def root = file('src/main/assets/models')
+    def manifestFile = new File(root, 'manifest.json')
+    if (!manifestFile.isFile()) throw new GradleException('Built-in models missing. Run npm run models:pack from app/. See docs/model-bundle.md.')
+    def manifest = new groovy.json.JsonSlurper().parse(manifestFile)
+    def required = ['asr', 'tokens', 'segmentation', 'embedding', 'llm'] as Set
+    if (manifest.version != 1 || manifest.language != 'ru' || !(manifest.files instanceof List) || manifest.files.size() != 5 || (manifest.files.collect { it.id } as Set) != required) {
+      throw new GradleException('Invalid or incomplete built-in model manifest')
+    }
+    if ((manifest.files.collect { it.file } as Set).size() != 5) throw new GradleException('Duplicate built-in model file')
+    manifest.files.each { entry ->
+      if (!(entry.file instanceof String) || !(entry.file ==~ /[a-zA-Z0-9_.-]+/) || entry.file in ['.', '..']) throw new GradleException('Invalid model path')
+      def model = new File(root, entry.file)
+      if (!model.isFile() || entry.size <= 0 || model.length() != entry.size) throw new GradleException("Built-in model missing or incomplete: ${entry.id}")
+      def digest = java.security.MessageDigest.getInstance('SHA-256')
+      model.withInputStream { stream ->
+        byte[] buffer = new byte[65536]
+        int count
+        while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count)
+      }
+      if (digest.digest().encodeHex().toString() != entry.sha256) throw new GradleException("Built-in model checksum mismatch: ${entry.id}")
+    }
+  }
+}
+tasks.matching { it.name == 'preBuild' }.configureEach { dependsOn(verifyBundledModels) }

@@ -8,6 +8,7 @@ export type EngineCapabilities = {
 
 type AudioEngineModule = {
   getCapabilities(): EngineCapabilities;
+  prepareModels(): Promise<Record<'asr' | 'tokens' | 'segmentation' | 'embedding' | 'llm', string>>;
 };
 
 // Optional loading allows UI development before the native app is compiled.

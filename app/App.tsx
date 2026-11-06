@@ -6,6 +6,7 @@ import AudioEngine from './modules/audio-engine';
 
 export default function App() {
   const [file, setFile] = useState<DocumentPicker.DocumentPickerAsset | null>(null);
+  const [modelsReady, setModelsReady] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,6 +22,21 @@ export default function App() {
       if (!result.canceled) setFile(result.assets[0]);
     } catch {
       setError('Не удалось открыть запись. Попробуйте другой файл.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function prepareModels() {
+    if (!AudioEngine) return;
+    setBusy(true);
+    setError(null);
+    try {
+      await AudioEngine.prepareModels();
+      setModelsReady(true);
+    } catch {
+      setModelsReady(false);
+      setError('Не удалось подготовить встроенные модели. Проверьте свободное место и используйте APK с полным комплектом моделей.');
     } finally {
       setBusy(false);
     }
@@ -43,6 +59,10 @@ export default function App() {
         <Text style={styles.description}>
           Подготовлена основа приложения. Распознавание, разделение участников и локальная LLM пока не подключены.
         </Text>
+        <Text style={styles.description}>
+          {modelsReady ? 'Встроенные модели проверены и подготовлены.' : 'Подготовка встроенных моделей выполняется без интернета.'}
+        </Text>
+        <Button title="Подготовить модели" disabled={busy || !AudioEngine} onPress={prepareModels} />
         <Text style={styles.status}>
           {AudioEngine ? 'Нативный модуль подключён' : 'Для проверки нативного модуля нужна Android development build'}
         </Text>

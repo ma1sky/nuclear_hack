@@ -25,3 +25,6 @@ dist/
 /app/models/
 /app/recordings/
 /app/android/app/src/main/assets/models/
+
+# Generated offline model bundle (real weights are never committed)
+/app/modules/audio-engine/android/src/main/assets/models/

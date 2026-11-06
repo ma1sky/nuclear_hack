@@ -20,11 +20,13 @@
   },
   "scripts": {
     "start": "expo start",
-    "android": "expo run:android",
+    "android": "npm run models:pack && expo run:android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "models:pack": "node scripts/model-bundle.cjs",
+    "test:models": "node --test scripts/model-bundle.test.cjs"
   },
   "private": true
 }
