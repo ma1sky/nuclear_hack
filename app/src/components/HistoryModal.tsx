@@ -1,205 +1,32 @@
-import React from 'react';
-import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SavedTranscript } from '../types/transcript';
+import { FlatList, View } from 'react-native';
+import type { SavedTranscript } from '../types/transcript';
 import { formatDate } from '../utils/formatters';
+import { Text } from './ui/text';
+import { Button } from './ui/button';
+import { ActionButton } from './ui/action-button';
+import { ModalShell } from './ui/modal-shell';
 
 interface HistoryModalProps {
-  visible: boolean;
-  transcripts: SavedTranscript[];
-  onSelect: (item: SavedTranscript) => void;
-  onDelete: (id: string) => void;
-  onClose: () => void;
+  visible: boolean; transcripts: SavedTranscript[]; onSelect: (item: SavedTranscript) => void;
+  onDelete: (id: string) => void; onClose: () => void;
 }
-
-export const HistoryModal: React.FC<HistoryModalProps> = ({
-  visible,
-  transcripts,
-  onSelect,
-  onDelete,
-  onClose,
-}) => {
+export function HistoryModal({ visible, transcripts, onSelect, onDelete, onClose }: HistoryModalProps) {
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <View style={styles.overlay}>
-        <View style={styles.card}>
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.title}>История расшифровок</Text>
-              <Text style={styles.subtitle}>Сохранено локально на телефоне ({transcripts.length})</Text>
-            </View>
-            <TouchableOpacity style={styles.closeBtn} onPress={onClose} activeOpacity={0.7}>
-              <Text style={styles.closeIcon}>✕</Text>
-            </TouchableOpacity>
+    <ModalShell visible={visible} title={`История (${transcripts.length})`} onClose={onClose}>
+      <FlatList className="shrink" data={transcripts} keyExtractor={item => item.id} contentContainerClassName="gap-3 p-4"
+        ListEmptyComponent={<Text className="text-muted-foreground text-base leading-6">Здесь появятся обработанные записи. Они сохраняются на телефоне автоматически.</Text>}
+        renderItem={({ item }) => (
+          <View className="border-border gap-2 rounded-lg border p-3">
+            <Button variant="ghost" className="h-auto items-start justify-start p-0" onPress={() => { onSelect(item); onClose(); }} accessibilityLabel={`Открыть ${item.title || item.fileName}`}>
+              <View className="min-w-0 flex-1 gap-1">
+                <Text className="text-base font-semibold leading-6">{item.title || item.fileName}</Text>
+                <Text className="text-muted-foreground text-xs leading-5">{formatDate(item.createdAt)} · {item.exportData.transcript.length} реплик</Text>
+                {!!item.summary && <Text className="text-muted-foreground text-sm leading-5" numberOfLines={2}>{item.summary}</Text>}
+              </View>
+            </Button>
+            <ActionButton variant="ghost" className="self-end" label="Удалить" onPress={() => onDelete(item.id)} accessibilityLabel={`Удалить ${item.title || item.fileName}`} />
           </View>
-
-          {transcripts.length === 0 ? (
-            <View style={styles.emptyContainer}>
-              <Text style={styles.emptyEmoji}>📂</Text>
-              <Text style={styles.emptyTitle}>Нет сохраненных записей</Text>
-              <Text style={styles.emptyText}>
-                После обработки аудиофайла результат автоматически сохранится здесь для быстрого доступа.
-              </Text>
-            </View>
-          ) : (
-            <FlatList
-              data={transcripts}
-              keyExtractor={(item) => item.id}
-              contentContainerStyle={styles.listContent}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.itemCard}
-                  onPress={() => {
-                    onSelect(item);
-                    onClose();
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <View style={styles.itemHeader}>
-                    <Text style={styles.itemTitle} numberOfLines={1}>
-                      {item.title || item.fileName}
-                    </Text>
-                    <TouchableOpacity
-                      style={styles.deleteBtn}
-                      onPress={() => onDelete(item.id)}
-                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                    >
-                      <Text style={styles.deleteIcon}>🗑️</Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <Text style={styles.itemMeta}>
-                    {formatDate(item.createdAt)} • {item.exportData.transcript.length} реплик
-                  </Text>
-
-                  {item.summary ? (
-                    <Text style={styles.itemSummary} numberOfLines={2}>
-                      {item.summary}
-                    </Text>
-                  ) : null}
-                </TouchableOpacity>
-              )}
-            />
-          )}
-        </View>
-      </View>
-    </Modal>
+        )} />
+    </ModalShell>
   );
-};
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(15, 23, 42, 0.6)',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-    maxHeight: '80%',
-    display: 'flex',
-    overflow: 'hidden',
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 16,
-    elevation: 8,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 18,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F1F5F9',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#0F172A',
-  },
-  subtitle: {
-    fontSize: 12,
-    color: '#64748B',
-    marginTop: 2,
-  },
-  closeBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#F1F5F9',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  closeIcon: {
-    color: '#64748B',
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  emptyContainer: {
-    padding: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  emptyEmoji: {
-    fontSize: 40,
-    marginBottom: 12,
-  },
-  emptyTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#1E293B',
-    marginBottom: 6,
-  },
-  emptyText: {
-    fontSize: 13,
-    color: '#64748B',
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  listContent: {
-    padding: 16,
-    gap: 10,
-  },
-  itemCard: {
-    backgroundColor: '#F8FAFC',
-    borderRadius: 12,
-    padding: 14,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  itemHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-  itemTitle: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#1E293B',
-    flex: 1,
-    marginRight: 8,
-  },
-  deleteBtn: {
-    padding: 4,
-  },
-  deleteIcon: {
-    fontSize: 14,
-  },
-  itemMeta: {
-    fontSize: 12,
-    color: '#64748B',
-    marginBottom: 6,
-  },
-  itemSummary: {
-    fontSize: 12,
-    lineHeight: 16,
-    color: '#334155',
-    backgroundColor: '#FFFFFF',
-    padding: 8,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: '#F1F5F9',
-  },
-});
+}

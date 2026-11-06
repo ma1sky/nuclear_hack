@@ -1,0 +1,8 @@
+{
+  "file": "gigaam-example.wav",
+  "source": "https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models",
+  "archive": "sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19.tar.bz2",
+  "entry": "sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19/test_wavs/example.wav",
+  "sha256": "d8aaaa18a5098d7c6de0595ae7ac1e64cacd0d4022af3595213bdaf23be77e69",
+  "purpose": "model-distributed smoke test, not independent benchmark"
+}

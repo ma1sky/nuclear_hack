@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
+    "@rn-primitives/separator": "^1.5.2",
+    "@rn-primitives/slot": "^1.5.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "expo": "~58.0.23",
     "expo-dev-client": "~58.0.18",
     "expo-document-picker": "~58.0.4",
@@ -11,7 +15,13 @@
     "expo-status-bar": "~58.0.4",
     "llama.rn": "^0.12.9",
     "react": "19.3.0",
-    "react-native": "0.88.1"
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-web": "^0.21.4",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "4",
+    "uniwind": "1.13.0"
   },
   "devDependencies": {
     "@types/react": "~19.3.0",
@@ -29,7 +39,11 @@
     "lint": "expo lint",
     "models:pack": "node scripts/model-bundle.cjs",
     "test:models": "node --test scripts/model-bundle.test.cjs",
-    "test:integration": "node --test scripts/integration.test.cjs"
+    "test:integration": "node --test scripts/integration.test.cjs",
+    "theme:generate": "node scripts/generate-theme.cjs",
+    "theme:check": "node scripts/generate-theme.cjs --check",
+    "test:design": "node --experimental-strip-types --test scripts/design.test.cjs",
+    "ui:export": "node scripts/export-ui-preview.cjs"
   },
   "private": true
 }

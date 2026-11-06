@@ -1,0 +1,108 @@
+{
+  "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+  "audioDownloaded": false,
+  "samples": [
+    {
+      "shard": "data/shard-0000.tar",
+      "file_id": "rec_0000",
+      "duration": 60.0,
+      "n_speakers": 1,
+      "speakers": {
+        "spk0": "aleksei_yadrennikov"
+      },
+      "overlap_stats": {
+        "single": 1.0,
+        "overlap2": 0.0,
+        "overlap3plus": 0.0,
+        "speech": 0.9349542055621708
+      },
+      "snr_db": 25.0
+    },
+    {
+      "shard": "data/shard-0000.tar",
+      "file_id": "rec_0001",
+      "duration": 60.0,
+      "n_speakers": 1,
+      "speakers": {
+        "spk0": "nikolai_naumenko"
+      },
+      "overlap_stats": {
+        "single": 1.0,
+        "overlap2": 0.0,
+        "overlap3plus": 0.0,
+        "speech": 0.9430373334778626
+      },
+      "snr_db": 25.0
+    },
+    {
+      "shard": "data/shard-0000.tar",
+      "file_id": "rec_0055",
+      "duration": 60.0,
+      "n_speakers": 2,
+      "speakers": {
+        "spk0": "dmitrii_shabrov",
+        "spk1": "gennadii_korshunov"
+      },
+      "overlap_stats": {
+        "single": 0.875992800808699,
+        "overlap2": 0.12400719919130102,
+        "overlap3plus": 0.0,
+        "speech": 0.9430856263907811
+      },
+      "snr_db": 25.0
+    },
+    {
+      "shard": "data/shard-0000.tar",
+      "file_id": "rec_0056",
+      "duration": 60.0,
+      "n_speakers": 2,
+      "speakers": {
+        "spk0": "andrei_finagin",
+        "spk1": "tanya_klavina"
+      },
+      "overlap_stats": {
+        "single": 0.9719541913620698,
+        "overlap2": 0.028045808637930207,
+        "overlap3plus": 0.0,
+        "speech": 0.9366692695901329
+      },
+      "snr_db": 25.0
+    },
+    {
+      "shard": "data/shard-0001.tar",
+      "file_id": "rec_0273",
+      "duration": 60.0,
+      "n_speakers": 3,
+      "speakers": {
+        "spk0": "alena_babenko",
+        "spk1": "yulia_tarhova",
+        "spk2": "evgenii_babincev"
+      },
+      "overlap_stats": {
+        "single": 0.9745025873659541,
+        "overlap2": 0.025497412634045962,
+        "overlap3plus": 0.0,
+        "speech": 0.9409828224158209
+      },
+      "snr_db": 25.0
+    },
+    {
+      "shard": "data/shard-0001.tar",
+      "file_id": "rec_0274",
+      "duration": 60.0,
+      "n_speakers": 3,
+      "speakers": {
+        "spk0": "yulia_tarhova",
+        "spk1": "aleksandr_kotov",
+        "spk2": "alina_archibasova"
+      },
+      "overlap_stats": {
+        "single": 0.9552657998263607,
+        "overlap2": 0.04473420017363925,
+        "overlap3plus": 0.0,
+        "speech": 0.9434040870331752
+      },
+      "snr_db": 25.0
+    }
+  ]
+}

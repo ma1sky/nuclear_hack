@@ -1,0 +1,58 @@
+{
+  "library": "React Native Reusables",
+  "license": "MIT",
+  "retrieved": "2026-11-07",
+  "components": [
+    {
+      "name": "button",
+      "url": "https://reactnativereusables.com/r/uniwind/button.json",
+      "upstreamSourceSha256": "7cc5b8f6db471774f902c97b6001e6f87279fecc49c7f41870b7186bb4b872f1",
+      "changes": [
+        "Local import aliases",
+        "48dp minimum touch target; flexible height and multiline labels"
+      ]
+    },
+    {
+      "name": "text",
+      "url": "https://reactnativereusables.com/r/uniwind/text.json",
+      "upstreamSourceSha256": "13851741839e450d08924d3db9272356c53071b60773893010e82bd9bf7a11fe",
+      "changes": [
+        "Local import aliases"
+      ]
+    },
+    {
+      "name": "card",
+      "url": "https://reactnativereusables.com/r/uniwind/card.json",
+      "upstreamSourceSha256": "16fcca4fb9c9ced1a904f8e882ee43f96048279706d7f1002c6dea65be1e6d78",
+      "changes": [
+        "Local import aliases"
+      ]
+    },
+    {
+      "name": "badge",
+      "url": "https://reactnativereusables.com/r/uniwind/badge.json",
+      "upstreamSourceSha256": "bac736730dfeee777a044bbd27f05606a76f24d78aa3be867da6a295cd045674",
+      "changes": [
+        "Local import aliases"
+      ]
+    },
+    {
+      "name": "input",
+      "url": "https://reactnativereusables.com/r/uniwind/input.json",
+      "upstreamSourceSha256": "c82221462498c1b7161f1c586411bcea0e75e487f50c99d948ac05b1d002b9f6",
+      "changes": [
+        "Local import aliases",
+        "48dp minimum height; retain 16sp input font",
+        "Remove unsupported unused placeholderClassName prop; opaque placeholder for contrast"
+      ]
+    },
+    {
+      "name": "separator",
+      "url": "https://reactnativereusables.com/r/uniwind/separator.json",
+      "upstreamSourceSha256": "11523b704c82a9f68bbc6227ba9bc136bb374b032d936194160d93d5b2cf6eb1",
+      "changes": [
+        "Local import aliases"
+      ]
+    }
+  ]
+}

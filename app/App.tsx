@@ -1,10 +1,13 @@
+import './global.css';
+import { Uniwind } from 'uniwind';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from './src/theme/tokens';
 import React, { useEffect, useState, useRef } from 'react';
 import {
   Alert,
   FlatList,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -33,6 +36,8 @@ import { ExportBar } from './src/components/ExportBar';
 import { RenameSpeakerModal } from './src/components/RenameSpeakerModal';
 import { JsonModal } from './src/components/JsonModal';
 import { HistoryModal } from './src/components/HistoryModal';
+
+Uniwind.setTheme('light');
 
 export default function App() {
   const cancelled = useRef(false);
@@ -274,7 +279,7 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider><SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
       <KeyboardAvoidingView
         style={styles.keyboardContainer}
@@ -289,10 +294,10 @@ export default function App() {
 
         {/* Error notification */}
         {error && (
-          <View style={styles.errorBanner}>
+          <View style={styles.errorBanner} accessibilityLiveRegion="polite">
             <Text style={styles.errorIcon}>⚠️</Text>
             <Text style={styles.errorText}>{error}</Text>
-            <TouchableOpacity onPress={() => setError(null)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="Закрыть сообщение об ошибке" onPress={() => setError(null)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={styles.errorClose}>✕</Text>
             </TouchableOpacity>
           </View>
@@ -332,7 +337,7 @@ export default function App() {
                   <Text style={styles.listHeaderTitle}>
                     Стенограмма диалога ({currentTranscript.transcript.length} реплик)
                   </Text>
-                  <Text style={styles.listHeaderSub}>Нажмите на бейдж спикера для переименования</Text>
+                  <Text style={styles.listHeaderSub}>Нажмите на имя участника, чтобы изменить его</Text>
                 </View>
               )}
             </View>
@@ -393,14 +398,14 @@ export default function App() {
           onClose={() => setHistoryVisible(false)}
         />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </SafeAreaView></SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: colors.background,
   },
   keyboardContainer: {
     flex: 1,
@@ -412,26 +417,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   listHeaderRow: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingTop: 18,
     paddingBottom: 10,
   },
   listHeaderTitle: {
     fontSize: 16,
     fontWeight: '800',
-    color: '#0F172A',
+    color: colors.foreground,
   },
   listHeaderSub: {
     fontSize: 12,
-    color: '#64748B',
+    color: colors.mutedForeground,
     marginTop: 2,
   },
   errorBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FEE2E2',
+    backgroundColor: colors.errorSurface,
     borderLeftWidth: 4,
-    borderLeftColor: '#DC2626',
+    borderLeftColor: colors.destructive,
     paddingHorizontal: 14,
     paddingVertical: 10,
     marginHorizontal: 16,
@@ -445,14 +450,16 @@ const styles = StyleSheet.create({
   errorText: {
     flex: 1,
     fontSize: 13,
-    color: '#991B1B',
+    color: colors.destructive,
     fontWeight: '500',
   },
   errorClose: {
     fontSize: 14,
-    color: '#991B1B',
+    color: colors.destructive,
     fontWeight: '700',
-    padding: 4,
+    padding: 12,
+    minHeight: 48,
+    minWidth: 48,
   },
   emptyView: {
     alignItems: 'center',
@@ -467,12 +474,12 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#1E293B',
+    color: colors.foreground,
     marginBottom: 6,
   },
   emptyText: {
     fontSize: 14,
-    color: '#64748B',
+    color: colors.mutedForeground,
     textAlign: 'center',
     lineHeight: 20,
   },

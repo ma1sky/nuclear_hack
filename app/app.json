@@ -31,7 +31,8 @@
           "enableOpenCLAndHexagon": false,
           "enableEntitlements": false
         }
-      ]
+      ],
+      "./plugins/withShortNativePaths.cjs"
     ]
   }
 }

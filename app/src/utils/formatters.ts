@@ -1,3 +1,5 @@
+import { theme } from '../theme/tokens';
+
 /**
  * Utility functions for formatting time, file size, and dates.
  */
@@ -40,14 +42,7 @@ export function formatDate(isoString: string): string {
  * Returns a stable, distinct color based on speaker ID
  */
 export function getSpeakerColor(speakerId: string): { bg: string; text: string; border: string } {
-  const palette = [
-    { bg: '#EFF4FF', text: '#1E40AF', border: '#BFDBFE' }, // Blue
-    { bg: '#ECFDF5', text: '#065F46', border: '#A7F3D0' }, // Green
-    { bg: '#F5F3FF', text: '#5B21B6', border: '#DDD6FE' }, // Purple
-    { bg: '#FFF7ED', text: '#9A3412', border: '#FED7AA' }, // Orange
-    { bg: '#FDF2F8', text: '#9D174D', border: '#FBCFE8' }, // Pink
-    { bg: '#F0FDFA', text: '#115E59', border: '#99F6E4' }, // Teal
-  ];
+  const palette = theme.speakers;
 
   let hash = 0;
   for (let i = 0; i < speakerId.length; i++) {

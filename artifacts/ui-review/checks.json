@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-07",
+  "baseCommit": "1f01c85",
+  "library": "React Native Reusables (Uniwind registry)",
+  "typecheck": "passed",
+  "eslint": "passed",
+  "themeSync": "passed",
+  "designTests": {
+    "passed": 3
+  },
+  "integrationTests": {
+    "passed": 3
+  },
+  "androidHermesExport": "passed",
+  "webGalleryExport": "passed",
+  "webInteractions": [
+    "history open/close",
+    "rename open/save",
+    "JSON open/close"
+  ],
+  "webViewportWidths": [
+    320,
+    360,
+    412
+  ],
+  "webPageErrors": [],
+  "expoDependencyCheck": "online TLS error; offline reports up-to-date with reliability warning",
+  "releaseApk": "not verified",
+  "redmiInference": "not verified",
+  "nativeAccessibilityAndKeyboard": "not verified"
+}

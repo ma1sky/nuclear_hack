@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-07",
+  "apkSizeBytes": 888480311,
+  "apkSha256": "1652b8f8d0d1d201079d07341b615586d2ebfd2d49447141adc853651870766d",
+  "abis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "embeddedModels": 5,
+  "embeddedJs": true,
+  "signatureSchemeV2Verified": true,
+  "device": "Medium_Phone_API_37.0 (emulator-5554)",
+  "testedAbi": "x86_64",
+  "airplaneModeDuringInference": true,
+  "install": "success",
+  "coldLaunch": "success",
+  "modelPreparation": "success",
+  "wavImport": "success",
+  "diarizationAndAsr": "success",
+  "savedHistoryCount": 1,
+  "strictJsonSchemaAndBounds": "passed",
+  "audioDurationMs": 11290.0,
+  "utterances": 1,
+  "llm": "real local output produced; factual errors observed on poetic sample",
+  "sampleSource": {
+    "file": "gigaam-example.wav",
+    "source": "https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models",
+    "archive": "sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19.tar.bz2",
+    "entry": "sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19/test_wavs/example.wav",
+    "sha256": "d8aaaa18a5098d7c6de0595ae7ac1e64cacd0d4022af3595213bdaf23be77e69",
+    "purpose": "model-distributed smoke test, not independent benchmark"
+  },
+  "wer": null,
+  "der": null,
+  "rtf": null,
+  "redmiTested": false,
+  "m4aTested": false,
+  "multiSpeakerBenchmarkRun": false
+}
