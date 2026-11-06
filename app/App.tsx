@@ -112,20 +112,6 @@ export default function App() {
     }
   }
 
-  // 2. Load mock benchmark data for instant QA and demonstration
-  function loadMockSample() {
-    setError(null);
-    setSelectedFile({
-      name: 'kotovitse_meeting_soviet.wav',
-      size: 1420500,
-      uri: 'mock://kotovitse_meeting_soviet.wav',
-      mimeType: 'audio/wav',
-      lastModified: Date.now(),
-    });
-    setCurrentTranscript(MOCK_TRANSCRIPT);
-    setCurrentSummary(MOCK_SUMMARY);
-    setSpeakerNames(DEFAULT_SPEAKER_NAMES);
-  }
 
   // 3. Main processing pipeline
   async function startTranscription() {
