@@ -17,7 +17,12 @@ export const RenameSpeakerModal: React.FC<RenameSpeakerModalProps> = ({
   onClose,
 }) => {
   const [name, setName] = useState(currentName);
+  const [prevCurrentName, setPrevCurrentName] = useState(currentName);
 
+  if (currentName !== prevCurrentName) {
+    setName(currentName);
+    setPrevCurrentName(currentName);
+  }
 
   if (!speakerId) return null;
 

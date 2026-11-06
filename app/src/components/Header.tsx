@@ -72,18 +72,18 @@ const styles = StyleSheet.create({
   badgeNative: {
     backgroundColor: '#DCFCE7',
   },
-  badgeNativeText: {
-    color: '#15803D',
-    fontSize: 10,
-    fontWeight: '700',
-  },
   badgeDev: {
     backgroundColor: '#FEF3C7',
   },
-  badgeDevText: {
-    color: '#B45309',
+  badgeText: {
     fontSize: 10,
     fontWeight: '700',
+  },
+  badgeNativeText: {
+    color: '#15803D',
+  },
+  badgeDevText: {
+    color: '#B45309',
   },
   title: {
     fontSize: 22,

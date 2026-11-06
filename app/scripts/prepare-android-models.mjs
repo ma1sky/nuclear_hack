@@ -45,11 +45,20 @@ async function download(url, checksum) {
 }
 
 function extract(archive, entry, target) {
-  const descriptor = openSync(target, 'w');
   try {
-    run('tar', ['-xOf', archive, entry], ['ignore', descriptor, 'inherit']);
-  } finally {
-    closeSync(descriptor);
+    const descriptor = openSync(target, 'w');
+    try {
+      run('tar', ['-xOf', archive, entry], ['ignore', descriptor, 'inherit']);
+      return;
+    } finally {
+      closeSync(descriptor);
+    }
+  } catch {
+    // Windows bsdtar fallback using Python standard library tarfile
+    const pythonExe = join(process.env.LOCALAPPDATA || '', 'Programs', 'Python', 'Python311', 'python.exe');
+    const py = existsSync(pythonExe) ? pythonExe : 'python';
+    const pyScript = 'import tarfile, sys\nwith tarfile.open(sys.argv[1]) as t:\n  with open(sys.argv[3], "wb") as o:\n    o.write(t.extractfile(sys.argv[2]).read())';
+    run(py, ['-c', pyScript, archive, entry, target]);
   }
 }
 
