@@ -1,0 +1,19 @@
+{
+  "1-two-speakers-en.wav": {
+    "durationMs": 16000,
+    "intervals": [
+      { "startMs": 1617, "endMs": 3271, "speakerId": "speaker_1" },
+      { "startMs": 4435, "endMs": 6427, "speakerId": "speaker_1" },
+      { "startMs": 9346, "endMs": 11455, "speakerId": "speaker_2" },
+      { "startMs": 12181, "endMs": 14645, "speakerId": "speaker_2" }
+    ]
+  },
+  "two-speakers-aba.wav": {
+    "durationMs": 9500,
+    "intervals": [
+      { "startMs": 824, "endMs": 2444, "speakerId": "speaker_1" },
+      { "startMs": 3575, "endMs": 5633, "speakerId": "speaker_2" },
+      { "startMs": 6713, "endMs": 8705, "speakerId": "speaker_1" }
+    ]
+  }
+}

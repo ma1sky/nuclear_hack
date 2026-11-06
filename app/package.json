@@ -19,6 +19,7 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "models:android": "node scripts/prepare-android-models.mjs",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo start --ios",
