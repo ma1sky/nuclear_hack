@@ -52,6 +52,7 @@
     "theme:check": "node scripts/generate-theme.cjs --check",
     "test:design": "node --experimental-strip-types --test scripts/design.test.cjs",
     "ui:export": "node scripts/export-ui-preview.cjs",
+    "test:journey": "node --test scripts/test-user-journey.test.cjs",
     "test:library": "node --test scripts/library.test.cjs"
   },
   "private": true
