@@ -1,6 +1,7 @@
 from pathlib import Path
 import json,re,itertools
 import numpy as np
+from speaker_assignment import maximum_overlap
 root=Path(__file__).resolve().parents[2]; data=root/'recordings/benchmark'; out=data/'results'
 def normalize(s): return re.sub(r'\s+',' ',re.sub(r'[^\w\s]',' ',s.lower().replace('ё','е'))).split()
 def wer(reference,hypothesis):
@@ -20,11 +21,7 @@ def der(reference,hyp,duration):
  for start,end,speaker in segments: r[(times>=start)&(times<end),rid.index(speaker)]=True
  for s in hyp: h[(times>=s['start_ms']/1000)&(times<s['end_ms']/1000),hid.index(s['speaker_id'])]=True
  overlap=r.astype(np.int64).T@h.astype(np.int64)
- correct=0
- if max(len(rid),len(hid))<=12:
-  for assignment in itertools.permutations(range(max(len(rid),len(hid))),len(rid)):
-   correct=max(correct,sum(overlap[i,j] for i,j in enumerate(assignment) if j<len(hid)))
- else: return {'error':'Too many predicted clusters for exhaustive mapping'}
+ correct=maximum_overlap(overlap)
  rc=r.sum(axis=1); hc=h.sum(axis=1); miss=int(np.maximum(rc-hc,0).sum()); fa=int(np.maximum(hc-rc,0).sum()); confusion=int(np.minimum(rc,hc).sum())-correct; denom=int(rc.sum())
  return {'der':(miss+fa+confusion)/denom if denom else None,'miss_s':miss*.01,'false_alarm_s':fa*.01,'confusion_s':confusion*.01,'reference_speakers':len(rid),'predicted_speakers':len(hid),'collar_s':0,'overlap_included':True,'frame_step_ms':10,'reference_speaker_time_s':denom*.01}
 def main():

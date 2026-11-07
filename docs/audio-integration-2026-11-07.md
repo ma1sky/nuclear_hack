@@ -8,7 +8,7 @@ UI, тема, экраны, история и экспорт сохранены:
 
 Release APK собран с локальными зависимостями для arm64-v8a и x86_64, установлен на эмулятор с сохранением данных. Gradle assembleRelease успешен; TypeScript, ESLint, три интеграционных теста и три теста дизайн-системы проходят.
 
-APK: `app/android/app/build/outputs/apk/release/app-release.apk` (игнорируется Git). SHA-256: `8020653703d4cdd2729ceb6ebd3d01f9a299ea3935562cd7bbc26e5a752b9654`. Это APK-кандидат с прежними versionName/versionCode и тестовым ключом, не опубликованный новый релиз. JS bundle SHA-256: `67e1ddf6ff5f1c076c367f71c2017af86164bee33c15afc0890961a18a154b79`.
+APK: `artifacts/candidates/5825896/nuclear-stenographer.apk` (игнорируется Git). SHA-256: `8020653703d4cdd2729ceb6ebd3d01f9a299ea3935562cd7bbc26e5a752b9654`. Это APK-кандидат с прежними versionName/versionCode и тестовым ключом, не опубликованный новый релиз. JS bundle SHA-256: `67e1ddf6ff5f1c076c367f71c2017af86164bee33c15afc0890961a18a154b79`.
 
 ## Android-регрессия
 

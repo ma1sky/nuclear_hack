@@ -1,0 +1,3807 @@
+{
+  "base_commit": "5825896",
+  "python": "3.12.14",
+  "sherpa_version": "2.0.1",
+  "threads": 2,
+  "protocol": {
+    "development_records": 4,
+    "selection": "lexicographic: minimize number of development files undercounting reference participants, then weighted DER; freeze one configuration per model before evaluation",
+    "ru_gate": "weighted DER at least 5 percent relatively lower than baseline; number of undercounted files not above baseline",
+    "natural_gate": "weighted DER no more than baseline + 0.02 absolute",
+    "note": "Engineering selection criteria fixed before evaluation, not official competition thresholds. Natural English data does not verify Russian podcast WER. No model training. All scoring collar 0, overlap included, 10 ms frames."
+  },
+  "frozen_candidates_sha256": "85cec9a837244bdeb91822574388007eba878d7d00418505592e74c7a4be0713",
+  "candidates": [
+    {
+      "model": "3dspeaker",
+      "threshold": 0.55,
+      "min_duration_off": 0.3,
+      "role": "baseline",
+      "metrics": {
+        "development": {
+          "weighted_der": 0.46812824737042197,
+          "reference_speaker_time_s": 236.73000000000002,
+          "miss_s": 11.5,
+          "false_alarm_s": 4.08,
+          "confusion_s": 95.24000000000001,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rec_0000",
+              "reference": 1,
+              "predicted": 4
+            },
+            {
+              "id": "rec_0055",
+              "reference": 2,
+              "predicted": 6
+            },
+            {
+              "id": "rec_0273",
+              "reference": 3,
+              "predicted": 5
+            },
+            {
+              "id": "rec_0274",
+              "reference": 3,
+              "predicted": 7
+            }
+          ]
+        },
+        "ru_holdout": {
+          "weighted_der": 0.28952083037110765,
+          "reference_speaker_time_s": 351.65,
+          "miss_s": 17.76,
+          "false_alarm_s": 6.140000000000001,
+          "confusion_s": 77.91,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rec_0001",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "rec_0002",
+              "reference": 1,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0056",
+              "reference": 2,
+              "predicted": 4
+            },
+            {
+              "id": "rec_0060",
+              "reference": 2,
+              "predicted": 3
+            },
+            {
+              "id": "rec_0275",
+              "reference": 3,
+              "predicted": 8
+            },
+            {
+              "id": "rec_0277",
+              "reference": 3,
+              "predicted": 5
+            }
+          ]
+        },
+        "vox_validation": {
+          "weighted_der": 0.2418032786885246,
+          "reference_speaker_time_s": 534.36,
+          "miss_s": 13.44,
+          "false_alarm_s": 7.69,
+          "confusion_s": 108.08,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rcxzg",
+              "reference": 4,
+              "predicted": 8
+            },
+            {
+              "id": "fsaal",
+              "reference": 5,
+              "predicted": 10
+            },
+            {
+              "id": "vmaiq",
+              "reference": 10,
+              "predicted": 17
+            },
+            {
+              "id": "tfvyr",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "qpylu",
+              "reference": 2,
+              "predicted": 4
+            },
+            {
+              "id": "willh",
+              "reference": 2,
+              "predicted": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "3dspeaker",
+      "threshold": 0.8,
+      "min_duration_off": 0.3,
+      "role": "development_selected",
+      "metrics": {
+        "development": {
+          "weighted_der": 0.27115279009842436,
+          "reference_speaker_time_s": 236.73000000000002,
+          "miss_s": 11.58,
+          "false_alarm_s": 3.81,
+          "confusion_s": 48.800000000000004,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rec_0000",
+              "reference": 1,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0055",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0273",
+              "reference": 3,
+              "predicted": 3
+            },
+            {
+              "id": "rec_0274",
+              "reference": 3,
+              "predicted": 3
+            }
+          ]
+        },
+        "ru_holdout": {
+          "weighted_der": 0.19058723162235178,
+          "reference_speaker_time_s": 351.65,
+          "miss_s": 17.77,
+          "false_alarm_s": 6.28,
+          "confusion_s": 42.97,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rec_0001",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "rec_0002",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "rec_0056",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0060",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0275",
+              "reference": 3,
+              "predicted": 6
+            },
+            {
+              "id": "rec_0277",
+              "reference": 3,
+              "predicted": 4
+            }
+          ]
+        },
+        "vox_validation": {
+          "weighted_der": 0.18092671607156222,
+          "reference_speaker_time_s": 534.36,
+          "miss_s": 13.12,
+          "false_alarm_s": 7.84,
+          "confusion_s": 75.72,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rcxzg",
+              "reference": 4,
+              "predicted": 6
+            },
+            {
+              "id": "fsaal",
+              "reference": 5,
+              "predicted": 8
+            },
+            {
+              "id": "vmaiq",
+              "reference": 10,
+              "predicted": 11
+            },
+            {
+              "id": "tfvyr",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "qpylu",
+              "reference": 2,
+              "predicted": 3
+            },
+            {
+              "id": "willh",
+              "reference": 2,
+              "predicted": 2
+            }
+          ]
+        }
+      },
+      "gates": {
+        "ru_der": true,
+        "ru_participants": true,
+        "natural_der": true
+      }
+    },
+    {
+      "model": "wespeaker",
+      "threshold": 0.375,
+      "min_duration_off": 0.3,
+      "role": "development_selected",
+      "metrics": {
+        "development": {
+          "weighted_der": 0.32171672369365945,
+          "reference_speaker_time_s": 236.73000000000002,
+          "miss_s": 11.33,
+          "false_alarm_s": 4.01,
+          "confusion_s": 60.82000000000001,
+          "undercounted_cases": 0,
+          "counts": [
+            {
+              "id": "rec_0000",
+              "reference": 1,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0055",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0273",
+              "reference": 3,
+              "predicted": 3
+            },
+            {
+              "id": "rec_0274",
+              "reference": 3,
+              "predicted": 5
+            }
+          ]
+        },
+        "ru_holdout": {
+          "weighted_der": 0.24640978245414477,
+          "reference_speaker_time_s": 351.65,
+          "miss_s": 17.62,
+          "false_alarm_s": 5.36,
+          "confusion_s": 63.67,
+          "undercounted_cases": 2,
+          "counts": [
+            {
+              "id": "rec_0001",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "rec_0002",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "rec_0056",
+              "reference": 2,
+              "predicted": 3
+            },
+            {
+              "id": "rec_0060",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0275",
+              "reference": 3,
+              "predicted": 2
+            },
+            {
+              "id": "rec_0277",
+              "reference": 3,
+              "predicted": 2
+            }
+          ]
+        },
+        "vox_validation": {
+          "weighted_der": 0.3290852608728198,
+          "reference_speaker_time_s": 534.36,
+          "miss_s": 12.61,
+          "false_alarm_s": 8.49,
+          "confusion_s": 154.75,
+          "undercounted_cases": 3,
+          "counts": [
+            {
+              "id": "rcxzg",
+              "reference": 4,
+              "predicted": 5
+            },
+            {
+              "id": "fsaal",
+              "reference": 5,
+              "predicted": 4
+            },
+            {
+              "id": "vmaiq",
+              "reference": 10,
+              "predicted": 7
+            },
+            {
+              "id": "tfvyr",
+              "reference": 1,
+              "predicted": 1
+            },
+            {
+              "id": "qpylu",
+              "reference": 2,
+              "predicted": 2
+            },
+            {
+              "id": "willh",
+              "reference": 2,
+              "predicted": 1
+            }
+          ]
+        }
+      },
+      "gates": {
+        "ru_der": true,
+        "ru_participants": false,
+        "natural_der": false
+      }
+    }
+  ],
+  "selected_configuration": {
+    "model": "3dspeaker",
+    "threshold": 0.8,
+    "min_duration_off": 0.3
+  },
+  "accepted_new_configuration": true,
+  "inputs": [
+    {
+      "id": "rec_0000",
+      "split": "development",
+      "file": "t03-rec_0000.wav",
+      "rttm": "rec_0000.rttm",
+      "sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "reference_sha256": "329f5239ff5883675d8f88c7102782b830dadbae686b6ddc26769fdbdb3d9395",
+      "reference_speakers": 1,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "aleksei_yadrennikov"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0055",
+      "split": "development",
+      "file": "t04-rec_0055.wav",
+      "rttm": "rec_0055.rttm",
+      "sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "reference_sha256": "936ff4497ed71ec5c66a93ec6fbbc233f7b99a016d2aab376b4a2afe0e9f2d00",
+      "reference_speakers": 2,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "dmitrii_shabrov",
+        "gennadii_korshunov"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0273",
+      "split": "development",
+      "file": "t05-rec_0273.wav",
+      "rttm": "rec_0273.rttm",
+      "sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "reference_sha256": "400e893551bec1920c57155837f7026d4bc3af28d2124c43f1aebcd1b38dcc84",
+      "reference_speakers": 3,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "alena_babenko",
+        "yulia_tarhova",
+        "evgenii_babincev"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0274",
+      "split": "development",
+      "file": "t06-rec_0274.wav",
+      "rttm": "rec_0274.rttm",
+      "sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "reference_sha256": "ca47f09ea46192d5689cf2a8f870fe7b3f4f9da48a32fe1a99d4d2b9beea3468",
+      "reference_speakers": 3,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "yulia_tarhova",
+        "aleksandr_kotov",
+        "alina_archibasova"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0001",
+      "split": "ru_holdout",
+      "file": "rec_0001.wav",
+      "rttm": "rec_0001.rttm",
+      "sha256": "cd48f0fc1201555dcd7c09dde08dc518cd1f0e2eb8695968e5502234f6c6bee1",
+      "reference_sha256": "1befee6ccc0e14810f1053ed178543b3a1a86c58ccb2d37ca9f7bf3e0c904e55",
+      "reference_speakers": 1,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "nikolai_naumenko"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0002",
+      "split": "ru_holdout",
+      "file": "rec_0002.wav",
+      "rttm": "rec_0002.rttm",
+      "sha256": "900dc14285488a4e746d41f3093f40be0560815886f90468e47c3fc9e48ccd9a",
+      "reference_sha256": "6a8539d3b2bf2b0ebce974eeb13303768dfe116d31cad5ddacf4a8ddca0c52cc",
+      "reference_speakers": 1,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "polina_kutepova"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0056",
+      "split": "ru_holdout",
+      "file": "rec_0056.wav",
+      "rttm": "rec_0056.rttm",
+      "sha256": "4bf732be031216cec2f581809d6dbb5700e1da767836638f26692835bffcc3d7",
+      "reference_sha256": "772969f597b1d65f4d705b55d50b6d1771be15c20a5f6b00e3ad2b9a1c35e3bf",
+      "reference_speakers": 2,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "andrei_finagin",
+        "tanya_klavina"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0060",
+      "split": "ru_holdout",
+      "file": "rec_0060.wav",
+      "rttm": "rec_0060.rttm",
+      "sha256": "fde82ef8e6ecc49b96cd1ebfba8da872fa9dca650f0656d7e84c4b7fe1951a35",
+      "reference_sha256": "494d3e435d4412aa1bbc2101e31e59ae633af24313b5f7494e88693dae986fb1",
+      "reference_speakers": 2,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "ekaterina_popova",
+        "lyudmila_blagushko"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0275",
+      "split": "ru_holdout",
+      "file": "rec_0275.wav",
+      "rttm": "rec_0275.rttm",
+      "sha256": "18dde0836e1f51ee24ec213c8d1f84c256ab0f8fdae205e83be236d4069abb31",
+      "reference_sha256": "5765d422e5986fb50e107db2a25a0bc0d511f06f58ee8c16b5406a0ddd259001",
+      "reference_speakers": 3,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "andrei_novokreshenov",
+        "konstantin_luzhkov",
+        "irina_bulekova"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rec_0277",
+      "split": "ru_holdout",
+      "file": "rec_0277.wav",
+      "rttm": "rec_0277.rttm",
+      "sha256": "285ea6eea79bd8db09c17d01708c4ee79a4d5af55b4ec302a77f54504f97820f",
+      "reference_sha256": "d6e360588fd6944d39934e763c837c880a9d0cc8dddc75e0a877bca1d3468c03",
+      "reference_speakers": 3,
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_voice_ids": [
+        "larisa_rus",
+        "natalia_korneva",
+        "vadim_prohorov"
+      ],
+      "duration_s": 60.0,
+      "natural": false
+    },
+    {
+      "id": "rcxzg",
+      "split": "vox_validation",
+      "file": "rcxzg.wav",
+      "rttm": "rcxzg.rttm",
+      "sha256": "0af211a478bcda2e2f414427d57a1757f0fd92bd35981bbe5862d51f16cd9d78",
+      "reference_sha256": "f36f20f07a0e14907054efffb80f94ceb8af6cccc0b194be72e5e3a2e39a3714",
+      "reference_speakers": 4,
+      "duration_s": 120.0,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/rcxzg.rttm",
+      "original_reference_sha256": "8481b5b9c2d59bf78275b11a870269616bae722392270425466375929348447e",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 120.0
+    },
+    {
+      "id": "fsaal",
+      "split": "vox_validation",
+      "file": "fsaal.wav",
+      "rttm": "fsaal.rttm",
+      "sha256": "e5ace99787a2f5889c673381fcdadfaf94fba031f13e8469dedc365ae470659c",
+      "reference_sha256": "ca29fb8a4cdd657266536f9e028b7a5843e7ef297b6398b1c6af17f35795370c",
+      "reference_speakers": 5,
+      "duration_s": 120.0,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/fsaal.rttm",
+      "original_reference_sha256": "9dad3f1b916ed066475257f89d1f5703e36a8c239b7a31f1a19ccde0a2819121",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 120.0
+    },
+    {
+      "id": "vmaiq",
+      "split": "vox_validation",
+      "file": "vmaiq.wav",
+      "rttm": "vmaiq.rttm",
+      "sha256": "51b1f4c8aa92d7e2aed691e7ef9f37c2834dcbf80ebb75c649dd7f0a8d14a976",
+      "reference_sha256": "ab9cb9b048159132204d6baa62114e3dc4a83acbaa86c32ccb459179bbbeac20",
+      "reference_speakers": 10,
+      "duration_s": 120.0,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/vmaiq.rttm",
+      "original_reference_sha256": "5e65d2559d29aff2faf995bc512eac6d195b3b51146c18f651322b0e360b4b01",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 120.0
+    },
+    {
+      "id": "tfvyr",
+      "split": "vox_validation",
+      "file": "tfvyr.wav",
+      "rttm": "tfvyr.rttm",
+      "sha256": "a711c26ba4bb69d55cf0e9937a5a2e3faa509c1b2ce775a301d27d00a1f9af5c",
+      "reference_sha256": "4ce37e7bcef9facd6f3b7086463fec790d2548c49c7e794bb87792054758c555",
+      "reference_speakers": 1,
+      "duration_s": 27.9771875,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/tfvyr.rttm",
+      "original_reference_sha256": "89463b10cb68e377ad30de93dfc9d058c127db7fda351eb1260556a55d407911",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 27.9771875
+    },
+    {
+      "id": "qpylu",
+      "split": "vox_validation",
+      "file": "qpylu.wav",
+      "rttm": "qpylu.rttm",
+      "sha256": "6548f7978b04a64590136c48309d20da93a9c3973c8b1b45daa455121d41fcfb",
+      "reference_sha256": "04e2b889e6b37f1049d7ccc10a32d433c1bf9912e515aa7a85fbc38569f14b55",
+      "reference_speakers": 2,
+      "duration_s": 44.5126875,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/qpylu.rttm",
+      "original_reference_sha256": "413212da068dc9150aba09a9e49aeeea2d3d960b1e1e1295b32e0b2a9f5a41c4",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 44.5126875
+    },
+    {
+      "id": "willh",
+      "split": "vox_validation",
+      "file": "willh.wav",
+      "rttm": "willh.rttm",
+      "sha256": "bc7d6ea284fcdfd37aac6da98651993ac89c689e22bd58ef36c648e3990bd818",
+      "reference_sha256": "d76fed3af43f47ed77a1c1da0e7e65ca2754488485f4723375c42c60f9bab4f2",
+      "reference_speakers": 2,
+      "duration_s": 120.0,
+      "source": "https://huggingface.co/datasets/diarizers-community/voxconverse",
+      "reference_source": "https://raw.githubusercontent.com/joonson/voxconverse/master/dev/willh.rttm",
+      "original_reference_sha256": "44cdf08f11ff2e1a1679348032334c516460d707e1a81b3e6852d5f5cdf8af44",
+      "natural": true,
+      "language": "en",
+      "crop_start_s": 0,
+      "crop_end_s": 120.0
+    }
+  ],
+  "sources": {
+    "speaker_model": {
+      "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_resnet34.onnx",
+      "sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+      "size": 26534365,
+      "model_card": "https://huggingface.co/Wespeaker/wespeaker-voxceleb-resnet34",
+      "model_card_license": "apache-2.0",
+      "upstream_training_data_attribution": "VoxCeleb; upstream pretrained.md also refers to CC BY 4.0 dataset terms"
+    },
+    "natural_source": {
+      "url": "https://huggingface.co/datasets/diarizers-community/voxconverse/resolve/3acfa1b45ca4b7419aee999d67d94c617f9c9d47/data/dev-00000-of-00005.parquet",
+      "sha256": "f36c54412f0ac9cfe7ec2682e27f70f3e3df63d8e2b8f288d4f62341a595917d",
+      "selection": "first six rows, crop at 120 seconds, use original author RTTM rather than repack labels",
+      "license": "CC BY 4.0"
+    }
+  },
+  "results": [
+    {
+      "key": "a5c9d4a04849b84e7fc131c36d33acf78999cb0d2854cbc50e81d98156514f3b",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.547,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5357333808590269,
+        "miss_s": 0.49,
+        "false_alarm_s": 2.36,
+        "confusion_s": 27.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "c4480b55e0c3de7884f08359922a718ec4350daeb84f58bda22d5d5358432a11",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 20.687,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.5685750235923246,
+        "miss_s": 4.8500000000000005,
+        "false_alarm_s": 0.75,
+        "confusion_s": 30.55,
+        "reference_speakers": 2,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "11b25bb5ae621d7d253f844a4d21e62086c269808e968e5459613c01b79608d3",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 22.312,
+      "gain": 1.0,
+      "score": {
+        "der": 0.3011569677085132,
+        "miss_s": 3.48,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 13.49,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "66ce7639257233b477e86749a79404299ccff1c7299e5afe95ef789d41693555",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.547,
+      "gain": 1.0,
+      "score": {
+        "der": 0.45949602570607134,
+        "miss_s": 2.68,
+        "false_alarm_s": 0.5,
+        "confusion_s": 23.990000000000002,
+        "reference_speakers": 3,
+        "predicted_speakers": 7,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "4097015e4705fe1e4a45f4ac4aec1676061c31be0cff21604abee20591f0ac91",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.6,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 19.61,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4250579219390483,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.36,
+        "confusion_s": 21.02,
+        "reference_speakers": 1,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "8810309c8f321a80eb8b12e52da8dec2d7f719091345d61a394ccf60c047cc23",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.6,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.156,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.47971060081786726,
+        "miss_s": 5.08,
+        "false_alarm_s": 1.49,
+        "confusion_s": 23.93,
+        "reference_speakers": 2,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "74ee32f911cd713c027330f5afb3dbad89b2a9ef283ea9017fdaff8b2ba77f0e",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.6,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.907,
+      "gain": 1.0,
+      "score": {
+        "der": 0.24520808150578483,
+        "miss_s": 3.41,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 10.32,
+        "reference_speakers": 3,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "f1e68ff77d364b1e83289e9bab33a69c0d2e1c85af8f720b18843ff4c34e78c6",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.6,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.907,
+      "gain": 1.0,
+      "score": {
+        "der": 0.33147302553695246,
+        "miss_s": 2.68,
+        "false_alarm_s": 0.5,
+        "confusion_s": 16.42,
+        "reference_speakers": 3,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "f4204f050b44f22f9afd0469e280bfcda183e555375f610f7c9c82b072afc471",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 19.016,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4250579219390483,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.36,
+        "confusion_s": 21.02,
+        "reference_speakers": 1,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "2ccb5b30bb1b71edf06f6408669d0fdd50f76f4eecab9a25e69620996af5c63d",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.344,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.42025794274929223,
+        "miss_s": 5.08,
+        "false_alarm_s": 0.75,
+        "confusion_s": 20.89,
+        "reference_speakers": 2,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "ef64872bb39d6272386bb196b27bc43000100490f22b9a4dcd4f8545430a3bc4",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.578,
+      "gain": 1.0,
+      "score": {
+        "der": 0.24520808150578483,
+        "miss_s": 3.41,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 10.32,
+        "reference_speakers": 3,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "cdb8ba5dec40fd2484ee288c8846962be5c37c4b207affa05d14fa3b2381693a",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.141,
+      "gain": 1.0,
+      "score": {
+        "der": 0.33147302553695246,
+        "miss_s": 2.68,
+        "false_alarm_s": 0.5,
+        "confusion_s": 16.42,
+        "reference_speakers": 3,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "bfc532eff2d7e8fe9cba098de6ae594a6f341874f9be79138895f2374c8aa761",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.7,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 18.985,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4250579219390483,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.36,
+        "confusion_s": 21.02,
+        "reference_speakers": 1,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "255064dc899aa74f9b09156fa0874e8579728837ce5de8b716c310ecfd56c39d",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.7,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.218,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.3700849323686694,
+        "miss_s": 5.0600000000000005,
+        "false_alarm_s": 0.8,
+        "confusion_s": 17.67,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "34a7ba672d34347a72b7cb31b515081112305cba274340a2999aea2367f084c0",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.7,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.313,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "acf5df7e1b9ba5607829d231ee4a02c654ce072dc9e0d14da52fd3cbc87c20ce",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.7,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.25,
+      "gain": 1.0,
+      "score": {
+        "der": 0.31540673093184507,
+        "miss_s": 2.68,
+        "false_alarm_s": 0.5,
+        "confusion_s": 15.47,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "8ade7660881213e2b92d637bf546bee5a3e7563edcedae24d6e16c2ede4995b5",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.453,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4250579219390483,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.36,
+        "confusion_s": 21.02,
+        "reference_speakers": 1,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "7fe658a193b5bae1be3b4af46178a4a93ee7a0c63cbea761f0378939fe56fbbe",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.016,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.3700849323686694,
+        "miss_s": 5.0600000000000005,
+        "false_alarm_s": 0.8,
+        "confusion_s": 17.67,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "63dce36129608986f1d8190e74f0e5e99b6f2227d73b487bee8791e089cd6050",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.516,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "312ccd90cd1de1a4d4eef5a7e86481262d7df6805860e6044b7722a22fb1f1f7",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.282,
+      "gain": 1.0,
+      "score": {
+        "der": 0.24928124471503466,
+        "miss_s": 2.71,
+        "false_alarm_s": 0.5,
+        "confusion_s": 11.53,
+        "reference_speakers": 3,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "f6729beeca6a139938a1e7a7252f19e237222b9cb6bc650f36f8da13e97f340c",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.672,
+      "gain": 1.0,
+      "score": {
+        "der": 0.2659062555694172,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 12.41,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "9c44e7b3c4bc929ad9d3a036fd92a80ba6bab5f5b3f32bf3b533f56b80a9742f",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.109,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.3700849323686694,
+        "miss_s": 5.0600000000000005,
+        "false_alarm_s": 0.8,
+        "confusion_s": 17.67,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "fe25fbaa0cf6bf2c7520b22b64cfc888e3e1f3bcb4a5ac8fb92a3c5718cc56e1",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.313,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "19fbc76ac743c017759172bdaf347fecc6e618c330c4d2ca8da6c41aca3a4f09",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.047,
+      "gain": 1.0,
+      "score": {
+        "der": 0.2939286318281752,
+        "miss_s": 2.66,
+        "false_alarm_s": 0.5,
+        "confusion_s": 14.22,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "dddeaf58250c2034addbbd739b08690222a57696792188bbb0e4e775079161b8",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.375,
+      "gain": 1.0,
+      "score": {
+        "der": 0.2659062555694172,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 12.41,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "c1986eaff1fc23666e7c8ad1050ac28be3025c397c00ffadd63a4c6ee3d880bc",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.406,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.3700849323686694,
+        "miss_s": 5.0600000000000005,
+        "false_alarm_s": 0.8,
+        "confusion_s": 17.67,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "4770bd44145bc89f95e8f9895e8b79f13ed96a97250be518b112b7a3009e6303",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.031,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "1bca0acce190f746145a8d826962152af269ec86d0aef5f74353d5a953eedc5e",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.813,
+      "gain": 1.0,
+      "score": {
+        "der": 0.2939286318281752,
+        "miss_s": 2.66,
+        "false_alarm_s": 0.5,
+        "confusion_s": 14.22,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "8bd4491789b613dd8d9d488e79eab42418e4f2df1f7aabe23b1d5a9590177c2d",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.15,
+        "normalization": true
+      },
+      "elapsed_s": 19.609,
+      "gain": 1.0,
+      "score": {
+        "der": 0.2653715915166637,
+        "miss_s": 0.91,
+        "false_alarm_s": 1.84,
+        "confusion_s": 12.14,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "2a261793a22833bbc8db06ee64b45cd0a8a18aea2c9a5820ffe087bef6ee5594",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.15,
+        "normalization": true
+      },
+      "elapsed_s": 15.969,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.3738597043095313,
+        "miss_s": 5.7,
+        "false_alarm_s": 0.6,
+        "confusion_s": 17.47,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "0cca37c48bd6ea25066fabbd47cd2f3ea678265cdd7326bc01a2071d9d97a58d",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.15,
+        "normalization": true
+      },
+      "elapsed_s": 16.156,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14643412191331376,
+        "miss_s": 3.88,
+        "false_alarm_s": 0.36,
+        "confusion_s": 4.24,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "8acfdf902c6eded4975748c10edf6c1e4b3f337c59ecf1d097deb77451b6fdaf",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.15,
+        "normalization": true
+      },
+      "elapsed_s": 15.968,
+      "gain": 1.0,
+      "score": {
+        "der": 0.29950955521731776,
+        "miss_s": 3.83,
+        "false_alarm_s": 0.12,
+        "confusion_s": 13.76,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "ef890fc554575632df2930f1774488d0e78f49f7b6b998ed975983a7634245bf",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.5,
+        "normalization": true
+      },
+      "elapsed_s": 18.562,
+      "gain": 1.0,
+      "score": {
+        "der": 0.288362145785065,
+        "miss_s": 0.07,
+        "false_alarm_s": 3.3000000000000003,
+        "confusion_s": 12.81,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "6a901d7d57580521b827016514beb31d6184ff93114c2588e8656aa28b65531c",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.5,
+        "normalization": true
+      },
+      "elapsed_s": 15.156,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.38471217363950927,
+        "miss_s": 4.26,
+        "false_alarm_s": 3.41,
+        "confusion_s": 16.79,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "0c12d23b405bd453afe437036c8d67adc0e0b89a1a4fdb43224a8c23174aeeb8",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.5,
+        "normalization": true
+      },
+      "elapsed_s": 16.5,
+      "gain": 1.0,
+      "score": {
+        "der": 0.13520980832326024,
+        "miss_s": 2.14,
+        "false_alarm_s": 1.09,
+        "confusion_s": 4.6000000000000005,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "bd3d13134d4fd822c56327245ff2994c7c919f4c3b55125d0240a5caef91b7e4",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.5,
+        "normalization": true
+      },
+      "elapsed_s": 16.781,
+      "gain": 1.0,
+      "score": {
+        "der": 0.28124471503466936,
+        "miss_s": 1.9100000000000001,
+        "false_alarm_s": 0.5,
+        "confusion_s": 14.22,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "41f28e9a76e13eef9213c342236ce0f2aa427819ec4f46ace921ee152f6548af",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.35,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.563,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4384245232578863,
+        "miss_s": 0.49,
+        "false_alarm_s": 2.0300000000000002,
+        "confusion_s": 22.080000000000002,
+        "reference_speakers": 1,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "d2e84ca9a2630aeb4b9921f4c8e3c23093c11f9e18f32fbe7cb53051330658d4",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.35,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.125,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.4062598301352627,
+        "miss_s": 4.76,
+        "false_alarm_s": 0.72,
+        "confusion_s": 20.35,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "916b84ec45fa3fed0fddd55f07bbffd18603a82dc6e0c3d37b51d1f4442d69f3",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.35,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.609,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "474a9159cb8d1183ec20b2b29155c157bf0a67f50196180a90afeef4b0da79f8",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.35,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.672,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4263487231523761,
+        "miss_s": 2.67,
+        "false_alarm_s": 0.78,
+        "confusion_s": 21.76,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "261c4d06cc4608f602190750e69649232332537044cf5efc2ffd738909494a01",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.45,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.797,
+      "gain": 1.0,
+      "score": {
+        "der": 0.29869898413829976,
+        "miss_s": 0.51,
+        "false_alarm_s": 2.04,
+        "confusion_s": 14.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "4d03f40916c6c6a7b5f57cb4acc6950faaf44f76894d609064c3dca3ede53226",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.45,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 13.781,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.4062598301352627,
+        "miss_s": 4.76,
+        "false_alarm_s": 0.72,
+        "confusion_s": 20.35,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "1674fadb42d26ce7ebbb8aa34f8275bc2264275957285135f164d460d26978cd",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.45,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.61,
+      "gain": 1.0,
+      "score": {
+        "der": 0.16974615783111724,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 5.97,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "6c2d1ba720ad2f237395b83bc3a2b769a1eea8f18c92fb42380d4598119f0a00",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.45,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.219,
+      "gain": 1.0,
+      "score": {
+        "der": 0.09775071875528496,
+        "miss_s": 2.67,
+        "false_alarm_s": 0.5,
+        "confusion_s": 2.61,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "af64ffb37fa12707d4a07d6d5c26284859d7e2d7117f58c3e5bec2ab917b6ad7",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.234,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04473355908037783,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "5597af70aab3f216ea24b380e34806abd9440ad29eb90fc73ff10c245efe7228",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 13.766,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.47184649260773825,
+        "miss_s": 8.99,
+        "false_alarm_s": 0.6,
+        "confusion_s": 20.41,
+        "reference_speakers": 2,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "3bf5aca4dc1e9b854131cfbc9de4fc536420021023adde40d27df8027793a54f",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.578,
+      "gain": 1.0,
+      "score": {
+        "der": 0.16974615783111724,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 5.97,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "89e0af65ff6923f1f244d107d9699ee76c1d026ae1a0380d6f272504deb7f641",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.203,
+      "gain": 1.0,
+      "score": {
+        "der": 0.22932521562658548,
+        "miss_s": 2.66,
+        "false_alarm_s": 0.5,
+        "confusion_s": 10.4,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "3b921a946e28a036f7b8900ffe802577a97d426d005b74c11df9122aafb73ae8",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.078,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04473355908037783,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "5e68d4ae5d2a657bd21e80728036e16f2b5b837a55c172c2e5e88bc740f319f8",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 13.969,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.47184649260773825,
+        "miss_s": 8.99,
+        "false_alarm_s": 0.6,
+        "confusion_s": 20.41,
+        "reference_speakers": 2,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "00288df9fdd11d10c43939eb22cc457f1d0aaf7970ae58a5bea5b971fe6b4436",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.547,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5073389742704196,
+        "miss_s": 4.71,
+        "false_alarm_s": 0.58,
+        "confusion_s": 24.09,
+        "reference_speakers": 3,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "e72e2b6c0aaf9511cdff9fc0f9728ba8a2a4f6a535329ce7d1a7b2d242d4b606",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.65,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 13.922,
+      "gain": 1.0,
+      "score": {
+        "der": 0.22932521562658548,
+        "miss_s": 2.66,
+        "false_alarm_s": 0.5,
+        "confusion_s": 10.4,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "e7abc39c03b8e5dcde34083c525360af5648b277bbba7c3b03804d8e87fdc17b",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 11.625,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04473355908037783,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "da7a74c21214a3b4266350640cee2b0b8de6a9b71e20c6a0c930f8767bb4a249",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.156,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.47184649260773825,
+        "miss_s": 8.99,
+        "false_alarm_s": 0.6,
+        "confusion_s": 20.41,
+        "reference_speakers": 2,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "9a8d6a59c07a1571516240b1671906e2d085a14c3aa691a0e1be3e3cdee66124",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.406,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5073389742704196,
+        "miss_s": 4.71,
+        "false_alarm_s": 0.58,
+        "confusion_s": 24.09,
+        "reference_speakers": 3,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "9debeb25a585d3cc929de667791789b157f743597325656f0a03773c8dbfc987",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.75,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.328,
+      "gain": 1.0,
+      "score": {
+        "der": 0.6020632504650769,
+        "miss_s": 4.79,
+        "false_alarm_s": 1.23,
+        "confusion_s": 29.580000000000002,
+        "reference_speakers": 3,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "1f010c1a802ff35e673b877fe38cbebf7372e5d28aefb3a6dd6e6801b6fbec33",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 11.453,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04473355908037783,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "71444abc74966404dcc41de3256fa1b4dff347602d85cc923d99693df1f40579",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.0,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.47184649260773825,
+        "miss_s": 8.99,
+        "false_alarm_s": 0.6,
+        "confusion_s": 20.41,
+        "reference_speakers": 2,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "f0e4a8d390150abf32e39a532ad31a113584985c1adf5bcd60c12498190ad847",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.375,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5073389742704196,
+        "miss_s": 4.71,
+        "false_alarm_s": 0.58,
+        "confusion_s": 24.09,
+        "reference_speakers": 3,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "f58c1dfb4900ddb773ffa37096136acac45c4c86ae66e94f645c2452f78259d2",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.85,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.312,
+      "gain": 1.0,
+      "score": {
+        "der": 0.6020632504650769,
+        "miss_s": 4.79,
+        "false_alarm_s": 1.23,
+        "confusion_s": 29.580000000000002,
+        "reference_speakers": 3,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "4ecac05b483d3fbc44723a00744266ee3edf1021ae73baae67bf642e5203e6f9",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 12.062,
+      "gain": 1.0,
+      "score": {
+        "der": 0.29869898413829976,
+        "miss_s": 0.51,
+        "false_alarm_s": 2.04,
+        "confusion_s": 14.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "b5f3d4afb6f820fb455a97f18fbd4b02f2fe896d0742f23061655ab29f831a68",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.281,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.4062598301352627,
+        "miss_s": 4.76,
+        "false_alarm_s": 0.72,
+        "confusion_s": 20.35,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "417fa1383f79bdf1877b90aadff9605f6f5ff33e1744f96119db0c52ede98dbd",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.547,
+      "gain": 1.0,
+      "score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "3964d4826b8a3a07a4801556f5ee3f714bcebefb8a03e19ba1334b1c075dc4ca",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.453,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4263487231523761,
+        "miss_s": 2.67,
+        "false_alarm_s": 0.78,
+        "confusion_s": 21.76,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "1b45ae0d4d9f44a4619919daa8286d97ac5349e5fb3e5bf8331555d5a3e73050",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.4,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 11.469,
+      "gain": 1.0,
+      "score": {
+        "der": 0.29869898413829976,
+        "miss_s": 0.51,
+        "false_alarm_s": 2.04,
+        "confusion_s": 14.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "e895d4cfe22742a713c301c931e6310e2e2ff65fce5ab75b434198aa409aba0a",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.4,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.625,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.4062598301352627,
+        "miss_s": 4.76,
+        "false_alarm_s": 0.72,
+        "confusion_s": 20.35,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "37862e3817b26e32ab2cce88445b1f2e9ed0c3ea78269d1f7d1b1c4e68b5c061",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.4,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.391,
+      "gain": 1.0,
+      "score": {
+        "der": 0.16974615783111724,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 5.97,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "99e5a805eb7376dd7b532bd4f92873f56dd81b533444d63354a7ea7b068176e8",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.4,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.203,
+      "gain": 1.0,
+      "score": {
+        "der": 0.09775071875528496,
+        "miss_s": 2.67,
+        "false_alarm_s": 0.5,
+        "confusion_s": 2.61,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "ad2c81ec197d46c9149e94cd04c1aa3a430505432fe916c8b5ca77e624e3d5c0",
+      "id": "rec_0000",
+      "split": "development",
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.425,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.734,
+      "gain": 1.0,
+      "score": {
+        "der": 0.29869898413829976,
+        "miss_s": 0.51,
+        "false_alarm_s": 2.04,
+        "confusion_s": 14.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      }
+    },
+    {
+      "key": "8a074fc332413e88d714a5c651eb6e8c40520a280584f0ca7509b855f4484fe5",
+      "id": "rec_0055",
+      "split": "development",
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.425,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.016,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.4062598301352627,
+        "miss_s": 4.76,
+        "false_alarm_s": 0.72,
+        "confusion_s": 20.35,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    },
+    {
+      "key": "a7a85cd4fba500c515307d553b6ba5c98313587b611acd5abfd491a37489429f",
+      "id": "rec_0273",
+      "split": "development",
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.425,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.547,
+      "gain": 1.0,
+      "score": {
+        "der": 0.16974615783111724,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 5.97,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      }
+    },
+    {
+      "key": "5419138b602e8d16f6ae6685016cdf4d8aeab4db4189ae1bb1a8847a1646699e",
+      "id": "rec_0274",
+      "split": "development",
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.425,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 14.438,
+      "gain": 1.0,
+      "score": {
+        "der": 0.09775071875528496,
+        "miss_s": 2.67,
+        "false_alarm_s": 0.5,
+        "confusion_s": 2.61,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      }
+    },
+    {
+      "key": "97d57a49f3bde156461b8b16b3de24abd3a3af900b337bfefb4b9d54453f15b3",
+      "id": "rec_0001",
+      "split": "ru_holdout",
+      "input_sha256": "cd48f0fc1201555dcd7c09dde08dc518cd1f0e2eb8695968e5502234f6c6bee1",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.75,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04330151997172146,
+        "miss_s": 1.56,
+        "false_alarm_s": 0.89,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.58
+      }
+    },
+    {
+      "key": "a7abb78c12812413c622205fd06739042c0092a2b570bcc1fdfff96fe5604b77",
+      "id": "rec_0002",
+      "split": "ru_holdout",
+      "input_sha256": "900dc14285488a4e746d41f3093f40be0560815886f90468e47c3fc9e48ccd9a",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 18.016,
+      "gain": 1.0,
+      "score": {
+        "der": 0.26878249955173034,
+        "miss_s": 3.49,
+        "false_alarm_s": 1.02,
+        "confusion_s": 10.48,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 55.77
+      }
+    },
+    {
+      "key": "58f2b6c179721a07e07673903beb364784fe8ade4cb9ef4597cdcd1e43357a90",
+      "id": "rec_0056",
+      "split": "ru_holdout",
+      "input_sha256": "4bf732be031216cec2f581809d6dbb5700e1da767836638f26692835bffcc3d7",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.812,
+      "gain": 2.7327687740325928,
+      "score": {
+        "der": 0.2715002595604776,
+        "miss_s": 2.86,
+        "false_alarm_s": 0.12,
+        "confusion_s": 12.71,
+        "reference_speakers": 2,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.79
+      }
+    },
+    {
+      "key": "cf3e4ec6f3ebaeb8d1269185762c5fb03f768245d67ffbd49b7f51d8dd8fd44c",
+      "id": "rec_0060",
+      "split": "ru_holdout",
+      "input_sha256": "fde82ef8e6ecc49b96cd1ebfba8da872fa9dca650f0656d7e84c4b7fe1951a35",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.829,
+      "gain": 2.0156335830688477,
+      "score": {
+        "der": 0.4274289603539221,
+        "miss_s": 4.63,
+        "false_alarm_s": 0.87,
+        "confusion_s": 19.62,
+        "reference_speakers": 2,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 58.77
+      }
+    },
+    {
+      "key": "b235e60caab87b06f0f9695d5862ea8ffbaa88b4fb8dae907fba9d10703291c0",
+      "id": "rec_0275",
+      "split": "ru_holdout",
+      "input_sha256": "18dde0836e1f51ee24ec213c8d1f84c256ab0f8fdae205e83be236d4069abb31",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.703,
+      "gain": 2.120378255844116,
+      "score": {
+        "der": 0.40457400547592204,
+        "miss_s": 3.24,
+        "false_alarm_s": 1.8800000000000001,
+        "confusion_s": 20.0,
+        "reference_speakers": 3,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 62.09
+      }
+    },
+    {
+      "key": "6d204a55156265dca1b69da02db5c48477263eb529976e1e1b54fe2dd015ab69",
+      "id": "rec_0277",
+      "split": "ru_holdout",
+      "input_sha256": "285ea6eea79bd8db09c17d01708c4ee79a4d5af55b4ec302a77f54504f97820f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.625,
+      "gain": 1.0,
+      "score": {
+        "der": 0.30403957131079967,
+        "miss_s": 1.98,
+        "false_alarm_s": 1.36,
+        "confusion_s": 15.1,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 60.65
+      }
+    },
+    {
+      "key": "40fa9efee9e31c8762382163b5e92b06fdd6cc201707f24b053b8befda1e73c1",
+      "id": "rcxzg",
+      "split": "vox_validation",
+      "input_sha256": "0af211a478bcda2e2f414427d57a1757f0fd92bd35981bbe5862d51f16cd9d78",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 38.563,
+      "gain": 8.0,
+      "score": {
+        "der": 0.21747636126507988,
+        "miss_s": 2.35,
+        "false_alarm_s": 1.26,
+        "confusion_s": 23.07,
+        "reference_speakers": 4,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 122.68
+      }
+    },
+    {
+      "key": "86d83c2c5808921ca7d386dc0198aee2b2692b4561b5de7390adae73f130b4ef",
+      "id": "fsaal",
+      "split": "vox_validation",
+      "input_sha256": "e5ace99787a2f5889c673381fcdadfaf94fba031f13e8469dedc365ae470659c",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 38.578,
+      "gain": 6.922067165374756,
+      "score": {
+        "der": 0.23066829951014695,
+        "miss_s": 0.98,
+        "false_alarm_s": 0.99,
+        "confusion_s": 24.400000000000002,
+        "reference_speakers": 5,
+        "predicted_speakers": 10,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.32000000000001
+      }
+    },
+    {
+      "key": "dab81a4b43775010776e0568db480d447f715c7a747a8f6b53f5a6d450fa93ab",
+      "id": "vmaiq",
+      "split": "vox_validation",
+      "input_sha256": "51b1f4c8aa92d7e2aed691e7ef9f37c2834dcbf80ebb75c649dd7f0a8d14a976",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 38.344,
+      "gain": 3.797325611114502,
+      "score": {
+        "der": 0.4807131280388979,
+        "miss_s": 5.01,
+        "false_alarm_s": 3.39,
+        "confusion_s": 50.92,
+        "reference_speakers": 10,
+        "predicted_speakers": 17,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 123.4
+      }
+    },
+    {
+      "key": "7ff925d6df5eb9d69970bd8bc4092dcb81a4585e0b2312661af4bb393d0cb7da",
+      "id": "tfvyr",
+      "split": "vox_validation",
+      "input_sha256": "a711c26ba4bb69d55cf0e9937a5a2e3faa509c1b2ce775a301d27d00a1f9af5c",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 7.188,
+      "gain": 8.0,
+      "score": {
+        "der": 0.02737226277372263,
+        "miss_s": 0.22,
+        "false_alarm_s": 0.53,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 27.400000000000002
+      }
+    },
+    {
+      "key": "a56d631182cca6e823c2007a36139ae734e0eb4ea82ac698e6e924258ce69061",
+      "id": "qpylu",
+      "split": "vox_validation",
+      "input_sha256": "6548f7978b04a64590136c48309d20da93a9c3973c8b1b45daa455121d41fcfb",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 9.703,
+      "gain": 6.868494033813477,
+      "score": {
+        "der": 0.22567733990147784,
+        "miss_s": 2.89,
+        "false_alarm_s": 0.2,
+        "confusion_s": 4.24,
+        "reference_speakers": 2,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 32.480000000000004
+      }
+    },
+    {
+      "key": "4cb0b1b09a00ebe1e321aac37ceae8eec7a6097327f2f16b44faa174783aa0f0",
+      "id": "willh",
+      "split": "vox_validation",
+      "input_sha256": "bc7d6ea284fcdfd37aac6da98651993ac89c689e22bd58ef36c648e3990bd818",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.55,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 42.579,
+      "gain": 3.4893839359283447,
+      "score": {
+        "der": 0.0767882187938289,
+        "miss_s": 1.99,
+        "false_alarm_s": 1.32,
+        "confusion_s": 5.45,
+        "reference_speakers": 2,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.08
+      }
+    },
+    {
+      "key": "c6822bb29e844f4c051fb40512c04230cc937ab033eddb306eb726dc67d0ba2b",
+      "id": "rec_0001",
+      "split": "ru_holdout",
+      "input_sha256": "cd48f0fc1201555dcd7c09dde08dc518cd1f0e2eb8695968e5502234f6c6bee1",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 18.687,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04330151997172146,
+        "miss_s": 1.56,
+        "false_alarm_s": 0.89,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.58
+      }
+    },
+    {
+      "key": "492b44ba58bc4e1915696297fa4f951aedc131a1b5e1fa66744a1bbe16fd1bc3",
+      "id": "rec_0002",
+      "split": "ru_holdout",
+      "input_sha256": "900dc14285488a4e746d41f3093f40be0560815886f90468e47c3fc9e48ccd9a",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 18.094,
+      "gain": 1.0,
+      "score": {
+        "der": 0.08015061861215707,
+        "miss_s": 3.44,
+        "false_alarm_s": 1.03,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 55.77
+      }
+    },
+    {
+      "key": "186a729432f069788b361b3664b5a65533de5bc62414b83ff365d834d252a087",
+      "id": "rec_0056",
+      "split": "ru_holdout",
+      "input_sha256": "4bf732be031216cec2f581809d6dbb5700e1da767836638f26692835bffcc3d7",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.156,
+      "gain": 2.7327687740325928,
+      "score": {
+        "der": 0.05156601488146738,
+        "miss_s": 2.86,
+        "false_alarm_s": 0.12,
+        "confusion_s": 0.0,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.79
+      }
+    },
+    {
+      "key": "744a99eb3791cd0495597164c108b1ce0221c821d79efa4e6c4044822a5ff52a",
+      "id": "rec_0060",
+      "split": "ru_holdout",
+      "input_sha256": "fde82ef8e6ecc49b96cd1ebfba8da872fa9dca650f0656d7e84c4b7fe1951a35",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 17.297,
+      "gain": 2.0156335830688477,
+      "score": {
+        "der": 0.39356814701378257,
+        "miss_s": 4.64,
+        "false_alarm_s": 0.88,
+        "confusion_s": 17.61,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 58.77
+      }
+    },
+    {
+      "key": "a37e32d97cd60f349f3500ab7198cfda63dd420e115170a2073f4ae30b0bc6ed",
+      "id": "rec_0275",
+      "split": "ru_holdout",
+      "input_sha256": "18dde0836e1f51ee24ec213c8d1f84c256ab0f8fdae205e83be236d4069abb31",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.468,
+      "gain": 2.120378255844116,
+      "score": {
+        "der": 0.3072958608471574,
+        "miss_s": 3.24,
+        "false_alarm_s": 1.98,
+        "confusion_s": 13.86,
+        "reference_speakers": 3,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 62.09
+      }
+    },
+    {
+      "key": "546bbee62a701ef76d30d0bc2f08fc04bf3e59dac520bc56006a8161fb10aa70",
+      "id": "rec_0277",
+      "split": "ru_holdout",
+      "input_sha256": "285ea6eea79bd8db09c17d01708c4ee79a4d5af55b4ec302a77f54504f97820f",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 16.891,
+      "gain": 1.0,
+      "score": {
+        "der": 0.24583676834295137,
+        "miss_s": 2.0300000000000002,
+        "false_alarm_s": 1.3800000000000001,
+        "confusion_s": 11.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 60.65
+      }
+    },
+    {
+      "key": "ee5712f9ba104a613954070b20dbd38d701141536dc2f0b1816608cce9105534",
+      "id": "rcxzg",
+      "split": "vox_validation",
+      "input_sha256": "0af211a478bcda2e2f414427d57a1757f0fd92bd35981bbe5862d51f16cd9d78",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 41.828,
+      "gain": 8.0,
+      "score": {
+        "der": 0.1397130746657972,
+        "miss_s": 2.37,
+        "false_alarm_s": 1.58,
+        "confusion_s": 13.19,
+        "reference_speakers": 4,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 122.68
+      }
+    },
+    {
+      "key": "70bacf92720d55a3abd82f2f145b09d3d24cef86cc977ee24a2313f04035e0fc",
+      "id": "fsaal",
+      "split": "vox_validation",
+      "input_sha256": "e5ace99787a2f5889c673381fcdadfaf94fba031f13e8469dedc365ae470659c",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 40.907,
+      "gain": 6.922067165374756,
+      "score": {
+        "der": 0.2030265920223933,
+        "miss_s": 0.98,
+        "false_alarm_s": 1.01,
+        "confusion_s": 21.22,
+        "reference_speakers": 5,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.32000000000001
+      }
+    },
+    {
+      "key": "9e76ce802cbdcf8ec8d57e659b91506e50f0bddc7a8d78cb283f013fa2573a60",
+      "id": "vmaiq",
+      "split": "vox_validation",
+      "input_sha256": "51b1f4c8aa92d7e2aed691e7ef9f37c2834dcbf80ebb75c649dd7f0a8d14a976",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 39.109,
+      "gain": 3.797325611114502,
+      "score": {
+        "der": 0.3512965964343598,
+        "miss_s": 4.75,
+        "false_alarm_s": 3.4,
+        "confusion_s": 35.2,
+        "reference_speakers": 10,
+        "predicted_speakers": 11,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 123.4
+      }
+    },
+    {
+      "key": "eb273684d3ee3cbcf31a5c19a20f4c3e1252cd89328367fca228ec93ac32d363",
+      "id": "tfvyr",
+      "split": "vox_validation",
+      "input_sha256": "a711c26ba4bb69d55cf0e9937a5a2e3faa509c1b2ce775a301d27d00a1f9af5c",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 7.296,
+      "gain": 8.0,
+      "score": {
+        "der": 0.02737226277372263,
+        "miss_s": 0.22,
+        "false_alarm_s": 0.53,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 27.400000000000002
+      }
+    },
+    {
+      "key": "16a3fb7e761d65de2c28a90526b3be9156c521e929e51b90516bfda3bf4de6dd",
+      "id": "qpylu",
+      "split": "vox_validation",
+      "input_sha256": "6548f7978b04a64590136c48309d20da93a9c3973c8b1b45daa455121d41fcfb",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 9.828,
+      "gain": 6.868494033813477,
+      "score": {
+        "der": 0.1000615763546798,
+        "miss_s": 2.82,
+        "false_alarm_s": 0.2,
+        "confusion_s": 0.23,
+        "reference_speakers": 2,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 32.480000000000004
+      }
+    },
+    {
+      "key": "aac9ee397213f99e78924a5e4cbadba8b7df03ecca3acbf41ceb25af546add1c",
+      "id": "willh",
+      "split": "vox_validation",
+      "input_sha256": "bc7d6ea284fcdfd37aac6da98651993ac89c689e22bd58ef36c648e3990bd818",
+      "configuration": {
+        "model": "3dspeaker",
+        "model_sha256": "1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.8,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 43.5,
+      "gain": 3.4893839359283447,
+      "score": {
+        "der": 0.07871669004207574,
+        "miss_s": 1.98,
+        "false_alarm_s": 1.12,
+        "confusion_s": 5.88,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.08
+      }
+    },
+    {
+      "key": "f40fd84341caa22d4f2436f32e6028a4a071d1cd6c2e600df1d3b4ef27bfbad0",
+      "id": "rec_0001",
+      "split": "ru_holdout",
+      "input_sha256": "cd48f0fc1201555dcd7c09dde08dc518cd1f0e2eb8695968e5502234f6c6bee1",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.453,
+      "gain": 1.0,
+      "score": {
+        "der": 0.04330151997172146,
+        "miss_s": 1.56,
+        "false_alarm_s": 0.89,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.58
+      }
+    },
+    {
+      "key": "154d869757b084ccf632c2ad94d44dfc019cec11ff5c5caca20b6bc97aadf200",
+      "id": "rec_0002",
+      "split": "ru_holdout",
+      "input_sha256": "900dc14285488a4e746d41f3093f40be0560815886f90468e47c3fc9e48ccd9a",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 15.0,
+      "gain": 1.0,
+      "score": {
+        "der": 0.08015061861215707,
+        "miss_s": 3.44,
+        "false_alarm_s": 1.03,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 55.77
+      }
+    },
+    {
+      "key": "4132dc130a9f292e9334c4d70ee7f1076785c173000a9ea8391137daf5328188",
+      "id": "rec_0056",
+      "split": "ru_holdout",
+      "input_sha256": "4bf732be031216cec2f581809d6dbb5700e1da767836638f26692835bffcc3d7",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 13.938,
+      "gain": 2.7327687740325928,
+      "score": {
+        "der": 0.17442464094133933,
+        "miss_s": 2.72,
+        "false_alarm_s": 0.12,
+        "confusion_s": 7.24,
+        "reference_speakers": 2,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.79
+      }
+    },
+    {
+      "key": "01fe51bf26defe40c2668880bee2c0897a3454a272acd091afc5044e1c01f57f",
+      "id": "rec_0060",
+      "split": "ru_holdout",
+      "input_sha256": "fde82ef8e6ecc49b96cd1ebfba8da872fa9dca650f0656d7e84c4b7fe1951a35",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 11.953,
+      "gain": 2.0156335830688477,
+      "score": {
+        "der": 0.5031478645567466,
+        "miss_s": 4.74,
+        "false_alarm_s": 0.66,
+        "confusion_s": 24.17,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 58.77
+      }
+    },
+    {
+      "key": "cf1cc4898069a3f6d39555ae0a9b9e8d5d5198eabb7c7a4e0dca10903bbfb047",
+      "id": "rec_0275",
+      "split": "ru_holdout",
+      "input_sha256": "18dde0836e1f51ee24ec213c8d1f84c256ab0f8fdae205e83be236d4069abb31",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 9.843,
+      "gain": 2.120378255844116,
+      "score": {
+        "der": 0.3425672411016267,
+        "miss_s": 3.16,
+        "false_alarm_s": 1.3,
+        "confusion_s": 16.81,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 62.09
+      }
+    },
+    {
+      "key": "6236aa25705fba9539c80d897a08f1c03be19b3e6c114379023b4a155672eb95",
+      "id": "rec_0277",
+      "split": "ru_holdout",
+      "input_sha256": "285ea6eea79bd8db09c17d01708c4ee79a4d5af55b4ec302a77f54504f97820f",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 10.719,
+      "gain": 1.0,
+      "score": {
+        "der": 0.3101401483924155,
+        "miss_s": 2.0,
+        "false_alarm_s": 1.36,
+        "confusion_s": 15.450000000000001,
+        "reference_speakers": 3,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 60.65
+      }
+    },
+    {
+      "key": "aa22f56833cea51513f40fd59af48f32a02f98b542e3cc450afe72dabe69caf5",
+      "id": "rcxzg",
+      "split": "vox_validation",
+      "input_sha256": "0af211a478bcda2e2f414427d57a1757f0fd92bd35981bbe5862d51f16cd9d78",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 27.766,
+      "gain": 8.0,
+      "score": {
+        "der": 0.24364199543527879,
+        "miss_s": 1.99,
+        "false_alarm_s": 1.62,
+        "confusion_s": 26.28,
+        "reference_speakers": 4,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 122.68
+      }
+    },
+    {
+      "key": "0af8a8bc7188d901a868fc4cf93bfd2b9822e944f47a940782313e848da15b6e",
+      "id": "fsaal",
+      "split": "vox_validation",
+      "input_sha256": "e5ace99787a2f5889c673381fcdadfaf94fba031f13e8469dedc365ae470659c",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 35.172,
+      "gain": 6.922067165374756,
+      "score": {
+        "der": 0.17389783065080475,
+        "miss_s": 0.9400000000000001,
+        "false_alarm_s": 1.05,
+        "confusion_s": 17.89,
+        "reference_speakers": 5,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.32000000000001
+      }
+    },
+    {
+      "key": "bfb4c4cd8f9282d8228b42f370998e581722c0e2268b7a6fa59b98bc24cb3535",
+      "id": "vmaiq",
+      "split": "vox_validation",
+      "input_sha256": "51b1f4c8aa92d7e2aed691e7ef9f37c2834dcbf80ebb75c649dd7f0a8d14a976",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 29.641,
+      "gain": 3.797325611114502,
+      "score": {
+        "der": 0.45834683954619126,
+        "miss_s": 4.66,
+        "false_alarm_s": 4.46,
+        "confusion_s": 47.44,
+        "reference_speakers": 10,
+        "predicted_speakers": 7,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 123.4
+      }
+    },
+    {
+      "key": "4102b6099f986f8647f1d3f118a21a147e39de186c69ef0352ff9e9cef94a939",
+      "id": "tfvyr",
+      "split": "vox_validation",
+      "input_sha256": "a711c26ba4bb69d55cf0e9937a5a2e3faa509c1b2ce775a301d27d00a1f9af5c",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 4.875,
+      "gain": 8.0,
+      "score": {
+        "der": 0.02737226277372263,
+        "miss_s": 0.22,
+        "false_alarm_s": 0.53,
+        "confusion_s": 0.0,
+        "reference_speakers": 1,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 27.400000000000002
+      }
+    },
+    {
+      "key": "6b2763e766ad30bca5b6fc237051149c2ba57a143a1586319f25b19527e5825f",
+      "id": "qpylu",
+      "split": "vox_validation",
+      "input_sha256": "6548f7978b04a64590136c48309d20da93a9c3973c8b1b45daa455121d41fcfb",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 8.734,
+      "gain": 6.868494033813477,
+      "score": {
+        "der": 0.43472906403940886,
+        "miss_s": 2.82,
+        "false_alarm_s": 0.2,
+        "confusion_s": 11.1,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 32.480000000000004
+      }
+    },
+    {
+      "key": "5aafd7fb0a1cbb40bb902193e6c65cfd37cf3337b237fcbd3e9fae8e89a08dcd",
+      "id": "willh",
+      "split": "vox_validation",
+      "input_sha256": "bc7d6ea284fcdfd37aac6da98651993ac89c689e22bd58ef36c648e3990bd818",
+      "configuration": {
+        "model": "wespeaker",
+        "model_sha256": "5ef208a9da1453335308a6b6f4e6dfbd7e183a38b604de0a57664f45d257fe94",
+        "segmentation_sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d",
+        "threshold": 0.375,
+        "min_duration_on": 0.2,
+        "min_duration_off": 0.3,
+        "normalization": true
+      },
+      "elapsed_s": 35.375,
+      "gain": 3.4893839359283447,
+      "score": {
+        "der": 0.4790497896213184,
+        "miss_s": 1.98,
+        "false_alarm_s": 0.63,
+        "confusion_s": 52.04,
+        "reference_speakers": 2,
+        "predicted_speakers": 1,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 114.08
+      }
+    }
+  ],
+  "experiment_code_sha256": {
+    "der_study.py": "627fab9abac3778250d8124e557c7a7dbf4d6ce753d923456930659ccf0d1ab6",
+    "score_benchmark.py": "1fce8695296d8ba03bb9d241e1a3e283cc2a16c5c024f6376c777027c9228469",
+    "speaker_assignment.py": "350541c553827aef0315fff5752eb66ab002bac609ff718c678dbca3d1d9a5ed",
+    "compare_diarization_versions.py": "fecc99ce89eed141958372f1e79d0cee0dd4e2079f7ba4957266960cb2a4bd99"
+  }
+}

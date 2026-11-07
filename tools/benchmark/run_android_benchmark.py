@@ -6,6 +6,9 @@ if not re.fullmatch(r'[a-zA-Z0-9_-]+',RESULT_SET): raise ValueError('Invalid ben
 OUT=DATA/('results' if RESULT_SET=='baseline' else 'results-'+RESULT_SET); OUT.mkdir(exist_ok=True)
 ADB=str(Path(os.environ.get('ANDROID_HOME', str(Path.home()/'AppData/Local/Android/Sdk')))/'platform-tools/adb.exe'); PKG='team.hex.nuclearstenographer'
 SERIAL=os.environ.get('ANDROID_SERIAL','emulator-5554')
+APK_SHA=os.environ.get('BENCHMARK_APK_SHA256')
+REUSE=os.environ.get('BENCHMARK_REUSE_PROCESS')=='1'
+CANCEL_STAGE=os.environ.get('BENCHMARK_CANCEL_STAGE')
 
 def adb(*args,timeout=60):
  p=subprocess.run([ADB,'-s',SERIAL,*args],capture_output=True,timeout=timeout)
@@ -46,24 +49,28 @@ def choose(row):
  tap(nodes,'Расшифровать')
 def capture(name):
  adb('shell','screencap','-p','/sdcard/bench.png'); adb('pull','/sdcard/bench.png',str(OUT/(name+'.png')))
-rows=json.loads((DATA/'manifest.json').read_text(encoding='utf-8'))
+manifest=DATA/os.environ.get('BENCHMARK_MANIFEST','manifest.json')
+if not manifest.resolve().is_relative_to(DATA.resolve()): raise ValueError('Manifest outside benchmark directory')
+rows=json.loads(manifest.read_text(encoding='utf-8'))
 if os.environ.get('BENCHMARK_CASE_IDS'):
  requested=set(os.environ['BENCHMARK_CASE_IDS'].split(','))
  if requested-{row['id'] for row in rows}: raise ValueError('Unknown benchmark case IDs')
  rows=[row for row in rows if row['id'] in requested]
-for p in list(OUT.glob('t*.json')):
+for p in list(OUT.glob('*.json')):
  if json.loads(p.read_text(encoding='utf-8'))['status']=='automation_error':
   archive=OUT/'automation-attempts'; archive.mkdir(exist_ok=True); p.rename(archive/(str(time.time_ns())+'-'+p.name))
 adb('shell','am','start','-W','-n',PKG+'/.MainActivity')
-for row in rows:
+for case_index,row in enumerate(rows):
  resultfile=OUT/(row['id']+'.json')
  if resultfile.exists():
   previous=json.loads(resultfile.read_text(encoding='utf-8'))
-  if previous['case']['sha256']==row['sha256']: continue
+  if not REUSE and previous['status']=='completed' and previous['case']['sha256']==row['sha256'] and previous.get('apk_sha256')==APK_SHA: continue
   archive=OUT/'superseded-inputs'; archive.mkdir(exist_ok=True); resultfile.rename(archive/(str(time.time_ns())+'-'+resultfile.name))
- result={'case':row,'status':'running','started':time.time(),'stages':[],'sampled_peak_pss_kb':0}
+ result={'case':row,'status':'running','started':time.time(),'stages':[],'sampled_peak_pss_kb':0,'apk_sha256':APK_SHA,'cancel_requested':False}
  try:
-  adb('shell','am','force-stop',PKG); adb('shell','am','start','-W','-n',PKG+'/.MainActivity'); time.sleep(3)
+  if not REUSE or case_index==0:
+   adb('shell','am','force-stop',PKG); adb('shell','am','start','-W','-n',PKG+'/.MainActivity'); time.sleep(3)
+  result['process_pid']=adb('shell','pidof',PKG).strip()
   adb('push',row['file'],'/sdcard/Download/'+Path(row['file']).name)
   choose(row); start=time.monotonic()
   while time.monotonic()-start<2400:
@@ -73,6 +80,10 @@ for row in rows:
    mem=adb('shell','dumpsys','meminfo',PKG); match=re.search(r'TOTAL PSS:\s*(\d+)',mem)
    if match: result['sampled_peak_pss_kb']=max(result['sampled_peak_pss_kb'],int(match[1]))
    (DATA/'status.json').write_text(json.dumps({'case':row['id'],'elapsed_s':round(time.monotonic()-start),'stage':stage},ensure_ascii=False),encoding='utf-8')
+   if CANCEL_STAGE and stage==CANCEL_STAGE and not result['cancel_requested']:
+    tap(nodes,'Отменить обработку'); result['cancel_requested']=True; result['cancel_at_s']=round(time.monotonic()-start,2); continue
+   if 'Закрыть сообщение об ошибке' in labels and result['cancel_requested'] and re.search(r'отмен|cancel',' '.join(ts),re.I):
+    result.setdefault('cancellation_ui',[]).append(ts); tap(nodes,'Закрыть сообщение об ошибке'); continue
    if 'Закрыть сообщение об ошибке' in labels:
     result.update(status='app_error',ui_text=ts); capture(row['id']+'-error'); break
    ready=(find(nodes,'Расшифровать') or find(nodes,'Обновить резюме')) and 'Отменить обработку' not in ts
@@ -80,11 +91,19 @@ for row in rows:
     result.update(status='completed',transcript={'transcript':[]},summary=None); capture(row['id']); break
    if find(nodes,'Посмотреть JSON') and ready:
     result['summary_and_ui']=ts; capture(row['id']); tap(nodes,'Посмотреть JSON'); nodes=snap()
-    result.update(status='completed',transcript=next(json.loads(t) for t in texts(nodes) if t.lstrip().startswith('{')))
+    for dialog_attempt in range(5):
+     exported=next((t for t in texts(nodes) if t.lstrip().startswith('{')),None)
+     if exported: break
+     nodes=snap()
+    if not exported: raise RuntimeError('JSON dialog did not expose transcript')
+    result.update(status='completed',transcript=json.loads(exported))
     tap(nodes,'Закрыть'); break
    if not adb('shell','pidof',PKG).strip(): result['status']='process_died'; break
    time.sleep(5)
   else: result['status']='timeout'
+  idle=adb('shell','dumpsys','meminfo',PKG); idle_match=re.search(r'TOTAL PSS:\s*(\d+)',idle)
+  result['idle_pss_kb']=int(idle_match[1]) if idle_match else None
+  result['process_pid_after']=adb('shell','pidof',PKG).strip()
   result['elapsed_s']=round(time.monotonic()-start,2); result['rtf']=result['elapsed_s']/row['duration_s']
  except Exception as error:
   result.update(status='automation_error',error=str(error),trace=traceback.format_exc())

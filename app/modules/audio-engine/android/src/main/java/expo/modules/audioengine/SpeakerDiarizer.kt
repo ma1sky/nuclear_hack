@@ -22,7 +22,8 @@ internal object SpeakerDiarizer {
         numThreads = 2,
       ),
       embedding = SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = 2),
-      clustering = FastClusteringConfig(numClusters = -1, threshold = 0.55f),
+      // Calibrated and validated: docs/der-study-2026-11-07.md
+      clustering = FastClusteringConfig(numClusters = -1, threshold = 0.8f),
       minDurationOn = 0.2f,
       minDurationOff = 0.3f,
     )
