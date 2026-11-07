@@ -11,9 +11,9 @@ const definitions = [
   ['llm', 'qwen2.5-0.5b-instruct-q4_k_m.gguf'],
 ];
 
-const optionalDefinitions = [
-  ['asr_en', 'en-conformer.int8.onnx'],
-  ['tokens_en', 'en-conformer-tokens.txt'],
+const optionalFiles = [
+  'en-conformer.int8.onnx',
+  'en-conformer-tokens.txt',
 ];
 
 async function sha256(file) {
@@ -42,14 +42,11 @@ async function pack(source, destination) {
     if (await sha256(output) !== hash) throw new Error(`Model copy failed: ${file}`);
     files.push({ id, file, size: fs.statSync(output).size, sha256: hash });
   }
-  for (const [id, file] of optionalDefinitions) {
+  for (const file of optionalFiles) {
     const input = path.join(source, file);
     if (fs.existsSync(input) && fs.statSync(input).isFile() && fs.statSync(input).size > 0) {
       const output = path.join(destination, file);
       fs.copyFileSync(input, output);
-      const hash = await sha256(input);
-      if (await sha256(output) !== hash) throw new Error(`Model copy failed: ${file}`);
-      files.push({ id, file, size: fs.statSync(output).size, sha256: hash });
     }
   }
   for (const name of fs.readdirSync(source).filter(name => name.startsWith('LICENSE'))) {
@@ -65,7 +62,7 @@ function sourceDirectory(root) {
   return fs.existsSync(path.join(full, definitions[0][1])) ? full : path.join(root, 'models');
 }
 
-module.exports = { definitions, optionalDefinitions, pack, sha256, sourceDirectory };
+module.exports = { definitions, pack, sha256, sourceDirectory };
 
 if (require.main === module) {
   const root = path.resolve(__dirname, '..');
