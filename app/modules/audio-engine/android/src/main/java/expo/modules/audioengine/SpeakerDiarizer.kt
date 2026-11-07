@@ -37,7 +37,7 @@ internal object SpeakerDiarizer {
 
     val durationMs = samples.size * 1000L / sampleRate
     val speakers = mutableMapOf<Int, String>()
-    return segments.sortedWith(compareBy({ it.start }, { it.end }, { it.speaker })).mapNotNull { segment ->
+    val rawIntervals = segments.sortedWith(compareBy({ it.start }, { it.end }, { it.speaker })).mapNotNull { segment ->
       if (!segment.start.isFinite() || !segment.end.isFinite()) return@mapNotNull null
       val startMs = (segment.start.toDouble() * 1000).roundToLong().coerceIn(0, durationMs)
       val endMs = (segment.end.toDouble() * 1000).roundToLong().coerceIn(0, durationMs)
@@ -45,5 +45,20 @@ internal object SpeakerDiarizer {
       val speakerId = speakers.getOrPut(segment.speaker) { "speaker_${speakers.size + 1}" }
       SpeakerInterval(startMs, endMs, speakerId)
     }
+
+    val merged = mutableListOf<SpeakerInterval>()
+    for (interval in rawIntervals) {
+      if (merged.isEmpty()) {
+        merged.add(interval)
+      } else {
+        val last = merged.last()
+        if (last.speakerId == interval.speakerId && (interval.startMs - last.endMs) <= 500L) {
+          merged[merged.lastIndex] = SpeakerInterval(last.startMs, maxOf(last.endMs, interval.endMs), last.speakerId)
+        } else {
+          merged.add(interval)
+        }
+      }
+    }
+    return merged
   }
 }

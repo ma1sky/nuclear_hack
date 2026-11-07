@@ -17,7 +17,8 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "team.hex.nuclearstenographer"
+      "package": "team.hex.nuclearstenographer",
+      "largeHeap": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
