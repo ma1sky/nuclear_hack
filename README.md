@@ -56,3 +56,5 @@ Android-приложение для локальной расшифровки р
 Подготовка проверочного APK: [встроенный комплект моделей](docs/model-bundle.md). Сборка требует все пять файлов; первый запуск не требует скачивания.
 
 [Отчёт проверки объединения](docs/integration-review.md).
+
+Обновление интерфейса по Figma: [релиз и APK](https://github.com/ma1sky/nuclear_hack/releases/tag/ui-2026-11-07), [описание функций и проверок](docs/figma-ui-implementation.md).
