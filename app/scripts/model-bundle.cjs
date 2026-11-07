@@ -10,11 +10,18 @@ const definitions = [
   ['embedding', '3dspeaker.onnx'],
   ['llm', 'qwen2.5-0.5b-instruct-q4_k_m.gguf'],
 ];
+
+const optionalDefinitions = [
+  ['asr_en', 'en-conformer.int8.onnx'],
+  ['tokens_en', 'en-conformer-tokens.txt'],
+];
+
 async function sha256(file) {
   const hash = crypto.createHash('sha256');
   await pipeline(fs.createReadStream(file), hash);
   return hash.digest('hex');
 }
+
 async function pack(source, destination) {
   // Validate the complete input before publishing a manifest. No downloads or substitutes.
   for (const [, file] of definitions) {
@@ -35,6 +42,16 @@ async function pack(source, destination) {
     if (await sha256(output) !== hash) throw new Error(`Model copy failed: ${file}`);
     files.push({ id, file, size: fs.statSync(output).size, sha256: hash });
   }
+  for (const [id, file] of optionalDefinitions) {
+    const input = path.join(source, file);
+    if (fs.existsSync(input) && fs.statSync(input).isFile() && fs.statSync(input).size > 0) {
+      const output = path.join(destination, file);
+      fs.copyFileSync(input, output);
+      const hash = await sha256(input);
+      if (await sha256(output) !== hash) throw new Error(`Model copy failed: ${file}`);
+      files.push({ id, file, size: fs.statSync(output).size, sha256: hash });
+    }
+  }
   for (const name of fs.readdirSync(source).filter(name => name.startsWith('LICENSE'))) {
     fs.copyFileSync(path.join(source, name), path.join(destination, name));
   }
@@ -42,14 +59,17 @@ async function pack(source, destination) {
   fs.writeFileSync(path.join(destination, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   return manifest;
 }
+
 function sourceDirectory(root) {
   const full = path.join(root, 'models/bundles/full/models');
   return fs.existsSync(path.join(full, definitions[0][1])) ? full : path.join(root, 'models');
 }
-module.exports = { definitions, pack, sha256, sourceDirectory };
+
+module.exports = { definitions, optionalDefinitions, pack, sha256, sourceDirectory };
+
 if (require.main === module) {
   const root = path.resolve(__dirname, '..');
   pack(sourceDirectory(root), path.join(root, 'modules/audio-engine/android/src/main/assets/models'))
-    .then(() => console.log('All 5 bundled model files verified.'))
+    .then((m) => console.log(`All ${m.files.length} bundled model files verified.`))
     .catch(error => { console.error(error.message); process.exitCode = 1; });
 }

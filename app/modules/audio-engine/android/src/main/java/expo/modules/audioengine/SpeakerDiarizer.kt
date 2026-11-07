@@ -59,6 +59,6 @@ internal object SpeakerDiarizer {
         }
       }
     }
-    return merged
+    return merged.filter { (it.endMs - it.startMs) >= 200L }
   }
 }
