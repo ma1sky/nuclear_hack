@@ -81,12 +81,16 @@ for case_index,row in enumerate(rows):
    if match: result['sampled_peak_pss_kb']=max(result['sampled_peak_pss_kb'],int(match[1]))
    (DATA/'status.json').write_text(json.dumps({'case':row['id'],'elapsed_s':round(time.monotonic()-start),'stage':stage},ensure_ascii=False),encoding='utf-8')
    if CANCEL_STAGE and stage==CANCEL_STAGE and not result['cancel_requested']:
-    tap(nodes,'Отменить обработку'); result['cancel_requested']=True; result['cancel_at_s']=round(time.monotonic()-start,2); continue
+    if not find(nodes,'Отменить обработку'):
+     adb('shell','input','touchscreen','swipe','500','1800','500','700','300'); nodes=snap()
+    if find(nodes,'Отменить обработку'):
+     tap(nodes,'Отменить обработку'); result['cancel_requested']=True; result['cancel_at_s']=round(time.monotonic()-start,2)
+    continue
    if 'Закрыть сообщение об ошибке' in labels and result['cancel_requested'] and re.search(r'отмен|cancel',' '.join(ts),re.I):
     result.setdefault('cancellation_ui',[]).append(ts); tap(nodes,'Закрыть сообщение об ошибке'); continue
    if 'Закрыть сообщение об ошибке' in labels:
     result.update(status='app_error',ui_text=ts); capture(row['id']+'-error'); break
-   ready=(find(nodes,'Расшифровать') or find(nodes,'Обновить резюме')) and 'Отменить обработку' not in ts
+   ready=any(n.get('class')=='android.widget.Button' and n.get('content-desc') in ['Расшифровать','Обновить резюме'] and n.get('enabled')=='true' for n in nodes) and 'Отменить обработку' not in ts
    if 'Речь не обнаружена' in ts and ready:
     result.update(status='completed',transcript={'transcript':[]},summary=None); capture(row['id']); break
    if find(nodes,'Посмотреть JSON') and ready:

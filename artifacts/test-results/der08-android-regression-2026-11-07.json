@@ -1,0 +1,389 @@
+{
+  "configuration": {
+    "model": "3dspeaker",
+    "threshold": 0.8,
+    "min_duration_on": 0.2,
+    "min_duration_off": 0.3,
+    "blank_penalty": 0,
+    "interval_padding_ms": 0
+  },
+  "build_and_network": {
+    "airplane_before": "0",
+    "wifi_before": "1",
+    "apk_sha256": "24d600433aedbcf87596739cafc218a9ab6784e8d42f8d1bd4f0b1372b89a525",
+    "result_prefix": "der08-24d600433aed",
+    "js_bundle_sha256": "67e1ddf6ff5f1c076c367f71c2017af86164bee33c15afc0890961a18a154b79",
+    "ui_unchanged": true,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "offline_airplane": "1",
+    "offline_wifi": "0",
+    "airplane_restored": "0",
+    "wifi_restored": "1",
+    "full_completed": 10,
+    "same_process_repeats": 3,
+    "cancel_test_status": "not_verified"
+  },
+  "cases": [
+    {
+      "id": "t01",
+      "status": "completed",
+      "duration_s": 4.0,
+      "elapsed_s": 23.72,
+      "rtf": 5.93,
+      "sampled_peak_pss_kb": 653852,
+      "idle_pss_kb": 108279,
+      "utterances": 1,
+      "speakers": 1,
+      "words": 6,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Подготовка записи",
+          "elapsed_s": 2.34
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 10.48
+        }
+      ],
+      "input_sha256": "500d2e88a1634ee766fec46f83cb903f3a1c276b2cedb36f11db800a1c4c14d0",
+      "asr_score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "id": "t02",
+      "status": "completed",
+      "duration_s": 10.0,
+      "elapsed_s": 7.28,
+      "rtf": 0.728,
+      "sampled_peak_pss_kb": 101605,
+      "idle_pss_kb": 89104,
+      "utterances": 0,
+      "speakers": 0,
+      "words": 0,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [],
+      "input_sha256": "ee7bea4232762775f8fce9b3e27e4d3948c8ac6a45a87ca769f703d6eed0b448"
+    },
+    {
+      "id": "t03",
+      "status": "completed",
+      "duration_s": 60.0,
+      "elapsed_s": 88.89,
+      "rtf": 1.4815,
+      "sampled_peak_pss_kb": 675221,
+      "idle_pss_kb": 110911,
+      "utterances": 7,
+      "speakers": 2,
+      "words": 130,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.56
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 26.77
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 36.39
+        }
+      ],
+      "input_sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52",
+      "diarization_score": {
+        "der": 0.2659062555694172,
+        "miss_s": 0.47000000000000003,
+        "false_alarm_s": 2.04,
+        "confusion_s": 12.41,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      },
+      "published_release_der": 0.5581892710746748
+    },
+    {
+      "id": "t04",
+      "status": "completed",
+      "duration_s": 60.0,
+      "elapsed_s": 79.64,
+      "rtf": 1.3273333333333333,
+      "sampled_peak_pss_kb": 679788,
+      "idle_pss_kb": 114293,
+      "utterances": 18,
+      "speakers": 2,
+      "words": 118,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.36
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 27.08
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 35.06
+        }
+      ],
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "diarization_score": {
+        "der": 0.3700849323686694,
+        "miss_s": 5.0600000000000005,
+        "false_alarm_s": 0.8,
+        "confusion_s": 17.67,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      },
+      "published_release_der": 0.6686064800251651,
+      "candidate_5825896_der": 0.5728216420257942
+    },
+    {
+      "id": "t05",
+      "status": "completed",
+      "duration_s": 60.0,
+      "elapsed_s": 93.34,
+      "rtf": 1.5556666666666668,
+      "sampled_peak_pss_kb": 696787,
+      "idle_pss_kb": 113232,
+      "utterances": 16,
+      "speakers": 3,
+      "words": 130,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.44
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 33.27
+        }
+      ],
+      "input_sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e",
+      "diarization_score": {
+        "der": 0.14436194094284235,
+        "miss_s": 3.39,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 4.5,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "published_release_der": 0.3011569677085132
+    },
+    {
+      "id": "t06",
+      "status": "completed",
+      "duration_s": 60.0,
+      "elapsed_s": 95.67,
+      "rtf": 1.5945,
+      "sampled_peak_pss_kb": 705593,
+      "idle_pss_kb": 114038,
+      "utterances": 16,
+      "speakers": 3,
+      "words": 148,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.28
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 27.97
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 35.72
+        }
+      ],
+      "input_sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27",
+      "diarization_score": {
+        "der": 0.2939286318281752,
+        "miss_s": 2.66,
+        "false_alarm_s": 0.5,
+        "confusion_s": 14.22,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      },
+      "published_release_der": 0.4933198038220869
+    },
+    {
+      "id": "t07",
+      "status": "completed",
+      "duration_s": 120.0,
+      "elapsed_s": 137.67,
+      "rtf": 1.1472499999999999,
+      "sampled_peak_pss_kb": 696047,
+      "idle_pss_kb": 113121,
+      "utterances": 12,
+      "speakers": 3,
+      "words": 265,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.41
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 53.66
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 69.45
+        }
+      ],
+      "input_sha256": "7473ec51b518fe10c932e38292bcc2f3a4bfab6ff15c7a9f72183438010e5889"
+    },
+    {
+      "id": "t08",
+      "status": "completed",
+      "duration_s": 647.2515,
+      "elapsed_s": 744.08,
+      "rtf": 1.149599498803788,
+      "sampled_peak_pss_kb": 848806,
+      "idle_pss_kb": 137690,
+      "utterances": 91,
+      "speakers": 8,
+      "words": 1465,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Подготовка записи",
+          "elapsed_s": 2.19
+        },
+        {
+          "name": "Определение участников",
+          "elapsed_s": 41.42
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 299.5
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 386.09
+        }
+      ],
+      "input_sha256": "3a5a973b4c3b1f43f5fa8cf386fd8d1e86ee9445d79da5d5bc1976a92d1bd5a7"
+    },
+    {
+      "id": "t09",
+      "status": "completed",
+      "duration_s": 454.0468125,
+      "elapsed_s": 508.31,
+      "rtf": 1.1195101165917776,
+      "sampled_peak_pss_kb": 827183,
+      "idle_pss_kb": 122803,
+      "utterances": 46,
+      "speakers": 6,
+      "words": 994,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.53
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 186.56
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 258.41
+        }
+      ],
+      "input_sha256": "da17cd402c94219dfc7ee600644318474781cc08c63123d06c6d4e77dc7df326"
+    },
+    {
+      "id": "t10",
+      "status": "completed",
+      "duration_s": 1444.9261875,
+      "elapsed_s": 1646.77,
+      "rtf": 1.1396914349301321,
+      "sampled_peak_pss_kb": 917073,
+      "idle_pss_kb": 139415,
+      "utterances": 180,
+      "speakers": 25,
+      "words": 4058,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle",
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.69
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 593.25
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 824.41
+        }
+      ],
+      "input_sha256": "4f3f75ddef801e579c78367f5e491727e6a4bfb2b3be2350e2901293ccfada66"
+    }
+  ],
+  "repeated_processing": {
+    "same_process": true,
+    "completed": 3,
+    "idle_pss_kb": [
+      108471,
+      110969,
+      112901
+    ],
+    "sampled_peak_pss_kb": [
+      655989,
+      155127,
+      662485
+    ],
+    "note": "Three repetitions are a smoke test, not proof of no memory leaks; PSS includes caches and GC effects."
+  },
+  "cancellation": {
+    "status": "not_verified",
+    "input_case": "t04",
+    "cancel_exercised": false,
+    "transcript_preserved": null,
+    "elapsed_s": 76.17,
+    "cancel_requested_at_s": null,
+    "observed_wait_after_request_s": null,
+    "reason": "Automation did not reach actual cancellation; processing completed normally. No cancellation success or application failure is inferred."
+  },
+  "device": "Android 17 x86_64 emulator, configured RAM 4096 MB; Redmi/ARM runtime not tested",
+  "timing_scope": "Speech cases wait for LLM and export; silence finishes with an empty transcript. Elapsed includes UI polling/export and memory sampling, not isolated inference."
+}

@@ -5,17 +5,21 @@ import hashlib,json,os,shutil,subprocess,sys,zipfile
 ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/'recordings/benchmark'; STUDY=DATA/'der-study'
 ADB=str(Path(os.environ.get('ANDROID_HOME',str(Path.home()/'AppData/Local/Android/Sdk')))/'platform-tools/adb.exe')
 SERIAL=os.environ.get('ANDROID_SERIAL','emulator-5554')
-APK=ROOT/'app/android/app/build/outputs/apk/release/app-release.apk'
-BASE=ROOT/'artifacts/candidates/5825896/nuclear-stenographer.apk'
+APK=ROOT/os.environ.get('BENCHMARK_APK_PATH','app/android/app/build/outputs/apk/release/app-release.apk')
+BASE=ROOT/os.environ.get('BENCHMARK_BASELINE_APK','artifacts/releases/v1.0.0-hackathon.1/nuclear-stenographer-1.0.0-arm64-x86_64.apk')
 def adb(*args): return subprocess.check_output([ADB,'-s',SERIAL,*args]).decode('utf-8',errors='replace').strip()
 def save(name,value): (STUDY/name).write_text(json.dumps(value,ensure_ascii=False,indent=2),encoding='utf-8')
 
 digest=hashlib.sha256(APK.read_bytes()).hexdigest(); prefix='der08-'+digest[:12]
+installed=adb('shell','pm','path','team.hex.nuclearstenographer').splitlines()
+base=next(line.removeprefix('package:') for line in installed if line.endswith('/base.apk'))
+assert adb('shell','sha256sum',base).split()[0]==digest,'Install this APK before running the benchmark'
 with zipfile.ZipFile(BASE) as old,zipfile.ZipFile(APK) as new:
     name='assets/index.android.bundle'
     assert old.read(name)==new.read(name),'UI bundle changed'
     bundle_hash=hashlib.sha256(new.read(name)).hexdigest()
-state=dict(airplane_before=adb('shell','settings','get','global','airplane_mode_on'),wifi_before=adb('shell','settings','get','global','wifi_on'),apk_sha256=digest,result_prefix=prefix,js_bundle_sha256=bundle_hash,ui_unchanged=True,abis=['arm64-v8a','x86_64'])
+    actual_abis=sorted({entry.split('/')[1] for entry in new.namelist() if entry.startswith('lib/')})
+state=dict(airplane_before=adb('shell','settings','get','global','airplane_mode_on'),wifi_before=adb('shell','settings','get','global','wifi_on'),apk_sha256=digest,result_prefix=prefix,js_bundle_sha256=bundle_hash,ui_unchanged=True,abis=actual_abis)
 save('android-run-state.json',state)
 env=os.environ.copy(); env['BENCHMARK_APK_SHA256']=digest; env['ANDROID_SERIAL']=SERIAL
 for key in ['BENCHMARK_CASE_IDS','BENCHMARK_MANIFEST','BENCHMARK_REUSE_PROCESS','BENCHMARK_CANCEL_STAGE']: env.pop(key,None)
@@ -47,9 +51,9 @@ try:
     repeated=run('repeat','der-study/repeat-manifest.json',reuse=True)
     pids={r['process_pid'] for r in repeated}|{r['process_pid_after'] for r in repeated}
     assert len(pids)==1 and '' not in pids,'Repeat test did not use one process'
-    cancelled=run('cancel',cancel='Создание резюме',case_ids='t01')[0]
-    assert cancelled['cancel_requested'] and cancelled['transcript']['transcript'],'Cancellation was not exercised or transcript lost'
-    state['full_completed']=len(full); state['same_process_repeats']=len(repeated); state['cancel_preserved_transcript']=True
+    cancelled=run('cancel',cancel='Создание резюме',case_ids='t04')[0]
+    assert cancelled['cancel_requested'] and cancelled.get('cancellation_ui') and cancelled['transcript']['transcript'],'Cancellation was not exercised or transcript lost'
+    state['full_completed']=len(full); state['same_process_repeats']=len(repeated); state['cancel_preserved_transcript']=True; state['cancellation_case_id']='t04'
 finally:
     adb('shell','cmd','connectivity','airplane-mode','enable' if state['airplane_before']=='1' else 'disable')
     adb('shell','svc','wifi','enable' if state['wifi_before']=='1' else 'disable')
