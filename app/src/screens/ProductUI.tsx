@@ -22,11 +22,12 @@ export function Copy({
 }: TextProps & { kind?: "body" | "caption" | "label" | "title" | "large" }) {
   return <Text {...props} style={[s[kind], style]} />;
 }
-export function Icon({ name }: { name: IconName }) {
+export function Icon({ name, color }: { name: IconName; color?: string }) {
   const icon = icons[name];
   return (
     <Image
       source={icon.source}
+      tintColor={color}
       style={{ width: icon.width, height: icon.height }}
       contentFit="contain"
       accessibilityElementsHidden
@@ -36,8 +37,9 @@ export function Icon({ name }: { name: IconName }) {
 export function Action({
   label,
   icon,
+  danger = false,
   ...props
-}: ButtonProps & { label: string; icon?: IconName }) {
+}: ButtonProps & { label: string; icon?: IconName; danger?: boolean }) {
   const light =
     !props.variant ||
     props.variant === "default" ||
@@ -57,11 +59,11 @@ export function Action({
         typeof props.style === "function" ? props.style(state) : props.style,
       ]}
     >
-      {icon && <Icon name={icon} />}
+      {icon && <Icon name={icon} color={danger ? colors.destructive : light ? colors.primaryForeground : colors.foreground} />}
       <Copy
         kind="label"
         style={{
-          color: light ? colors.primaryForeground : colors.foreground,
+          color: danger ? colors.destructive : light ? colors.primaryForeground : colors.foreground,
           flexShrink: 1,
           textAlign: "center",
         }}
@@ -99,7 +101,7 @@ export function IconButton({
         elevation: 0,
       }}
     >
-      <Icon name={name} />
+      <Icon name={name} color={primary ? colors.primaryForeground : colors.foreground} />
     </Button>
   );
 }
@@ -120,6 +122,7 @@ export function Screen({
   footer,
   scroll = true,
   onBack,
+  headerAction,
 }: {
   title: string;
   subtitle?: string;
@@ -128,6 +131,7 @@ export function Screen({
   footer?: React.ReactNode;
   scroll?: boolean;
   onBack?: () => void;
+  headerAction?: React.ReactNode;
 }) {
   return (
     <SafeAreaView style={s.page}>
@@ -148,13 +152,13 @@ export function Screen({
           </Copy>
           {subtitle && <Copy kind="caption">{subtitle}</Copy>}
         </View>
-        {home && (
+        {home && (headerAction !== undefined ? headerAction : (
           <IconButton
             name="history"
             label="История"
             onPress={() => router.push("/history")}
           />
-        )}
+        ))}
       </View>
       {scroll ? (
         <ScrollView
@@ -186,14 +190,14 @@ export function FileRow({ name, detail }: { name: string; detail?: string }) {
   );
 }
 export function Privacy({
-  message = "Обработка на устройстве.\nБез отправки аудио в сеть.",
+  message = "Обработка на устройстве, без отправки в сеть.",
 }: {
   message?: string;
 }) {
   return (
     <View style={s.row}>
       <Icon name="privacy" />
-      <Copy kind="label" style={{ color: colors.mutedForeground, flex: 1 }}>
+      <Copy kind="caption" style={{ flex: 1 }}>
         {message}
       </Copy>
     </View>

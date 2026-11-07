@@ -1,0 +1,6 @@
+{
+  "apk": "artifacts/emulator/nuclear-stenographer-v1.2-figma-light.apk",
+  "sha256": "500818956eb33cab4b63b452b29e6af3226aabb77ffd65290e6086648eb75290",
+  "base_commit": "89a21b8",
+  "interface": "Figma light 2026-11-08"
+}

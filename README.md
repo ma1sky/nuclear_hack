@@ -2,6 +2,12 @@
 
 Android-приложение для локальной расшифровки разговоров с автоматическим разделением говорящих и временными метками реплик.
 
+## Локальное обновление от 8 ноября
+
+- [Обновление UI по Figma и запуск ярлыком](docs/figma-ui-refresh-2026-11-08.md).
+- [Часовая встреча AMI: протокол и обнаруженный OOM](docs/hour-audio-test-2026-11-08.md).
+- [Установка ярлыка эмулятора](tools/windows-build/README.md#ярлык-эмулятора-и-приложения).
+
 ## APK
 
 [Скачать релиз v1.0.0-hackathon.1](https://github.com/ma1sky/nuclear_hack/releases/tag/v1.0.0-hackathon.1) · [APK для ARM64/x86_64](https://github.com/ma1sky/nuclear_hack/releases/download/v1.0.0-hackathon.1/nuclear-stenographer-1.0.0-arm64-x86_64.apk) · [SHA-256](artifacts/releases/v1.0.0-hackathon.1/SHA256SUMS.txt).

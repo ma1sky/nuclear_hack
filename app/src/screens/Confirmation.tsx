@@ -40,7 +40,7 @@ export function useConfirmation() {
           style={{
             flex: 1,
             justifyContent: "center",
-            backgroundColor: "#00000066",
+            backgroundColor: "#00000047",
             padding: 16,
           }}
         >

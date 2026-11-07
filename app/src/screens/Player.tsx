@@ -1,5 +1,5 @@
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentRef } from "react";
 import { useFocusEffect } from "expo-router";
 import { View, Pressable } from "react-native";
 import { Action, Copy, IconButton, s, seconds } from "./ProductUI";
@@ -13,6 +13,7 @@ export function Player({
   onExport,
   compact = false,
   waveform = [],
+  autoPlay = false,
 }: {
   uri: string;
   seek?: { seconds: number; nonce: number };
@@ -20,11 +21,22 @@ export function Player({
   onExport?: () => void;
   compact?: boolean;
   waveform?: number[];
+  autoPlay?: boolean;
 }) {
   const trackWidth = useRef(0);
+  const track = useRef<ComponentRef<typeof View>>(null);
+  const trackLeft = useRef(0);
+  const started = useRef(false);
   const [rate, setRate] = useState(1);
   const player = useAudioPlayer(uri || null, { updateInterval: 250 });
   const status = useAudioPlayerStatus(player);
+  useEffect(() => { started.current = false; }, [uri]);
+  useEffect(() => {
+    if (autoPlay && status.isLoaded && !started.current) {
+      started.current = true;
+      player.play();
+    }
+  }, [autoPlay, status.isLoaded, player]);
   useFocusEffect(
     useCallback(
       () => () => {
@@ -78,12 +90,14 @@ export function Player({
     <View
       style={{
         backgroundColor: colors.card,
-        padding: compact ? 0 : 16,
-        gap: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        gap: 4,
       }}
     >
       {!compact && (
         <Pressable
+          ref={track}
           accessibilityRole="adjustable"
           accessibilityLabel="Позиция воспроизведения"
           accessibilityValue={{
@@ -99,17 +113,19 @@ export function Player({
             )
           }
           onPress={(e) => {
-            const width = e.currentTarget ? trackWidth.current : 0;
+            const width = trackWidth.current;
             if (width)
-              seekTo((e.nativeEvent.locationX / width) * status.duration);
+              seekTo(Math.max(0, Math.min(1, (e.nativeEvent.pageX - trackLeft.current) / width)) * status.duration);
           }}
           onLayout={(e) => {
             trackWidth.current = e.nativeEvent.layout.width;
+            track.current?.measureInWindow((x) => { trackLeft.current = x; });
           }}
-          style={{ minHeight: 28, justifyContent: "center" }}
+          style={{ minHeight: 32, justifyContent: "center" }}
         >
           {waveform.length ? (
             <View
+              pointerEvents="none"
               style={{
                 height: 28,
                 flexDirection: "row",

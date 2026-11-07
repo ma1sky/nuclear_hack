@@ -1,0 +1,25 @@
+{
+  "elapsed_s": 22.33,
+  "ui": [
+    "Назад",
+    "Обработка записи",
+    "hour-ami-IN1016.wav",
+    "WAV / 109.9 МБ",
+    "Обработка завершена",
+    "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592",
+    "Длительность этого этапа пока неизвестна",
+    "1",
+    "Подготовка записи",
+    "2",
+    "Определение участников",
+    "3",
+    "Распознавание речи",
+    "4",
+    "Создание резюме",
+    "5",
+    "Сохранение",
+    "Вернуться к записи",
+    "Вернуться к записи",
+    "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592"
+  ]
+}
