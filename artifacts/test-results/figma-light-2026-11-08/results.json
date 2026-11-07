@@ -1,0 +1,30 @@
+{
+  "library": true,
+  "all_recordings": true,
+  "audio_menu": true,
+  "rename_dialog": true,
+  "saved_audio_play_pause": true,
+  "recorder_ready": true,
+  "all_transcripts": true,
+  "new_transcription_elapsed_s": 19.97,
+  "strict_export": true,
+  "recognition_text": "шестьдесят тысяч тенге сколько будет стоить",
+  "reference_text": "шестьдесят тысяч тенге сколько будет стоить",
+  "json_returns_to_export": true,
+  "local_summary": true,
+  "playback_speed": true,
+  "seek_to_three_seconds": true,
+  "speaker_rename_dialog": true,
+  "apk_sha256": "500818956eb33cab4b63b452b29e6af3226aabb77ffd65290e6086648eb75290",
+  "airplane_mode": 1,
+  "metro_required": false,
+  "short_case_duration_s": 4,
+  "short_case_wer": 0.0,
+  "short_case_wer_scope": "Only this six-word Golos reference; no general accuracy claim",
+  "observed_saved_playback": "00:03 / 01:33",
+  "limitations": [
+    "Microphone recording and actual share targets were not retested in this iteration.",
+    "No Redmi Note 11S was connected.",
+    "Hour-long AMI test fails before ASR with OOM; DER and WER unavailable for it."
+  ]
+}
