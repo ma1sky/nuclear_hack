@@ -45,3 +45,12 @@ llama.rn загружает нативные библиотеки в postinstall
 ## Дизайн-система
 
 Готовые нативные компоненты React Native Reusables (подход shadcn/ui), Uniwind и единая светлая тема. [Документация](../docs/design-system.md), [проверка UI и снимки](../docs/ui-review-2026-11-07.md). После установки зависимостей: `npm run theme:check`, `npm run test:design`. Галерея: `npm run ui:export`. Production entry остаётся `index.ts`; тестовые данные галереи в приложение не подключены.
+
+
+## Интерфейс из Figma
+
+Производственная точка входа — `expo-router/entry`, маршруты — `src/app/`, общее состояние обработки — `src/state/WorkspaceProvider.tsx`. [Карта экранов и проверки](../docs/figma-ui-implementation.md).
+
+После установки новых native-зависимостей использовать `npm ci`, `npx expo prebuild --platform android --no-install` и новую нативную сборку; прежний APK не содержит expo-audio/expo-image/Router и не подходит для проверки нового JS. Оригинальные SVG и Inter упаковываются локально. `npm run test:library` проверяет сохранение и управление аудиозаписями.
+
+На Windows конфигурационный плагин сокращает CMake-пути UI-библиотек; каталог `.cxx/` в корне репозитория — игнорируемый результат сборки. [Maven-кэш для этого ПК](../tools/windows-build/README.md).

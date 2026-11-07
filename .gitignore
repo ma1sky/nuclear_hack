@@ -38,3 +38,6 @@ __pycache__/
 
 # Release staging copies (canonical test audio is tracked under artifacts/test-audio)
 /artifacts/releases/*/*.wav
+
+# Short Windows CMake staging directory
+/.cxx/

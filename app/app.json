@@ -32,7 +32,20 @@
           "enableEntitlements": false
         }
       ],
-      "./plugins/withShortNativePaths.cjs"
-    ]
+      "./plugins/withShortNativePaths.cjs",
+      "expo-audio",
+      "expo-image",
+      "expo-font",
+      "expo-router",
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Разрешите запись разговоров через микрофон.",
+          "enableBackgroundRecording": false
+        }
+      ]
+    ],
+    "scheme": "stenographer"
   }
 }

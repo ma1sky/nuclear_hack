@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
 const packagePath = path.join(root, 'package.json');
 const original = fs.readFileSync(packagePath, 'utf8');
 const config = JSON.parse(original);
-if (config.main !== 'index.ts') throw new Error('Unexpected production entry; refusing to modify it.');
+if (!['index.ts', 'expo-router/entry'].includes(config.main)) throw new Error('Unexpected production entry; refusing to modify it.');
 let result;
 try {
   fs.writeFileSync(packagePath, JSON.stringify({ ...config, main: 'design-system.preview.tsx' }, null, 2) + '\n');

@@ -57,7 +57,15 @@ class AudioEngineModule : Module() {
       val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
       val audio = readAudio(fileUri)
       cancellation.check()
-      sendEvent("onProgress", mapOf("stage" to "diarizing"))
+      val waveform = (0 until 61).map { bucket ->
+        cancellation.check()
+        val first = (bucket.toLong() * audio.samples.size / 61).toInt()
+        val last = ((bucket + 1L) * audio.samples.size / 61).toInt()
+        var energy = 0.0
+        for (sample in first until last) energy += audio.samples[sample].toDouble() * audio.samples[sample]
+        kotlin.math.sqrt(energy / (last - first).coerceAtLeast(1)).coerceIn(0.0, 1.0)
+      }
+      sendEvent("onProgress", mapOf("stage" to "diarizing", "durationMs" to audio.durationMs, "waveform" to waveform))
       // SpeakerDiarizer releases native resources before returning; only then create ASR.
       val intervals = SpeakerDiarizer.process(audio.samples, models)
       cancellation.check()

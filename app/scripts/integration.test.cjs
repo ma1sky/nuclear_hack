@@ -20,7 +20,7 @@ test('invalid export cannot be coerced into fabricated values', () => {
   }
 });
 test('production ASR and LLM paths have no mock/simulation fallback', () => {
-  for (const relative of ['modules/audio-engine/index.ts', 'src/services/llmService.ts', 'App.tsx', 'modules/audio-engine/android/src/main/java/expo/modules/audioengine/AudioEngineModule.kt']) {
+  for (const relative of ['modules/audio-engine/index.ts', 'src/services/llmService.ts', 'App.tsx', 'src/state/WorkspaceProvider.tsx', 'modules/audio-engine/android/src/main/java/expo/modules/audioengine/AudioEngineModule.kt']) {
     const source = fs.readFileSync(path.join(root, relative), 'utf8');
     assert.doesNotMatch(source, /MOCK_TRANSCRIPT|MOCK_SUMMARY|mock:\/\/|generateFallbackSummary|\[Реплика \$/);
   }

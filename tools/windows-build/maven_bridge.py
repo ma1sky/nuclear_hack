@@ -18,7 +18,7 @@ class Handler(BaseHTTPRequestHandler):
   target=CACHE/key
   with lock:
    if not target.exists():
-    CACHE.mkdir(exist_ok=True)
+    CACHE.mkdir(parents=True, exist_ok=True)
     coordinates=parts[1].split('/')
     if len(coordinates)>=4:
      group='.'.join(coordinates[:-3]); artifact,version,filename=coordinates[-3:]

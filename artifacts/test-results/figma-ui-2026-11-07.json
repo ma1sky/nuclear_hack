@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-07",
+  "figma": "https://www.figma.com/design/STDVjRGdWcuRvW66QrYfUJ/?node-id=0-1",
+  "device": {
+    "type": "Android emulator",
+    "avd": "Medium_Phone_API_37.0",
+    "android_api": 37,
+    "abi": "x86_64",
+    "configured_ram_mb": 4096,
+    "physical_arm_tested": false
+  },
+  "checks": {
+    "typescript": "passed",
+    "eslint": "passed",
+    "integration": {
+      "passed": 3,
+      "failed": 0
+    },
+    "design": {
+      "passed": 3,
+      "failed": 0
+    },
+    "audio_library": {
+      "passed": 2,
+      "failed": 0
+    },
+    "theme_tokens": "passed"
+  },
+  "builds": [
+    {
+      "sha256": "f399e88eb372c9dd4c7fb2e398be65ce9f425d20ca7cf63524780ac6dfaa5ac6",
+      "scope": "earlier UI build; native label and button shadows corrected later",
+      "recorder": {
+        "apk_sha256": "f399e88eb372c9dd4c7fb2e398be65ce9f425d20ca7cf63524780ac6dfaa5ac6",
+        "recorder_pause_timer": "01:31",
+        "recorder_resumed_duration": "01:34",
+        "record_saved_renamed_and_reopened": true
+      },
+      "short_golos_full_pipeline_elapsed_s": 27.03,
+      "audio_playback_advanced": true,
+      "record_saved_renamed_reopened_after_restart": true,
+      "unsaved_record_discarded": true
+    },
+    {
+      "sha256": "fc801727dd1778c01a908ae6c69910c84cb48b6ff7fbaa06c692e2d6a0165594",
+      "scope": "offline integration build before paused-rate fix",
+      "offline_new_processing": true,
+      "llm_cancel": {
+        "cancel_requested": true,
+        "stage_confirmed": "summarizing",
+        "cancel_completed": true,
+        "transcript_preserved": true,
+        "elapsed_s": null,
+        "export": {
+          "transcript": [
+            {
+              "speaker_id": "speaker_1",
+              "start_ms": 31,
+              "end_ms": 3558,
+              "text": "шестьдесят тысяч тенге сколько будет стоить"
+            }
+          ]
+        }
+      },
+      "summary_retry_completed": true,
+      "speaker_name_restored": "QA_Speaker",
+      "json_and_txt_system_share_sheet_opened": true,
+      "external_send_performed": false,
+      "repeat_record_pause_resume_save": true
+    }
+  ],
+  "known_limitations": [
+    "Qwen summary invented 1000000 instead of the transcript value 60000; transcript/export unchanged",
+    "No new ten-podcast quality benchmark",
+    "Microphone permission revoke/deny requires target-phone test",
+    "No pixel-perfect sign-off of every Figma state",
+    "ARM binaries included, runtime not tested on physical ARM device"
+  ],
+  "network_settings_restored": {
+    "airplane_mode_on": 0,
+    "wifi_on": 1
+  },
+  "final_apk": {
+    "path": "artifacts/candidates/figma-ui-56b81afdd8f9/nuclear-stenographer.apk",
+    "sha256": "56b81afdd8f9ff65043001c590912c6cfed4e64a5d8246108e93c0d52bc73333",
+    "bytes": 910286471,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "embedded_model_files": [
+      "assets/models/3dspeaker.onnx",
+      "assets/models/LICENSE.gigaam",
+      "assets/models/LICENSE.pyannote",
+      "assets/models/gigaam-tokens.txt",
+      "assets/models/gigaam-v2.int8.onnx",
+      "assets/models/manifest.json",
+      "assets/models/pyannote-segmentation.int8.onnx",
+      "assets/models/qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    ],
+    "gradle": "BUILD SUCCESSFUL in 3m 54s",
+    "installed_on_emulator": true,
+    "player_checks": {
+      "paused_rate_full_cycle": "passed via UI assertions before seek check",
+      "seek_end": "passed, visible 00:03 at ~4-second source; within one-second display precision",
+      "seek_start": "passed, visible 00:00",
+      "segment_jump": "passed, active turn and pause icon captured",
+      "eof_replay": "passed, reset to 00:00 and pause icon captured",
+      "test_protocol_note": "Initial assertion required exactly 00:04 at seek-end; corrected to account for displayed truncation. Slow uiautomator snapshots can miss playing state on four-second clip; live screenshots used."
+    },
+    "own_audio_delete_confirmed": true
+  },
+  "cleanup": {
+    "own_QA_recordings_deleted": [
+      "QA_Final",
+      "QA_Recorder_Renamed"
+    ],
+    "existing_history_preserved": true,
+    "workspace_temporary_implementation_files_removed": true
+  }
+}
