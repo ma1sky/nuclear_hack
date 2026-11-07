@@ -41,3 +41,6 @@ __pycache__/
 
 # Short Windows CMake staging directory
 /.cxx/
+
+# Test datasets downloaded for DER verification
+/artifacts/test-datasets/
