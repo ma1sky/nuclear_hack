@@ -3,7 +3,7 @@ package expo.modules.audioengine.audio
 /** Shared seam for Alexander's diarizer and Artem's GigaAM adapter; never substitutes model output. */
 class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) {
   fun transcribe(
-    audio: PreparedAudio,
+    audio: AudioSource,
     intervals: List<SpeakerInterval>,
     cancellation: CancellationCheck = CancellationCheck.NONE,
     progress: (AudioProgress) -> Unit = {},
@@ -22,8 +22,8 @@ class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) 
       sorted.forEachIndexed { index, interval ->
         cancellation.check()
         val speaker = speakers.getOrPut(interval.speakerId) { "speaker_${speakers.size + 1}" }
-        val start = (interval.startMs * 16).toInt()
-        val end = (interval.endMs * 16).toInt()
+        val start = interval.startMs * 16
+        val end = interval.endMs * 16
         val words = mutableListOf<String>()
         var position = start
         // Split long turns for bounded ASR memory; retain original speaker and interval in export.
@@ -32,7 +32,7 @@ class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) 
           val next = minOf(end, position + 20 * 16000)
           // Do not feed a neighbouring speaker's audio into this speaker's ASR.
           // Context padding needs word alignment and deduplication before enabling it.
-          val text = recognizer.recognize(audio.samples.copyOfRange(position, next), 16000).trim()
+          val text = recognizer.recognize(audio.read(position, next), 16000).trim()
           cancellation.check()
           if (text.isNotEmpty()) words.add(text)
           position = next

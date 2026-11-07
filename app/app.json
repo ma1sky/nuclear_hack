@@ -2,7 +2,7 @@
   "expo": {
     "name": "Нейро-стенографист",
     "slug": "nuclear-stenographer",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +18,8 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "team.hex.nuclearstenographer",
-      "largeHeap": true
+      "largeHeap": true,
+      "versionCode": 10
     },
     "web": {
       "favicon": "./assets/favicon.png"

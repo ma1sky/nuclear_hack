@@ -1,0 +1,107 @@
+name: Build APK
+
+on:
+  push:
+    branches: ['123123']
+    paths: ['app/**', '.github/workflows/build-apk.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Native audio tests (JVM, long recordings with a 96 MB heap)
+        working-directory: app/modules/audio-engine
+        run: |
+          curl -sSfL -o /tmp/kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/v2.1.21/kotlin-compiler-2.1.21.zip
+          unzip -q /tmp/kotlinc.zip -d /tmp
+          KLIB=/tmp/kotlinc/lib
+          OUT=build/audio-tests
+          mkdir -p $OUT
+          java -cp "$KLIB/*" org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect -classpath "$KLIB/kotlin-stdlib.jar" -d $OUT \
+            android/src/main/java/expo/modules/audioengine/audio/*.kt android/src/main/java/expo/modules/audioengine/models/*.kt tests/*.kt
+          java -cp "$OUT:$KLIB/kotlin-stdlib.jar" expo.modules.audioengine.audio.AudioPipelineTestKt
+          java -Xmx96m -cp "$OUT:$KLIB/kotlin-stdlib.jar" expo.modules.audioengine.audio.LongAudioTestKt
+          # Compile the Android-side classes against sherpa-onnx and android.jar (fails fast, before Gradle).
+          curl -sSfL -o /tmp/sherpa.aar https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-2.0.1.aar
+          echo "a8d09d1d32f3eb8520482c6d3d43fae674681c5b050385967c70a3c2c9bf0ee7  /tmp/sherpa.aar" | sha256sum -c -
+          unzip -q -o /tmp/sherpa.aar classes.jar -d /tmp/sherpa
+          ANDROID_JAR=$(ls -d $ANDROID_HOME/platforms/android-*/android.jar | sort -V | tail -1)
+          N=android/src/main/java/expo/modules/audioengine
+          java -cp "$KLIB/*" org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect \
+            -classpath "$KLIB/kotlin-stdlib.jar:/tmp/sherpa/classes.jar:$ANDROID_JAR" -d build/native-check \
+            $N/audio/*.kt $N/GigaAmRecognizer.kt $N/StreamingAudioPreparer.kt $N/SpeakerDiarizer.kt $N/Recluster.kt
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Android NDK 27.1 and CMake
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;27.1.12297006" "cmake;3.22.1" > /dev/null
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /usr/local/lib/android/sdk/ndk/2[0-6]* || true
+          df -h /
+
+      - name: Install JS dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Download and pack bundled models (SHA-256 verified)
+        run: node scripts/prepare-android-models.mjs
+
+      - name: Expo prebuild
+        run: npx expo prebuild --platform android --clean --no-install
+
+      - name: Gradle assembleRelease
+        working-directory: app/android
+        run: ./gradlew :app:assembleRelease -PreactNativeArchitectures=arm64-v8a,x86_64 --no-daemon --console=plain
+
+      - name: Collect APK
+        run: |
+          VERSION=$(node -p "require('./app.json').expo.version")
+          mkdir -p ../out
+          cp android/app/build/outputs/apk/release/app-release.apk ../out/neuro-stenographer-$VERSION.apk
+          (cd ../out && sha256sum *.apk | tee SHA256SUMS.txt)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neuro-stenographer-apk
+          path: out/
+
+      - name: Publish pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="v${VERSION}-long-audio-build-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" ../out/*.apk ../out/SHA256SUMS.txt --prerelease --target "$GITHUB_SHA" \
+            --title "Нейро-стенографист ${VERSION} (ветка 123123, build ${GITHUB_RUN_NUMBER})" \
+            --notes "Сборка ветки 123123: потоковая обработка длинных записей (1 час+, сотни МБ) — память не растёт с длиной записи. Коммит ${GITHUB_SHA}."
