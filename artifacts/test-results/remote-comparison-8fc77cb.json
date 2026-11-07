@@ -1,0 +1,219 @@
+{
+  "baseline_commit": "28ee4ea1ad5a6a65a5a18ee32a253962b3a7a8fd",
+  "remote_commit": "8fc77cb5ff33b3f5e48a1e5151c2e577ebeccae6",
+  "method": "Desktop sherpa-onnx 2.0.1 CPU, 2 threads, same ONNX models; Python reproduction of Kotlin gain normalization and diarization settings. Not a new Android APK benchmark. ASR tests use entire clips, without interval padding.",
+  "diarization": [
+    {
+      "case": "t03-rec_0000",
+      "version": "local",
+      "p98": 0.475311279296875,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5581892710746748,
+        "miss_s": 0.09,
+        "false_alarm_s": 3.62,
+        "confusion_s": 27.61,
+        "reference_speakers": 1,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      },
+      "elapsed_s": 19.593
+    },
+    {
+      "case": "t03-rec_0000",
+      "version": "remote",
+      "p98": 0.475311279296875,
+      "gain": 1.0,
+      "score": {
+        "der": 0.5357333808590269,
+        "miss_s": 0.49,
+        "false_alarm_s": 2.36,
+        "confusion_s": 27.21,
+        "reference_speakers": 1,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      },
+      "elapsed_s": 19.562
+    },
+    {
+      "case": "t04-rec_0055",
+      "version": "local",
+      "p98": 0.260955810546875,
+      "gain": 1.0,
+      "score": {
+        "der": 0.6736395092796477,
+        "miss_s": 1.97,
+        "false_alarm_s": 4.33,
+        "confusion_s": 36.53,
+        "reference_speakers": 2,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      },
+      "elapsed_s": 15.828
+    },
+    {
+      "case": "t04-rec_0055",
+      "version": "remote",
+      "p98": 0.260955810546875,
+      "gain": 2.4908430576324463,
+      "score": {
+        "der": 0.5685750235923246,
+        "miss_s": 4.8500000000000005,
+        "false_alarm_s": 0.75,
+        "confusion_s": 30.55,
+        "reference_speakers": 2,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      },
+      "elapsed_s": 16.61
+    },
+    {
+      "case": "t05-rec_0273",
+      "version": "local",
+      "p98": 0.355438232421875,
+      "gain": 1.0,
+      "score": {
+        "der": 0.3011569677085132,
+        "miss_s": 2.23,
+        "false_alarm_s": 1.62,
+        "confusion_s": 13.59,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "elapsed_s": 16.922
+    },
+    {
+      "case": "t05-rec_0273",
+      "version": "remote",
+      "p98": 0.355438232421875,
+      "gain": 1.0,
+      "score": {
+        "der": 0.3011569677085132,
+        "miss_s": 3.48,
+        "false_alarm_s": 0.47000000000000003,
+        "confusion_s": 13.49,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "elapsed_s": 17.141
+    },
+    {
+      "case": "t06-rec_0274",
+      "version": "local",
+      "p98": 0.41534423828125,
+      "gain": 1.0,
+      "score": {
+        "der": 0.4933198038220869,
+        "miss_s": 1.95,
+        "false_alarm_s": 0.5,
+        "confusion_s": 26.72,
+        "reference_speakers": 3,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      },
+      "elapsed_s": 17.0
+    },
+    {
+      "case": "t06-rec_0274",
+      "version": "remote",
+      "p98": 0.41534423828125,
+      "gain": 1.0,
+      "score": {
+        "der": 0.45949602570607134,
+        "miss_s": 2.68,
+        "false_alarm_s": 0.5,
+        "confusion_s": 23.990000000000002,
+        "reference_speakers": 3,
+        "predicted_speakers": 7,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      },
+      "elapsed_s": 16.031
+    }
+  ],
+  "asr": [
+    {
+      "version": "local",
+      "case": "golos",
+      "gain": 1.0,
+      "text": "шестьдесят тысяч тенге сколько будет стоить",
+      "score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "version": "local",
+      "case": "golos-quiet",
+      "gain": 1.0,
+      "text": "шестьдесят тысяч тенге сколько будет стоить",
+      "score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "version": "local",
+      "case": "silence",
+      "gain": 1.0,
+      "text": "",
+      "score": null
+    },
+    {
+      "version": "remote",
+      "case": "golos",
+      "gain": 8,
+      "text": "шестьдесят тысяч тенге сколько будет стоить",
+      "score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "version": "remote",
+      "case": "golos-quiet",
+      "gain": 8,
+      "text": "шестьдесят тысяч тенге сколько будет стоить",
+      "score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "version": "remote",
+      "case": "silence",
+      "gain": 1.0,
+      "text": "",
+      "score": null
+    }
+  ]
+}

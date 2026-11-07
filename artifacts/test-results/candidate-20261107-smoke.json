@@ -1,0 +1,75 @@
+{
+  "build": {
+    "apk_sha256": "8020653703d4cdd2729ceb6ebd3d01f9a299ea3935562cd7bbc26e5a752b9654",
+    "apk_bytes": 888480311,
+    "js_bundle_sha256": "67e1ddf6ff5f1c076c367f71c2017af86164bee33c15afc0890961a18a154b79",
+    "ui_js_matches_release": true,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ]
+  },
+  "base_commit": "8fc77cb5ff33b3f5e48a1e5151c2e577ebeccae6",
+  "configuration": {
+    "threshold": 0.55,
+    "min_duration_on": 0.2,
+    "min_duration_off": 0.3,
+    "normalization": true,
+    "blank_penalty": 0,
+    "interval_padding_ms": 0
+  },
+  "device": "Medium_Phone_API_37.0 Android 17 x86_64 emulator, configured RAM 4096 MB",
+  "measurement_scope": "Three full pipeline regressions including LLM, fresh process per recording; elapsed includes UI polling. Not a ten-file release regression or Redmi test.",
+  "cases": [
+    {
+      "id": "t01",
+      "status": "completed",
+      "duration_s": 4.0,
+      "elapsed_s": 24.39,
+      "sampled_peak_pss_kb": 651174,
+      "speakers": 1,
+      "utterances": 1,
+      "schema_and_bounds_ok": true,
+      "input_sha256": "500d2e88a1634ee766fec46f83cb903f3a1c276b2cedb36f11db800a1c4c14d0",
+      "asr_score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      }
+    },
+    {
+      "id": "t02",
+      "status": "completed",
+      "duration_s": 10.0,
+      "elapsed_s": 3.44,
+      "sampled_peak_pss_kb": 100233,
+      "speakers": 0,
+      "utterances": 0,
+      "schema_and_bounds_ok": true,
+      "input_sha256": "ee7bea4232762775f8fce9b3e27e4d3948c8ac6a45a87ca769f703d6eed0b448"
+    },
+    {
+      "id": "t04",
+      "status": "completed",
+      "duration_s": 60.0,
+      "elapsed_s": 83.78,
+      "sampled_peak_pss_kb": 680053,
+      "speakers": 6,
+      "utterances": 19,
+      "schema_and_bounds_ok": true,
+      "input_sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f",
+      "diarization_score": {
+        "der": 0.5728216420257942,
+        "miss_s": 5.12,
+        "false_alarm_s": 0.75,
+        "confusion_s": 30.55,
+        "reference_speakers": 2,
+        "predicted_speakers": 6,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      }
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "release": "v1.0.0-hackathon.1",
+  "apk_sha256": "1652b8f8d0d1d201079d07341b615586d2ebfd2d49447141adc853651870766d",
+  "device": "Medium_Phone_API_37.0 emulator, Android 17, x86_64, configured RAM 4096 MB",
+  "timing_note": "elapsed_s ends at JSON capture; completion_scope states whether LLM was still active. Includes UI polling overhead. PSS is a sampled maximum, not a true peak.",
+  "total_audio_s": 2920.2245,
+  "cases": [
+    {
+      "status": "completed",
+      "elapsed_s": 23.19,
+      "rtf": 5.7975,
+      "sampled_peak_pss_kb": 166633,
+      "stages": [
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 2.98
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 10.75
+        }
+      ],
+      "id": "t01",
+      "duration_s": 4.0,
+      "kind": "Golos crowd test with manual reference",
+      "utterances": 1,
+      "speakers": 1,
+      "words": 6,
+      "schema_and_bounds_ok": true,
+      "asr_score": {
+        "reference_words": 6,
+        "edit_distance": 0,
+        "wer": 0.0
+      },
+      "completion_scope": "pipeline_idle"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 3.5,
+      "rtf": 0.35,
+      "sampled_peak_pss_kb": 99160,
+      "stages": [],
+      "id": "t02",
+      "duration_s": 10.0,
+      "kind": "negative",
+      "utterances": 0,
+      "speakers": 0,
+      "words": 0,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 38.58,
+      "rtf": 0.643,
+      "sampled_peak_pss_kb": 694548,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.17
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 25.67
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 33.36
+        }
+      ],
+      "id": "t03",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "utterances": 4,
+      "speakers": 4,
+      "words": 131,
+      "schema_and_bounds_ok": true,
+      "diarization_score": {
+        "der": 0.5581892710746748,
+        "miss_s": 0.09,
+        "false_alarm_s": 3.62,
+        "confusion_s": 27.61,
+        "reference_speakers": 1,
+        "predicted_speakers": 4,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 56.11
+      },
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 33.67,
+      "rtf": 0.5611666666666667,
+      "sampled_peak_pss_kb": 691687,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.16
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 18.09
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 28.55
+        }
+      ],
+      "id": "t04",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "utterances": 15,
+      "speakers": 8,
+      "words": 118,
+      "schema_and_bounds_ok": true,
+      "diarization_score": {
+        "der": 0.6686064800251651,
+        "miss_s": 2.7600000000000002,
+        "false_alarm_s": 4.01,
+        "confusion_s": 35.74,
+        "reference_speakers": 2,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 63.58
+      },
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 33.97,
+      "rtf": 0.5661666666666666,
+      "sampled_peak_pss_kb": 692623,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.17
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 28.76
+        }
+      ],
+      "id": "t05",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "utterances": 12,
+      "speakers": 5,
+      "words": 130,
+      "schema_and_bounds_ok": true,
+      "diarization_score": {
+        "der": 0.3011569677085132,
+        "miss_s": 2.23,
+        "false_alarm_s": 1.62,
+        "confusion_s": 13.59,
+        "reference_speakers": 3,
+        "predicted_speakers": 5,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 41.47,
+      "rtf": 0.6911666666666666,
+      "sampled_peak_pss_kb": 688533,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.16
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 18.72
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 35.89
+        }
+      ],
+      "id": "t06",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "utterances": 14,
+      "speakers": 8,
+      "words": 148,
+      "schema_and_bounds_ok": true,
+      "diarization_score": {
+        "der": 0.4933198038220869,
+        "miss_s": 1.95,
+        "false_alarm_s": 0.5,
+        "confusion_s": 26.72,
+        "reference_speakers": 3,
+        "predicted_speakers": 8,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 59.13
+      },
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 81.2,
+      "rtf": 0.6766666666666666,
+      "sampled_peak_pss_kb": 797389,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.56
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 51.88
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 75.73
+        }
+      ],
+      "id": "t07",
+      "duration_s": 120.0,
+      "kind": "real podcast excerpt",
+      "utterances": 7,
+      "speakers": 5,
+      "words": 268,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 361.28,
+      "rtf": 0.5581756087085159,
+      "sampled_peak_pss_kb": 863848,
+      "stages": [
+        {
+          "name": "Подготовка записи",
+          "elapsed_s": 2.19
+        },
+        {
+          "name": "Определение участников",
+          "elapsed_s": 32.86
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 271.03
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 356.08
+        }
+      ],
+      "id": "t08",
+      "duration_s": 647.2515,
+      "kind": "real podcast M4A",
+      "utterances": 77,
+      "speakers": 20,
+      "words": 1477,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "transcript_export_available"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 482.88,
+      "rtf": 1.0635026757290582,
+      "sampled_peak_pss_kb": 826092,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.48
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 185.88
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 257.66
+        }
+      ],
+      "id": "t09",
+      "duration_s": 454.0468125,
+      "kind": "real podcast full episode",
+      "utterances": 47,
+      "speakers": 17,
+      "words": 1003,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle"
+    },
+    {
+      "status": "completed",
+      "elapsed_s": 1746.94,
+      "rtf": 1.2090167754676397,
+      "sampled_peak_pss_kb": 884863,
+      "stages": [
+        {
+          "name": "Определение участников",
+          "elapsed_s": 2.97
+        },
+        {
+          "name": "Распознавание речи",
+          "elapsed_s": 638.03
+        },
+        {
+          "name": "Создание резюме",
+          "elapsed_s": 856.19
+        }
+      ],
+      "id": "t10",
+      "duration_s": 1444.9261875,
+      "kind": "real podcast full episode",
+      "utterances": 196,
+      "speakers": 64,
+      "words": 4057,
+      "schema_and_bounds_ok": true,
+      "completion_scope": "pipeline_idle"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "t01",
+      "file": "t01-golos.wav",
+      "duration_s": 4.0,
+      "kind": "Golos crowd test with manual reference",
+      "source": "https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd",
+      "source_row": 0,
+      "reference_text": "шестьдесят тысяч тенге сколько будет стоить",
+      "rttm": null,
+      "sha256": "500d2e88a1634ee766fec46f83cb903f3a1c276b2cedb36f11db800a1c4c14d0"
+    },
+    {
+      "id": "t02",
+      "file": "t02-silence.wav",
+      "duration_s": 10.0,
+      "kind": "negative",
+      "source": "generated silence",
+      "rttm": null,
+      "sha256": "ee7bea4232762775f8fce9b3e27e4d3948c8ac6a45a87ca769f703d6eed0b448"
+    },
+    {
+      "id": "t03",
+      "file": "t03-rec_0000.wav",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "rttm": "rec_0000.rttm",
+      "sha256": "8cb57b358568b1300e2bfedb3e1eaedb856bd117d9ab87bed3cdb10d164a1b52"
+    },
+    {
+      "id": "t04",
+      "file": "t04-rec_0055.wav",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "rttm": "rec_0055.rttm",
+      "sha256": "c223336b7b3da6387cd1052af3bf9579be6d2bc6bd5a19ef2ca8421601d1428f"
+    },
+    {
+      "id": "t05",
+      "file": "t05-rec_0273.wav",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "rttm": "rec_0273.rttm",
+      "sha256": "02814883c850c99ccc9fa9517fb5656fa7d9b636cfb3cd3a9d905eeae182697e"
+    },
+    {
+      "id": "t06",
+      "file": "t06-rec_0274.wav",
+      "duration_s": 60.0,
+      "kind": "synthetic audiobook mix",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "rttm": "rec_0274.rttm",
+      "sha256": "e7a4551d659348778eaa49e0535efe4ddb54890f37bdbc0dbdfabcf2f0977e27"
+    },
+    {
+      "id": "t07",
+      "file": "t07-podcast01.wav",
+      "duration_s": 120.0,
+      "kind": "real podcast excerpt",
+      "source": "https://arzamas.academy/podcasts/333",
+      "rttm": null,
+      "sha256": "7473ec51b518fe10c932e38292bcc2f3a4bfab6ff15c7a9f72183438010e5889"
+    },
+    {
+      "id": "t08",
+      "file": "t08-podcast01.m4a",
+      "duration_s": 647.2515,
+      "kind": "real podcast M4A",
+      "source": "https://arzamas.academy/podcasts/333",
+      "rttm": null,
+      "sha256": "3a5a973b4c3b1f43f5fa8cf386fd8d1e86ee9445d79da5d5bc1976a92d1bd5a7"
+    },
+    {
+      "id": "t09",
+      "file": "t09-podcast07.wav",
+      "duration_s": 454.0468125,
+      "kind": "real podcast full episode",
+      "source": "https://arzamas.academy/podcasts/333",
+      "rttm": null,
+      "sha256": "da17cd402c94219dfc7ee600644318474781cc08c63123d06c6d4e77dc7df326"
+    },
+    {
+      "id": "t10",
+      "file": "t10-podcast17.wav",
+      "duration_s": 1444.9261875,
+      "kind": "real podcast full episode",
+      "source": "https://arzamas.academy/podcasts/333",
+      "rttm": null,
+      "sha256": "4f3f75ddef801e579c78367f5e491727e6a4bfb2b3be2350e2901293ccfada66"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "case": "t05-rec_0273",
+    "threshold": 0.95,
+    "elapsed_s": 18.875,
+    "score": {
+      "der": 0.159903298221378,
+      "miss_s": 2.14,
+      "false_alarm_s": 1.09,
+      "confusion_s": 6.03,
+      "reference_speakers": 3,
+      "predicted_speakers": 2,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 57.910000000000004
+    }
+  },
+  {
+    "case": "t06-rec_0274",
+    "threshold": 0.95,
+    "elapsed_s": 19.78100000001723,
+    "score": {
+      "der": 0.21664129883307964,
+      "miss_s": 1.9100000000000001,
+      "false_alarm_s": 0.5,
+      "confusion_s": 10.4,
+      "reference_speakers": 3,
+      "predicted_speakers": 2,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 59.13
+    }
+  }
+]

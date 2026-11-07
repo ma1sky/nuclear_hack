@@ -30,10 +30,9 @@ class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) 
         while (position < end) {
           cancellation.check()
           val next = minOf(end, position + 20 * 16000)
-          val collar = 120 * 16
-          val sliceStart = maxOf(0, position - if (position == start) collar else 0)
-          val sliceEnd = minOf(audio.samples.size, next + if (next == end) collar else 0)
-          val text = recognizer.recognize(audio.samples.copyOfRange(sliceStart, sliceEnd), 16000).trim()
+          // Do not feed a neighbouring speaker's audio into this speaker's ASR.
+          // Context padding needs word alignment and deduplication before enabling it.
+          val text = recognizer.recognize(audio.samples.copyOfRange(position, next), 16000).trim()
           cancellation.check()
           if (text.isNotEmpty()) words.add(text)
           position = next

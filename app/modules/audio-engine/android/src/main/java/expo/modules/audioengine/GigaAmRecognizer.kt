@@ -12,7 +12,8 @@ internal class GigaAmRecognizer(models: Map<String, String>) : SpeechRecognizer 
       nemo = OfflineNemoEncDecCtcModelConfig(model = models.getValue("asr")),
       tokens = models.getValue("tokens"), numThreads = 2, provider = "cpu",
     ),
-    blankPenalty = 1.2f,
+    // Keep the verified ASR baseline until insertion/deletion WER is measured.
+    blankPenalty = 0.0f,
   ))
 
   override fun recognize(samples: FloatArray, sampleRate: Int): String {
