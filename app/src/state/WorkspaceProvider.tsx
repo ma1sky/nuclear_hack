@@ -25,6 +25,7 @@ import {
   retainAudio,
   type AudioRecording,
 } from "../services/libraryService";
+import { ensureDemoAssets } from "../services/demoAudio";
 
 function useWorkspaceState() {
   const currentRecord = useRef<SavedTranscript | null>(null);
@@ -78,6 +79,11 @@ function useWorkspaceState() {
           setError("Не удалось подготовить встроенные модели: " + String(err));
       }
 
+      try {
+        await ensureDemoAssets();
+      } catch (err) {
+        console.warn("[App] Error ensuring demo assets:", err);
+      }
       await refreshHistory();
       setRecordings(await listAudio());
     }
