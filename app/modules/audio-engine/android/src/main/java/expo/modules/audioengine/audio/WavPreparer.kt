@@ -78,7 +78,8 @@ object WavPreparer {
         }
         frame += count
       }
-      PreparedAudio(resample(mono, rate, cancellation))
+      val resampled = resample(mono, rate, cancellation)
+      PreparedAudio(AudioNormalizer.normalize(resampled, cancellation))
     }
   }
 

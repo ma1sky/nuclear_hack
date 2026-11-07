@@ -91,7 +91,8 @@ internal object AndroidAudioPreparer {
         repeat(channels) { sum += if (width == 4) buffer.float else buffer.short / 32768f }
         mono[i] = (sum / channels).also { require(it.isFinite()) }.coerceIn(-1f, 1f)
       }
-      return PreparedAudio(WavPreparer.resample(mono, rate, cancellation))
+      val resampled = WavPreparer.resample(mono, rate, cancellation)
+      return PreparedAudio(expo.modules.audioengine.audio.AudioNormalizer.normalize(resampled, cancellation))
     } finally {
       codec?.release()
       extractor.release()

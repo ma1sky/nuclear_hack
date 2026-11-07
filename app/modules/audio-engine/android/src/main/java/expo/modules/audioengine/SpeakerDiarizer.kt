@@ -22,7 +22,9 @@ internal object SpeakerDiarizer {
         numThreads = 2,
       ),
       embedding = SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = 2),
-      clustering = FastClusteringConfig(numClusters = -1, threshold = 0.5f),
+      clustering = FastClusteringConfig(numClusters = -1, threshold = 0.55f),
+      minDurationOn = 0.2f,
+      minDurationOff = 0.3f,
     )
     val engine = OfflineSpeakerDiarization(config = config)
     val segments = try {
