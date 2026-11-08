@@ -1,0 +1,44 @@
+{
+  "renderer": "Remotion 4.0.541",
+  "composition": "ProductDemo",
+  "duration_s": 167.723,
+  "fps": 24,
+  "frames": 4025,
+  "width": 900,
+  "height": 1600,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "bytes": 12189379,
+  "sha256": "5a1e1e6c62d5df0683f29e6d4da4eb4c23ef5f6ffadfe0d6ad062ce602daa85f",
+  "segments": 37,
+  "source_clips": [
+    {
+      "source": "real/01-import-asr.mp4",
+      "seconds": 120.787878,
+      "bytes": 6333288,
+      "sha256": "3f2a4f540eab77e25016f63d785f0066c2a1ad286a1a04092f00b24183ad87f9"
+    },
+    {
+      "source": "real/02-player.mp4",
+      "seconds": 46.5845,
+      "bytes": 1515468,
+      "sha256": "fc77295da24949aacf9dcd6d57918286d86ae14c66838438e6113448199548e0"
+    },
+    {
+      "source": "real/03-export-history.mp4",
+      "seconds": 48.661611,
+      "bytes": 5386148,
+      "sha256": "e765efe0ba8e9f210cf54bf503cb3e691f05bf3b599b92b7edffa8a8d252e30c"
+    },
+    {
+      "source": "real/04-recorder.mp4",
+      "seconds": 44.785333,
+      "bytes": 1492689,
+      "sha256": "348e2a8e57762764a566a5f27bad31a4ca94a49a3721c39d8707d4be45de2037"
+    }
+  ],
+  "picture": "All frames from four Android screenrecord workflows; editorial playback rate displayed",
+  "audio": "Russian Microsoft Irina Desktop synthetic action commentary; original source audio muted",
+  "validation": "All video/audio frames decoded by ffprobe without errors; timeline continuity, source bounds, source SHA-256 and narration duration/RMS passed; import and ready summary frames visually inspected",
+  "apk_sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7"
+}

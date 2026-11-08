@@ -9,14 +9,14 @@ Android-приложение для локальной расшифровки р
 | № | Материал | Файл / ссылка |
 |---|---|---|
 | 1 | APK Android ARM64/x86_64, около 911 МБ | [Скачать APK](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk) · [SHA-256 APK](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/SHA256SUMS.txt) |
-| 2 | Исходный код проекта | [Скачать исходники ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-source.zip) · [Приложение](app/) · [Исходники видео Remotion](tools/demo-video/) |
+| 2 | Исходный код проекта | [Скачать исходники ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-source-real-demo.zip) · [Приложение](app/) · [Исходники видео Remotion](tools/demo-video/) |
 | 3 | Инструкция по установке и использованию | [INSTALL.md](docs/submission/INSTALL.md) |
 | 4 | Архитектура решения и модели | [ARCHITECTURE.md](docs/submission/ARCHITECTURE.md) · [Источники и лицензии моделей](docs/model-bundle.md) |
 | 5 | Ограничения решения | [LIMITATIONS.md](docs/submission/LIMITATIONS.md) |
 | 6 | Результаты собственных тестов | [TESTS.md](docs/submission/TESTS.md) · [Агрегаты пользовательских сценариев](artifacts/submission/user-scenarios.json) · [Замеры ASR/DER/скорости](docs/runtime-options-2026-11-08.md) |
-| 7 | Видеодемонстрация через Remotion | [Смотреть / скачать MP4](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo.mp4) · [Описание и воспроизведение рендера](docs/submission/VIDEO.md) |
+| 7 | Видеодемонстрация через Remotion | [Смотреть / скачать MP4](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo-real.mp4) · [Описание и воспроизведение рендера](docs/submission/VIDEO.md) |
 
-[Документация единым ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-docs.zip) · [Контрольные суммы всех материалов](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-SHA256SUMS.txt) · [Состав комплекта](docs/submission/README.md).
+[Документация единым ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-docs-real-demo.zip) · [Контрольные суммы всех материалов](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo-real-SHA256SUMS.txt) · [Состав комплекта](docs/submission/README.md).
 
 ## Документация
 
