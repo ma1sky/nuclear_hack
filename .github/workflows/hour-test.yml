@@ -44,7 +44,7 @@ jobs:
           printf '%s  %s\n' aa3cfc16963a10586a9393f5035d6d6b57e98d358b347f80c2a30bf4f00ceba2 campplus-zh-en.onnx \
             1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b eres2net-base.onnx | sha256sum -c -
 
-      - name: DER on the hour (this version; v1.2 measured once: 49.6%, see docs/der-fast-2026-11-08.md)
+      - name: 'DER on the hour (this version; v1.2 measured once at 49.6%, see docs/der-fast-2026-11-08.md)'
         working-directory: tools/benchmark
         run: /tmp/venv/bin/python der_fast.py --audio /tmp/hour/hour-ami-IN1016.wav --rttm /tmp/hour/hour-ami-IN1016.rttm --models /tmp/m --threads 4 --configs fast,fast_nocl --out /tmp/der-hour.json
 
