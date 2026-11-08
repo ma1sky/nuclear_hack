@@ -33,7 +33,7 @@ internal class GigaAmRecognizer(
       modelConfig = OfflineModelConfig(
         nemo = OfflineNemoEncDecCtcModelConfig(model = models.getValue(modelKey)),
         tokens = models.getValue(tokensKey),
-        numThreads = 2,
+        numThreads = SpeakerDiarizer.threads,
         provider = "cpu",
       ),
       blankPenalty = 0.0f,

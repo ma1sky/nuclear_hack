@@ -7,7 +7,7 @@ const definitions = [
   ['asr', 'gigaam-v2.int8.onnx'],
   ['tokens', 'gigaam-tokens.txt'],
   ['segmentation', 'pyannote-segmentation.int8.onnx'],
-  ['embedding', '3dspeaker.onnx'],
+  ['embedding', 'campplus-zh-en.onnx'],
   ['llm', 'qwen2.5-0.5b-instruct-q4_k_m.gguf'],
 ];
 

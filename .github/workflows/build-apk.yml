@@ -51,10 +51,11 @@ jobs:
           echo "a8d09d1d32f3eb8520482c6d3d43fae674681c5b050385967c70a3c2c9bf0ee7  /tmp/sherpa.aar" | sha256sum -c -
           unzip -q -o /tmp/sherpa.aar classes.jar -d /tmp/sherpa
           ANDROID_JAR=$(ls -d $ANDROID_HOME/platforms/android-*/android.jar | sort -V | tail -1)
+          curl -sSfL -o /tmp/onnxruntime.jar https://repo1.maven.org/maven2/com/microsoft/onnxruntime/onnxruntime/1.28.0/onnxruntime-1.28.0.jar
           N=android/src/main/java/expo/modules/audioengine
           java -cp "$KLIB/*" org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect \
-            -classpath "$KLIB/kotlin-stdlib.jar:/tmp/sherpa/classes.jar:$ANDROID_JAR" -d build/native-check \
-            $N/audio/*.kt $N/GigaAmRecognizer.kt $N/StreamingAudioPreparer.kt $N/SpeakerDiarizer.kt $N/Recluster.kt
+            -classpath "$KLIB/kotlin-stdlib.jar:/tmp/sherpa/classes.jar:/tmp/onnxruntime.jar:$ANDROID_JAR" -d build/native-check \
+            $N/audio/*.kt $N/GigaAmRecognizer.kt $N/StreamingAudioPreparer.kt $N/SpeakerDiarizer.kt $N/Recluster.kt $N/FastSegmenter.kt
 
       - uses: gradle/actions/setup-gradle@v4
 
@@ -76,6 +77,20 @@ jobs:
 
       - name: Download and pack bundled models (SHA-256 verified)
         run: node scripts/prepare-android-models.mjs
+
+      - name: FastSegmenter (Kotlin, ONNX Runtime) vs Python reference used for the DER study
+        working-directory: app/modules/audio-engine
+        run: |
+          python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet onnxruntime numpy soundfile
+          MODEL=../../models/bundles/full/models/pyannote-segmentation.int8.onnx
+          WAV=../../models/downloads/1-two-speakers-en.wav
+          /tmp/venv/bin/python ../../../tools/benchmark/fastseg_reference.py $MODEL $WAV /tmp/fastseg-ref.json
+          KLIB=/tmp/kotlinc/lib
+          N=android/src/main/java/expo/modules/audioengine
+          java -cp "$KLIB/*" org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect \
+            -classpath "$KLIB/kotlin-stdlib.jar:/tmp/onnxruntime.jar" -d build/fastseg-check \
+            $N/audio/*.kt $N/Recluster.kt $N/FastSegmenter.kt tests/onnx/FastSegmenterCheck.kt
+          java -cp "build/fastseg-check:$KLIB/kotlin-stdlib.jar:/tmp/onnxruntime.jar" expo.modules.audioengine.FastSegmenterCheckKt $MODEL $WAV /tmp/fastseg-ref.json
 
       - name: Expo prebuild
         run: npx expo prebuild --platform android --clean --no-install
@@ -104,4 +119,4 @@ jobs:
           tag="v${VERSION}-long-audio-build-${GITHUB_RUN_NUMBER}"
           gh release create "$tag" ../out/*.apk ../out/SHA256SUMS.txt --prerelease --target "$GITHUB_SHA" \
             --title "Нейро-стенографист ${VERSION} (ветка 123123, build ${GITHUB_RUN_NUMBER})" \
-            --notes "Сборка ветки 123123: потоковая обработка длинных записей (1 час+, сотни МБ) — память не растёт с длиной записи. Коммит ${GITHUB_SHA}."
+            --notes "Сборка ветки 123123: длинные записи (1 час+, сотни МБ) потоком; быстрая диаризация (pyannote шаг 5 с + CAM++ + Recluster), DER 9,3% на 57 отложенных файлах; резюме в фоне. Коммит ${GITHUB_SHA}."

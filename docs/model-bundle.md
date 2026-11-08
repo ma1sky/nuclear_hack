@@ -11,7 +11,7 @@
 | `gigaam-v2.int8.onnx` | GigaAM v2 CTC `model.int8.onnx` |
 | `gigaam-tokens.txt` | Его `tokens.txt` |
 | `pyannote-segmentation.int8.onnx` | Segmentation 3.0 `model.int8.onnx` |
-| `3dspeaker.onnx` | `3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx` |
+| `campplus-zh-en.onnx` | `3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx` |
 | `qwen2.5-0.5b-instruct-q4_k_m.gguf` | Qwen2.5-0.5B-Instruct Q4_K_M |
 
 Источники версий и лицензии указаны в [плане](implementation-plan.md). Скрипт не скачивает и не заменяет отсутствующие файлы. Веса остаются вне Git. Проверка SHA-256 здесь обнаруживает повреждение при упаковке/копировании; подлинность исходного скачанного файла нужно отдельно проверить по источнику перед упаковкой.

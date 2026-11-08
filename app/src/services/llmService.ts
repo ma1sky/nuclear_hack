@@ -18,7 +18,7 @@ export async function generateMeetingSummary(data: TranscriptExport, options?: L
   let context: Awaited<ReturnType<typeof initLlama>> | undefined;
   try {
     options.onProgress?.('Загрузка локальной Qwen...');
-    context = await initLlama({ model: options.modelPath, n_ctx: 2048, n_threads: 2, n_gpu_layers: 0, use_mlock: false });
+    context = await initLlama({ model: options.modelPath, n_ctx: 2048, n_threads: 4, n_gpu_layers: 0, use_mlock: false });
     const engine = context;
     const count = async (text: string) => (await engine.tokenize(text)).tokens.length;
     const prompt = (text: string) => `<|im_start|>system\n${SYSTEM}<|im_end|>\n<|im_start|>user\nДанные диалога:\n${text}<|im_end|>\n<|im_start|>assistant\n`;

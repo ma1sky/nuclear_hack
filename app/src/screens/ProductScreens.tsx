@@ -274,8 +274,9 @@ export function ProcessingScreen() {
   const w = useWorkspace();
   const percent = measuredSegmentProgress(w.progress);
   useEffect(() => {
-    if (!w.busy && w.progress.stage === "done") router.replace("/result");
-  }, [w.busy, w.progress.stage]);
+    // Open the transcript as soon as it exists; the summary is generated in the background.
+    if ((!w.busy && w.progress.stage === "done") || (w.currentTranscript && w.progress.stage === "summarizing")) router.replace("/result");
+  }, [w.busy, w.progress.stage, w.currentTranscript]);
   const index = stages.indexOf(w.progress.stage);
   return (
     <Screen

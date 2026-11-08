@@ -184,6 +184,9 @@ function useWorkspaceState() {
         percentage: 85,
       });
 
+      // The transcript is ready and saved: the result screen opens now (ProcessingScreen
+      // navigates on "summarizing"), the summary is filled in when the local LLM finishes.
+      setIsGeneratingSummary(true);
       let summaryText = "";
       try {
         summaryText = await generateMeetingSummary(transcriptResult, {
@@ -198,7 +201,8 @@ function useWorkspaceState() {
         // Requirement: LLM failure must preserve transcript!
       }
 
-      if (cancelled.current) throw new Error("Обработка отменена");
+      setIsGeneratingSummary(false);
+      // Cancelling the summary keeps the saved transcript; only the summary stays empty.
       // Update the independently saved record with the actual model summary.
       setProgress({ stage: "saving", message: "Сохранение результата" });
       currentRecord.current = { ...record, summary: summaryText };
@@ -213,6 +217,7 @@ function useWorkspaceState() {
       setProgress({ stage: "error", message: msg });
     } finally {
       operation.current = false;
+      setIsGeneratingSummary(false);
       setBusy(false);
     }
   }

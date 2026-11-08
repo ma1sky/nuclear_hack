@@ -15,57 +15,70 @@ internal data class SpeakerInterval(val startMs: Long, val endMs: Long, val spea
 internal object SpeakerDiarizer {
   const val sampleRate = 16_000
 
-  /** Recordings up to this length are diarized in one pass, exactly as before. */
-  private const val SINGLE_PASS_SAMPLES = 15L * 60 * sampleRate
-  /** Longer recordings are segmented in 10-minute chunks: bounded memory regardless of duration. */
+  /** Fallback (ONNX Runtime unavailable): sherpa segmentation in 10-minute chunks, bounded memory. */
   private const val CHUNK_SAMPLES = 10L * 60 * sampleRate
 
   private fun config(models: Map<String, String>) = OfflineSpeakerDiarizationConfig(
     segmentation = OfflineSpeakerSegmentationModelConfig(
       pyannote = OfflineSpeakerSegmentationPyannoteModelConfig(model = models.getValue("segmentation")),
-      numThreads = 2,
+      numThreads = threads,
     ),
-    embedding = embeddingConfig(models),
-    // Calibrated and validated: docs/der-study-2026-11-07.md
+    embedding = SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = threads),
     clustering = FastClusteringConfig(numClusters = -1, threshold = 0.8f),
     minDurationOn = 0.2f,
     minDurationOff = 0.3f,
   )
 
-  private fun embeddingConfig(models: Map<String, String>) =
-    SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = 2)
+  /** Threads for ONNX models: phones have 6-8 cores; 4 keeps the UI responsive. */
+  val threads: Int = Runtime.getRuntime().availableProcessors().coerceIn(1, 4)
 
-  fun process(audio: AudioSource, models: Map<String, String>, check: () -> Unit = {}): List<SpeakerInterval> {
+  /** Final speaker clustering threshold, chosen on the dev set (docs/der-fast-2026-11-08.md). */
+  private val reclusterParams = Recluster.Params(tau = 0.6)
+
+  fun process(audio: AudioSource, models: Map<String, String>, check: () -> Unit = {}, progress: (Int, Int) -> Unit = { _, _ -> }): List<SpeakerInterval> {
     if (audio.sampleCount == 0L) return emptyList()
-    return if (audio.sampleCount <= SINGLE_PASS_SAMPLES) singlePass(audio, models) else chunked(audio, models, check)
+    val segmenter = try {
+      FastSegmenter(models.getValue("segmentation"), threads)
+    } catch (e: Throwable) {
+      if (e is VirtualMachineError && e !is OutOfMemoryError) throw e
+      android.util.Log.w("SpeakerDiarizer", "Fast segmentation unavailable, falling back to sherpa", e)
+      null
+    }
+    if (segmenter == null) {
+      return chunked(audio, models, check)
+    }
+    val segments = segmenter.use { it.segment(audio, check, progress) }
+    check()
+    return assign(audio, segments, models, check)
   }
 
-  /** Unchanged behaviour for ordinary recordings. */
-  private fun singlePass(audio: AudioSource, models: Map<String, String>): List<SpeakerInterval> {
-    val samples = audio.read(0, audio.sampleCount)
-    val engine = OfflineSpeakerDiarization(config = config(models))
-    val segments = try {
-      check(engine.sampleRate() == sampleRate) { "Модель ожидает другую частоту дискретизации." }
-      engine.process(samples)
+  /** Global speaker IDs for local segments: one CAM++ embedding pass per segment + average-linkage AHC. */
+  private fun assign(audio: AudioSource, segments: List<Recluster.Seg>, models: Map<String, String>, check: () -> Unit): List<SpeakerInterval> {
+    val extractor = SpeakerEmbeddingExtractor(config = SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = threads))
+    val clustered = try {
+      Recluster.run(audio, segments, Recluster.Embedder { chunk ->
+        val stream = extractor.createStream()
+        try {
+          stream.acceptWaveform(chunk, sampleRate)
+          stream.inputFinished()
+          if (extractor.isReady(stream)) extractor.compute(stream) else null
+        } finally { stream.release() }
+      }, reclusterParams, check)
     } finally {
-      engine.release()
+      extractor.release()
     }
     val durationMs = audio.durationMs
     val speakers = mutableMapOf<Int, String>()
-    val raw = segments.sortedWith(compareBy({ it.start }, { it.end }, { it.speaker })).mapNotNull { segment ->
-      if (!segment.start.isFinite() || !segment.end.isFinite()) return@mapNotNull null
-      val startMs = (segment.start.toDouble() * 1000).roundToLong().coerceIn(0, durationMs)
-      val endMs = (segment.end.toDouble() * 1000).roundToLong().coerceIn(0, durationMs)
+    val raw = clustered.sortedWith(compareBy({ it.start }, { it.end })).mapNotNull { segment ->
+      val startMs = (segment.start * 1000).roundToLong().coerceIn(0, durationMs)
+      val endMs = (segment.end * 1000).roundToLong().coerceIn(0, durationMs)
       if (endMs <= startMs) return@mapNotNull null
       SpeakerInterval(startMs, endMs, speakers.getOrPut(segment.speaker) { "speaker_${speakers.size + 1}" })
     }
     return mergeAndFilter(raw)
   }
 
-  /**
-   * Long recordings: pyannote segmentation chunk by chunk (each chunk is a small slice read from disk),
-   * then one global re-clustering over all segments so the same voice keeps one ID across chunks.
-   */
+  /** Fallback: sherpa diarization chunk by chunk (slices read from disk), then the same global re-clustering. */
   private fun chunked(audio: AudioSource, models: Map<String, String>, check: () -> Unit): List<SpeakerInterval> {
     val segments = ArrayList<Recluster.Seg>()
     val engine = OfflineSpeakerDiarization(config = config(models))
@@ -87,28 +100,7 @@ internal object SpeakerDiarizer {
       engine.release()
     }
     check()
-    val extractor = SpeakerEmbeddingExtractor(config = embeddingConfig(models))
-    val clustered = try {
-      Recluster.run(audio, segments, Recluster.Embedder { chunk ->
-        val stream = extractor.createStream()
-        try {
-          stream.acceptWaveform(chunk, sampleRate)
-          stream.inputFinished()
-          if (extractor.isReady(stream)) extractor.compute(stream) else null
-        } finally { stream.release() }
-      }, Recluster.Params(), check)
-    } finally {
-      extractor.release()
-    }
-    val durationMs = audio.durationMs
-    val speakers = mutableMapOf<Int, String>()
-    val raw = clustered.sortedWith(compareBy({ it.start }, { it.end })).mapNotNull { segment ->
-      val startMs = (segment.start * 1000).roundToLong().coerceIn(0, durationMs)
-      val endMs = (segment.end * 1000).roundToLong().coerceIn(0, durationMs)
-      if (endMs <= startMs) return@mapNotNull null
-      SpeakerInterval(startMs, endMs, speakers.getOrPut(segment.speaker) { "speaker_${speakers.size + 1}" })
-    }
-    return mergeAndFilter(raw)
+    return assign(audio, segments, models, check)
   }
 
   private fun mergeAndFilter(intervals: List<SpeakerInterval>): List<SpeakerInterval> {

@@ -73,7 +73,7 @@ class AudioEngineModule : Module() {
       readAudio(fileUri).use { audio ->
         val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
         cancellation.check()
-        val intervals = SpeakerDiarizer.process(audio, models) { cancellation.check() }
+        val intervals = SpeakerDiarizer.process(audio, models, { cancellation.check() })
         cancellation.check()
         mapOf("durationMs" to audio.durationMs, "elapsedMs" to SystemClock.elapsedRealtime() - start,
           "intervals" to intervals.map { mapOf("startMs" to it.startMs, "endMs" to it.endMs, "speakerId" to it.speakerId) })
@@ -87,7 +87,9 @@ class AudioEngineModule : Module() {
         cancellation.check()
         sendEvent("onProgress", mapOf("stage" to "diarizing", "durationMs" to audio.durationMs, "waveform" to waveform(audio)))
         // SpeakerDiarizer releases native resources before returning; only then create ASR.
-        val intervals = SpeakerDiarizer.process(audio, models) { cancellation.check() }
+        val intervals = SpeakerDiarizer.process(audio, models, { cancellation.check() }) { done, total ->
+          if (done % 12 == 0 || done == total) sendEvent("onProgress", mapOf("stage" to "diarizing", "completed" to done, "total" to total))
+        }
         cancellation.check()
         val ids = linkedMapOf<String, Int>()
         val mapped = intervals.map {

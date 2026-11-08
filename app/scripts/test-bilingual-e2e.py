@@ -10,7 +10,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 MODELS = os.path.join(ROOT, 'modules/audio-engine/android/src/main/assets/models')
 
 seg_model = os.path.join(MODELS, 'pyannote-segmentation.int8.onnx')
-emb_model = os.path.join(MODELS, '3dspeaker.onnx')
+emb_model = os.path.join(MODELS, 'campplus-zh-en.onnx')
 ru_asr = os.path.join(MODELS, 'gigaam-v2.int8.onnx')
 ru_tokens = os.path.join(MODELS, 'gigaam-tokens.txt')
 en_asr = os.path.join(MODELS, 'en-conformer.int8.onnx')

@@ -3,3 +3,6 @@
 
 # llama.rn JNI classes must survive release shrinking.
 -keep class com.rnllama.** { *; }
+
+# ONNX Runtime Java API (FastSegmenter): JNI creates these classes and reads their fields by name.
+-keep class ai.onnxruntime.** { *; }
