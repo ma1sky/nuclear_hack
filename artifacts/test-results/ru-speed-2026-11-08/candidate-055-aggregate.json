@@ -1,0 +1,183 @@
+[
+  {
+    "case": {
+      "id": "ru-speed-1spk",
+      "file": "recordings/ru-speed/ru-speed-1spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 1,
+      "rttm": "recordings/ru-speed/ru-speed-1spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0001",
+      "source_voice_ids": [
+        "nikolai_naumenko"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "6809013c7d2097eb537e1af53a56128d8c552c178ea1a525e62f830d5a546b6f"
+    },
+    "apk_sha256": "cd6af38525e6d0b05b8bbf35a667dcf2fa8c31a8bc7004fd324cec5a9650eddc",
+    "variant": "candidate-055",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Подготовка записи",
+        "elapsed_s": 4.83
+      },
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 9.81
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 68.28
+      }
+    ],
+    "sampled_peak_pss_kb": 775402,
+    "text_visible_s": 96.91,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 188.03,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=904",
+      "I/AudioEngine(28771): diarization window=1/2 elapsedMs=39828",
+      "I/AudioEngine(28771): diarization window=2/2 elapsedMs=18462"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 4,
+    "known_speakers": 1,
+    "unknown_turns": 0,
+    "exported_der": {
+      "der": 0.053199010250972074,
+      "miss_s": 0.35000000000000003,
+      "false_alarm_s": 8.68,
+      "confusion_s": 0.0,
+      "reference_speakers": 1,
+      "predicted_speakers": 1,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 169.74
+    },
+    "summary_available": true,
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-2spk",
+      "file": "recordings/ru-speed/ru-speed-2spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 2,
+      "rttm": "recordings/ru-speed/ru-speed-2spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0056",
+      "source_voice_ids": [
+        "andrei_finagin",
+        "tanya_klavina"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "40931e41343c46504464aa58e15ae1e5a7de1d5a492f1ff216427c0c4e121ee4"
+    },
+    "apk_sha256": "cd6af38525e6d0b05b8bbf35a667dcf2fa8c31a8bc7004fd324cec5a9650eddc",
+    "variant": "candidate-055",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 7.08
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 60.55
+      }
+    ],
+    "sampled_peak_pss_kb": 755045,
+    "text_visible_s": 87.53,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 174.44,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=856",
+      "I/AudioEngine(28771): diarization window=1/2 elapsedMs=36485",
+      "I/AudioEngine(28771): diarization window=2/2 elapsedMs=16927"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 45,
+    "known_speakers": 2,
+    "unknown_turns": 0,
+    "exported_der": {
+      "der": 0.04402007730917902,
+      "miss_s": 7.2,
+      "false_alarm_s": 0.43,
+      "confusion_s": 0.0,
+      "reference_speakers": 2,
+      "predicted_speakers": 2,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 173.33
+    },
+    "summary_available": true,
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-3spk",
+      "file": "recordings/ru-speed/ru-speed-3spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 3,
+      "rttm": "recordings/ru-speed/ru-speed-3spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0275",
+      "source_voice_ids": [
+        "andrei_novokreshenov",
+        "konstantin_luzhkov",
+        "irina_bulekova"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "d8550dc832d8c0ef55953e0b1f1084fbc3c604c99a27348cacff221228b61025"
+    },
+    "apk_sha256": "cd6af38525e6d0b05b8bbf35a667dcf2fa8c31a8bc7004fd324cec5a9650eddc",
+    "variant": "candidate-055",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 6.8
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 55.98
+      }
+    ],
+    "sampled_peak_pss_kb": 766904,
+    "text_visible_s": 86.16,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 184.5,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=869",
+      "I/AudioEngine(28771): diarization window=1/2 elapsedMs=34097",
+      "I/AudioEngine(28771): diarization window=2/2 elapsedMs=15094"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 54,
+    "known_speakers": 6,
+    "unknown_turns": 2,
+    "exported_der": {
+      "der": 0.38288505932248884,
+      "miss_s": 8.66,
+      "false_alarm_s": 5.96,
+      "confusion_s": 56.7,
+      "reference_speakers": 3,
+      "predicted_speakers": 7,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 186.27
+    },
+    "summary_available": true,
+    "new_known_ids_after_120s": 0
+  }
+]

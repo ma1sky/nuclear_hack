@@ -1,0 +1,14 @@
+{
+  "ro.product.model": "sdk_gphone64_x86_64",
+  "ro.product.cpu.abi": "x86_64",
+  "ro.build.version.release": "17",
+  "ro.build.version.sdk": "37",
+  "ro.kernel.qemu": "1",
+  "serial": "emulator-5556",
+  "avd": "Release12",
+  "configured_ram_mib": 4096,
+  "mem_total_kib": 4005316,
+  "airplane_mode": "1",
+  "base_commit": "0ac82a73dcbc96bafcbc0f1db97f3499c9191bf8",
+  "worktree_dirty": true
+}

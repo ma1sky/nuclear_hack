@@ -5,22 +5,24 @@ import android.media.MediaCodec
 import android.media.MediaExtractor
 import android.media.MediaFormat
 import expo.modules.audioengine.audio.CancellationCheck
-import expo.modules.audioengine.audio.PreparedAudio
+import expo.modules.audioengine.audio.DiskAudio
 import expo.modules.audioengine.audio.WavPreparer
 import java.io.File
-import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 internal object AndroidAudioPreparer {
-  fun prepare(file: File, cancellation: CancellationCheck): PreparedAudio {
+  fun prepare(file: File, cancellation: CancellationCheck, directory: File): DiskAudio {
     file.inputStream().use { input ->
       val magic = ByteArray(4)
       if (input.read(magic) == 4 && magic.toString(Charsets.US_ASCII) == "RIFF") {
-        return WavPreparer.prepare(file, cancellation)
+        return WavPreparer.prepareDisk(file, directory, cancellation)
       }
     }
+    val raw = DiskAudio.newFile(directory)
+    val pcm = java.io.DataOutputStream(java.io.BufferedOutputStream(raw.outputStream()))
     val extractor = MediaExtractor()
+    var succeeded = false
     var codec: MediaCodec? = null
     try {
       extractor.setDataSource(file.absolutePath)
@@ -39,7 +41,7 @@ internal object AndroidAudioPreparer {
       var inputDone = false
       var outputDone = false
       val info = MediaCodec.BufferInfo()
-      val pcm = ByteArrayOutputStream()
+      var decodedFrames = 0L
       var lastActivity = android.os.SystemClock.elapsedRealtime()
       while (!outputDone) {
         check(android.os.SystemClock.elapsedRealtime() - lastActivity < 30000) { "AAC decoder stalled or file is damaged" }
@@ -61,7 +63,7 @@ internal object AndroidAudioPreparer {
         }
         when (val slot = decoder.dequeueOutputBuffer(info, 10000)) {
           MediaCodec.INFO_OUTPUT_FORMAT_CHANGED -> {
-            check(pcm.size() == 0) { "Audio format changed during decoding" }
+            check(decodedFrames == 0L) { "Audio format changed during decoding" }
             val outputFormat = decoder.outputFormat
             rate = outputFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE)
             channels = outputFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
@@ -74,28 +76,31 @@ internal object AndroidAudioPreparer {
             try {
               val output = requireNotNull(decoder.getOutputBuffer(slot))
               output.position(info.offset); output.limit(info.offset + info.size)
-              val bytes = ByteArray(info.size); output.get(bytes); pcm.write(bytes)
+              val width = if (encoding == AudioFormat.ENCODING_PCM_FLOAT) 4 else 2
+              require(info.size % (width * channels) == 0) { "Incomplete decoded PCM frame" }
+              output.order(ByteOrder.LITTLE_ENDIAN)
+              repeat(info.size / (width * channels)) {
+                var sum = 0f
+                repeat(channels) { sum += if (width == 4) output.float else output.short / 32768f }
+                val value = sum / channels
+                require(value.isFinite())
+                pcm.writeFloat(value.coerceIn(-1f, 1f))
+                decodedFrames++
+              }
               outputDone = info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0
             } finally { decoder.releaseOutputBuffer(slot, false) }
           }
         }
       }
-      val width = if (encoding == AudioFormat.ENCODING_PCM_FLOAT) 4 else 2
-      val data = pcm.toByteArray()
-      require(data.size % (width * channels) == 0) { "Incomplete decoded PCM frame" }
-      val buffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN)
-      val mono = FloatArray(data.size / (width * channels))
-      for (i in mono.indices) {
-        if (i % 4096 == 0) cancellation.check()
-        var sum = 0f
-        repeat(channels) { sum += if (width == 4) buffer.float else buffer.short / 32768f }
-        mono[i] = (sum / channels).also { require(it.isFinite()) }.coerceIn(-1f, 1f)
-      }
-      val resampled = WavPreparer.resample(mono, rate, cancellation)
-      return PreparedAudio(expo.modules.audioengine.audio.AudioNormalizer.normalize(resampled, cancellation))
+      pcm.close()
+      val audio = DiskAudio.resample(raw, rate, directory, cancellation)
+      succeeded = true
+      return audio
     } finally {
-      codec?.release()
-      extractor.release()
+      try { pcm.close() } finally {
+        if (!succeeded) raw.delete()
+        try { codec?.release() } finally { extractor.release() }
+      }
     }
   }
 }

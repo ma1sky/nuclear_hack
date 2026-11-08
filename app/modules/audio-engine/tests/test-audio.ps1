@@ -14,3 +14,9 @@ $sources += @(Get-ChildItem (Join-Path $PSScriptRoot '*.kt') | ForEach-Object Fu
 if ($LASTEXITCODE -ne 0) { throw 'Kotlin compilation failed' }
 & $java -cp "$outPath;$compilerLib\kotlin-stdlib.jar" expo.modules.audioengine.audio.AudioPipelineTestKt
 if ($LASTEXITCODE -ne 0) { throw 'Audio tests failed' }
+
+& $java -Xmx64m -cp "$outPath;$compilerLib\kotlin-stdlib.jar" expo.modules.audioengine.audio.LongAudioTestKt
+if ($LASTEXITCODE -ne 0) { throw 'Long audio memory tests failed' }
+
+& $java -cp "$outPath;$compilerLib\kotlin-stdlib.jar" expo.modules.audioengine.audio.GlobalSpeakerLinkerTestKt
+if ($LASTEXITCODE -ne 0) { throw 'Speaker identity tests failed' }

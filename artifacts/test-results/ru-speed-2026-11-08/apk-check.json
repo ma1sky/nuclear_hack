@@ -1,0 +1,9 @@
+{
+  "abis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "apk_bytes": 910778679,
+  "model_assets_unchanged": true,
+  "model_asset_count": 8
+}

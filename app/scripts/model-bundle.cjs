@@ -3,11 +3,14 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { pipeline } = require('node:stream/promises');
 
+const embeddingProfile = process.env.STENOGRAPHER_EMBEDDING || 'titanet';
+if (!['titanet', 'eres2net'].includes(embeddingProfile)) throw new Error('Unknown STENOGRAPHER_EMBEDDING profile');
+const embeddingFile = embeddingProfile === 'eres2net' ? '3dspeaker.onnx' : 'nemo_en_titanet_small.onnx';
 const definitions = [
   ['asr', 'gigaam-v2.int8.onnx'],
   ['tokens', 'gigaam-tokens.txt'],
   ['segmentation', 'pyannote-segmentation.int8.onnx'],
-  ['embedding', '3dspeaker.onnx'],
+  ['embedding', embeddingFile],
   ['llm', 'qwen2.5-0.5b-instruct-q4_k_m.gguf'],
 ];
 
@@ -52,6 +55,9 @@ async function pack(source, destination) {
   for (const name of fs.readdirSync(source).filter(name => name.startsWith('LICENSE'))) {
     fs.copyFileSync(path.join(source, name), path.join(destination, name));
   }
+  fs.copyFileSync(path.resolve(__dirname, '../../docs/licenses/titanet-small.txt'), path.join(destination, 'LICENSE.titanet'));
+  // Remove only the retired generated asset; the developer's baseline weights remain in source.
+  fs.rmSync(path.join(destination, embeddingProfile === 'titanet' ? '3dspeaker.onnx' : 'nemo_en_titanet_small.onnx'), { force: true });
   const manifest = { version: 1, language: 'ru', files };
   fs.writeFileSync(path.join(destination, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   return manifest;

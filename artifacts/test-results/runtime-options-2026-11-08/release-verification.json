@@ -1,0 +1,55 @@
+{
+  "version_name": "1.2.3",
+  "version_code": 12,
+  "apk": "artifacts/releases/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk",
+  "bytes": 911430194,
+  "sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "signing_certificate_sha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+  "signature_matches_tested_candidate": true,
+  "tested_candidate_sha256": "1949fe7457fb9abfeed62d331755ae39bbe8e801c6bb36a5c84d9488cb73a8d4",
+  "all_model_entries_same_crc_and_size": true,
+  "all_native_libraries_same_crc_and_size": true,
+  "model_manifest": {
+    "version": 1,
+    "language": "ru",
+    "files": [
+      {
+        "id": "asr",
+        "file": "gigaam-v2.int8.onnx",
+        "size": 236457977,
+        "sha256": "d0ce4aef25f58d495781ee8f05320d9e51b821f47804e07aa6549b53a72f67e8"
+      },
+      {
+        "id": "tokens",
+        "file": "gigaam-tokens.txt",
+        "size": 196,
+        "sha256": "17cc514451bcceac9c280068c71502f8448f99e9fb1456b8d0761651fd0392f2"
+      },
+      {
+        "id": "segmentation",
+        "file": "pyannote-segmentation.int8.onnx",
+        "size": 1540506,
+        "sha256": "d582f4b4c6b48205de7e0643c57df0df5615a3c176189be3fc461e9d18827b5d"
+      },
+      {
+        "id": "embedding",
+        "file": "nemo_en_titanet_small.onnx",
+        "size": 40257283,
+        "sha256": "ad4a1802485d8b34c722d2a9d04249662f2ece5d28a7a039063ca22f515a789e"
+      },
+      {
+        "id": "llm",
+        "file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+        "size": 491400032,
+        "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+      }
+    ]
+  },
+  "package_line": "package: name='team.hex.nuclearstenographer' versionCode='12' versionName='1.2.3' platformBuildVersionName='17' platformBuildVersionCode='37' compileSdkVersion='37' compileSdkVersionCodename='17'",
+  "abi_line": "native-code: 'arm64-v8a' 'x86_64'",
+  "signed_with_test_key": true,
+  "update_install": "adb install -r: Success; existing data not cleared",
+  "installed_version_confirmed": true,
+  "final_ui_smoke": "completed after emulator recovery: Golos WAV -> strict JSON -> local LLM; ten user scenario groups passed; see docs/submission/TESTS.md",
+  "full_pipeline_evidence": "Final APK Golos completed in 29.36s, text visible 20.83s, WER0 on6words. Earlier four longer cases remain tied to candidate1949fe7."
+}

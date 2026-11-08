@@ -1,0 +1,92 @@
+[
+  {
+    "id": "rec_0003",
+    "file": "recordings/runtime-options/fresh-cases/rec_0003.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0003.rttm",
+    "reference_speakers": 1,
+    "source_voice_ids": [
+      "sofia_shamaeva"
+    ],
+    "voice_overlap_with_previous": 0,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "d6e382910ebc40ff60c064878778beecb6403e72a6f86799f98d98c801b4ad92"
+  },
+  {
+    "id": "rec_0008",
+    "file": "recordings/runtime-options/fresh-cases/rec_0008.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0008.rttm",
+    "reference_speakers": 1,
+    "source_voice_ids": [
+      "sergei_chonishvili"
+    ],
+    "voice_overlap_with_previous": 0,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "7851f05942f66fd780e0cb41b66d89710630c521b73c6bb91255b8bf9af6f2b5"
+  },
+  {
+    "id": "rec_0061",
+    "file": "recordings/runtime-options/fresh-cases/rec_0061.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0061.rttm",
+    "reference_speakers": 2,
+    "source_voice_ids": [
+      "smelova_s",
+      "evgenii_lebedev"
+    ],
+    "voice_overlap_with_previous": 0,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "0fea08c0a1378e13b4eaee389a540f3da77ed08b72b8f31bb4e21f194018eb89"
+  },
+  {
+    "id": "rec_0062",
+    "file": "recordings/runtime-options/fresh-cases/rec_0062.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0062.rttm",
+    "reference_speakers": 2,
+    "source_voice_ids": [
+      "yulia_makerova",
+      "vladimir_shevyakov"
+    ],
+    "voice_overlap_with_previous": 0,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "6fb9d81a666d4a19c704394d49a5088f37b15f3104f8e08f181e378a0b116555"
+  },
+  {
+    "id": "rec_0290",
+    "file": "recordings/runtime-options/fresh-cases/rec_0290.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0290.rttm",
+    "reference_speakers": 3,
+    "source_voice_ids": [
+      "aleksandra_nizhegorodova",
+      "elena_kalinichenko",
+      "tatyana_morozova"
+    ],
+    "voice_overlap_with_previous": 0,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "b244a50e895de716406e38c66ff3d96c4f91dc5195d479b21568455002adf6b3"
+  },
+  {
+    "id": "rec_0276",
+    "file": "recordings/runtime-options/fresh-cases/rec_0276.wav",
+    "rttm": "recordings/runtime-options/fresh-cases/rec_0276.rttm",
+    "reference_speakers": 3,
+    "source_voice_ids": [
+      "roman_gorbunov",
+      "ivan_zlatoustov",
+      "irina_bulekova"
+    ],
+    "voice_overlap_with_previous": 1,
+    "duration_s": 60,
+    "natural": false,
+    "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+    "sha256": "d4fc0b1262611f83b3722ccec4bf274be0ecd93db0a7b4df03047438ca71ea0a"
+  }
+]

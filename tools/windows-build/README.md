@@ -27,3 +27,19 @@ Init script действует только на эту команду: напр
 После сборки остановить сервер Ctrl+C. Глобальные настройки Gradle, сети и Windows не меняются. Если в Gradle закэширован ответ об отсутствии файла, однократно добавить `--refresh-dependencies`.
 
 Дополнительно на Windows работает Expo plugin `app/plugins/withShortNativePaths.cjs`, сокращающий длинные объектные пути CMake. Нужны NDK 27.1.12297006, Build Tools 37.0.0 и CMake 3.22.1; установить через Android Studio SDK Manager. См. основной [отчёт сборки](../../docs/android-smoke-2026-11-07.md).
+
+## Ярлык эмулятора и приложения
+
+Из корня репозитория выполните:
+
+    powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows-build/Install-DesktopShortcut.ps1
+
+Ярлык «Нейро-стенографист — эмулятор» открывает AVD Release12 и приложение.
+Используется локальный AVD из recordings/v12-qa/avds; SDK берётся из ANDROID_HOME
+или %LOCALAPPDATA%/Android/Sdk. Если этот AVD уже запущен, используется существующий
+экземпляр. Скрипт ожидает загрузки Android до четырёх минут и не очищает данные.
+Если приложение отсутствует, устанавливает APK из artifacts/emulator/launcher.json,
+либо исходный artifacts/candidates/v1.2/nuclear-stenographer-v1.2.apk.
+Установленное приложение при обычном нажатии не переустанавливается.
+Окно эмулятора показывается, консоль скрывается. Лог: recordings/emulator-launcher.log.
+Указанный AVD и модели локальны и не входят в Git.

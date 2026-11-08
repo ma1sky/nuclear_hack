@@ -1,0 +1,25 @@
+{
+  "local_merge_threshold": 0.85,
+  "clustering_threshold": 0.75,
+  "development": [
+    "native-dev-rec_0273",
+    "native-dev-rec_0274"
+  ],
+  "ranking": [
+    {
+      "local_merge_threshold": 0.85,
+      "lost_cases": 0,
+      "weighted_der": 0.10939280018227386
+    },
+    {
+      "local_merge_threshold": 0.9,
+      "lost_cases": 0,
+      "weighted_der": 0.10939280018227386
+    },
+    {
+      "local_merge_threshold": 1.01,
+      "lost_cases": 0,
+      "weighted_der": 0.10939280018227386
+    }
+  ]
+}

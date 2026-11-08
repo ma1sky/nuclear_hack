@@ -28,7 +28,7 @@ export function DesignDialog({
           flex: 1,
           justifyContent: bottom ? "flex-end" : "center",
           padding: bottom ? 0 : 16,
-          backgroundColor: "#00000066",
+          backgroundColor: "#00000047",
         }}
       >
         <View

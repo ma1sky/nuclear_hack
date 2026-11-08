@@ -1,0 +1,45 @@
+{
+  "case": {
+    "id": "golos",
+    "file": "D:\\programming\\nuclear_hack\\recordings\\benchmark\\cases\\t01-golos.wav",
+    "duration_s": 4,
+    "rttm": null,
+    "source": "https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd",
+    "sha256": "500d2e88a1634ee766fec46f83cb903f3a1c276b2cedb36f11db800a1c4c14d0",
+    "natural": true
+  },
+  "apk_sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "variant": "release-1.2.3-recovered",
+  "status": "completed",
+  "stages": [
+    {
+      "stage": "Подготовка записи",
+      "elapsed_s": 5.38
+    },
+    {
+      "stage": "Распознавание речи",
+      "elapsed_s": 15.97
+    }
+  ],
+  "sampled_peak_pss_kb": 674535,
+  "text_visible_s": 20.83,
+  "text_visible_while_summary": true,
+  "export_enabled_at_text_ready": true,
+  "full_completed_s": 29.36,
+  "native_profile": [
+    "diarization sessions=1 extractor=0 loadMs=389 threads=2 distance=0.75 localMerge=0.85",
+    "I/AudioEngine( 3523): asr threads=4 model=asr"
+  ],
+  "schema_and_bounds_ok": true,
+  "utterances": 1,
+  "known_speakers": 1,
+  "unknown_turns": 0,
+  "unknown_turn_seconds": 0,
+  "asr_score": {
+    "reference_words": 6,
+    "edit_distance": 0,
+    "wer": 0.0
+  },
+  "summary_available": true,
+  "after_completion_pss_kb": 139527
+}

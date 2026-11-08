@@ -1,0 +1,157 @@
+{
+  "apk_sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "cases": [
+    {
+      "case": "playback_pause",
+      "status": "passed",
+      "detail": {
+        "playing": {
+          "current_s": 3,
+          "duration_s": 300
+        },
+        "paused": {
+          "current_s": 3,
+          "duration_s": 300
+        },
+        "after_wait": {
+          "current_s": 3,
+          "duration_s": 300
+        },
+        "audibility": "Native player state and advancing time verified; acoustic listening not assessed"
+      },
+      "elapsed_s": 30.69
+    },
+    {
+      "case": "seek_controls",
+      "status": "passed",
+      "detail": {
+        "before": {
+          "current_s": 3,
+          "duration_s": 300
+        },
+        "forward": {
+          "current_s": 18,
+          "duration_s": 300
+        },
+        "back": {
+          "current_s": 3,
+          "duration_s": 300
+        },
+        "waveform_midpoint": {
+          "current_s": 150,
+          "duration_s": 300
+        },
+        "forward_after_seek": {
+          "current_s": 165,
+          "duration_s": 300
+        }
+      },
+      "elapsed_s": 28.59
+    },
+    {
+      "case": "speed_controls",
+      "status": "passed",
+      "detail": {
+        "normal": {
+          "audio_seconds": 4,
+          "wall_seconds": 4.91
+        },
+        "double": {
+          "audio_seconds": 8,
+          "wall_seconds": 4.92
+        },
+        "relative_rate": 1.99,
+        "all_rate_labels_cycled": true
+      },
+      "elapsed_s": 52.84
+    },
+    {
+      "case": "seek_bounds_timecode",
+      "status": "passed",
+      "detail": {
+        "back_at_start": {
+          "current_s": 0,
+          "duration_s": 300
+        },
+        "timecode": "Перейти к 00:02",
+        "after_timecode": {
+          "current_s": 4,
+          "duration_s": 300
+        }
+      },
+      "elapsed_s": 17.7
+    },
+    {
+      "case": "json_txt_exports",
+      "status": "passed",
+      "detail": {
+        "strict_json": true,
+        "transcript_unchanged": true,
+        "shares": {
+          ".json": {
+            "sheet_opened": true,
+            "filename_visible": "ru-speed-podcast-b_export.json"
+          },
+          ".txt": {
+            "sheet_opened": true,
+            "filename_visible": "ru-speed-podcast-b_protocol.txt"
+          }
+        },
+        "external_delivery": "Share sheets opened and cancelled; no external recipient used"
+      },
+      "elapsed_s": 69.98
+    },
+    {
+      "case": "rename_speaker",
+      "status": "passed",
+      "detail": {
+        "display_name_changed": true,
+        "strict_json_ids_and_text_unchanged": true,
+        "original_display_name_restored": true
+      },
+      "elapsed_s": 53.19
+    },
+    {
+      "case": "history_after_restart",
+      "status": "passed",
+      "detail": {
+        "transcript_exact_after_process_restart": true,
+        "summary_restored": true,
+        "audio_loaded": true
+      },
+      "elapsed_s": 49.75
+    },
+    {
+      "case": "saved_audio_playback",
+      "status": "passed",
+      "detail": {
+        "existing_record_93s_playable": true,
+        "seek_and_speed": "not available on saved-audio screen: compact player exposes play/pause only"
+      },
+      "elapsed_s": 20.48
+    },
+    {
+      "case": "recorder_save_playback",
+      "status": "passed",
+      "detail": {
+        "pause_timer_unchanged": true,
+        "pause_resume_finish": true,
+        "preview_playback": true,
+        "saved_and_reopened_playback": true,
+        "input": "Default emulator microphone; host microphone not enabled; acoustic quality not assessed"
+      }
+    },
+    {
+      "case": "audio_persistence_rename_delete",
+      "status": "passed",
+      "detail": {
+        "saved_after_process_restart": true,
+        "renamed_audio_playable": true,
+        "cancel_delete_preserves_record": true,
+        "confirmed_delete_removed_only_test_record": true
+      },
+      "elapsed_s": 48.97
+    }
+  ],
+  "infrastructure_attempts": "Initial playback UIAutomator idle timeout and Cyrillic adb input cleanup failure were harness failures; successful repeats are listed. Raw screenshots/logs stay in recordings."
+}

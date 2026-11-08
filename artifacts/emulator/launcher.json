@@ -1,0 +1,10 @@
+{
+  "apk": "artifacts/releases/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk",
+  "sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "base_commit": "0ac82a7",
+  "interface": "Figma light 2026-11-08",
+  "note": "Published APK verified after emulator recovery: Golos full offline cycle and ten user scenario groups passed. Redmi, acoustic listening and hour-long TitaNet remain untested; see docs/submission/TESTS.md.",
+  "version_name": "1.2.3",
+  "version_code": 12,
+  "release_tag": "v1.2.3-runtime-preview.1"
+}

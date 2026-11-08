@@ -3,9 +3,10 @@ package expo.modules.audioengine.audio
 /** Shared seam for Alexander's diarizer and Artem's GigaAM adapter; never substitutes model output. */
 class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) {
   fun transcribe(
-    audio: PreparedAudio,
+    audio: AudioSource,
     intervals: List<SpeakerInterval>,
     cancellation: CancellationCheck = CancellationCheck.NONE,
+    speakerLabels: Map<Int, String> = emptyMap(),
     progress: (AudioProgress) -> Unit = {},
   ): Map<String, List<Map<String, Any>>> {
     val sorted = intervals.sortedWith(compareBy({ it.startMs }, { it.endMs }))
@@ -21,7 +22,6 @@ class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) 
     createRecognizer().use { recognizer ->
       sorted.forEachIndexed { index, interval ->
         cancellation.check()
-        val speaker = speakers.getOrPut(interval.speakerId) { "speaker_${speakers.size + 1}" }
         val start = (interval.startMs * 16).toInt()
         val end = (interval.endMs * 16).toInt()
         val words = mutableListOf<String>()
@@ -32,12 +32,15 @@ class IntervalTranscriber(private val createRecognizer: () -> SpeechRecognizer) 
           val next = minOf(end, position + 20 * 16000)
           // Do not feed a neighbouring speaker's audio into this speaker's ASR.
           // Context padding needs word alignment and deduplication before enabling it.
-          val text = recognizer.recognize(audio.samples.copyOfRange(position, next), 16000).trim()
+          val text = recognizer.recognize(audio.readSamples(position, next), 16000).trim()
           cancellation.check()
           if (text.isNotEmpty()) words.add(text)
           position = next
         }
-        if (words.isNotEmpty()) entries.add(TranscriptEntry(speaker, interval.startMs, interval.endMs, words.joinToString(" ")))
+        if (words.isNotEmpty()) {
+          val speaker = speakerLabels[interval.speakerId] ?: speakers.getOrPut(interval.speakerId) { "speaker_" + (speakers.size + 1) }
+          entries.add(TranscriptEntry(speaker, interval.startMs, interval.endMs, words.joinToString(" ")))
+        }
         progress(AudioProgress("transcribing", index + 1, sorted.size))
       }
     }

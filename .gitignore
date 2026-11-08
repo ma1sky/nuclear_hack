@@ -44,3 +44,18 @@ __pycache__/
 
 # Test datasets downloaded for DER verification
 /artifacts/test-datasets/
+
+# Local detailed ML debug output; publish only aggregate results/metrics.
+/artifacts/test-results/hour-ami-2026-11-08/oom-fix*/**/*.png
+/artifacts/test-results/hour-ami-2026-11-08/oom-fix*/**/*.xml
+/artifacts/test-results/hour-ami-2026-11-08/oom-fix*/**/status.json
+/artifacts/test-results/hour-ami-2026-11-08/oom-fix-full/transcript.json
+/artifacts/test-results/hour-ami-2026-11-08/oom-fix-full/reopened-transcript.json
+/artifacts/test-results/oom-fix-2026-11-08/**/*.png
+/artifacts/test-results/oom-fix-2026-11-08/**/[0-9]*.json
+/artifacts/test-results/oom-fix-2026-11-08/**/short-transcript.json
+
+# Submission binaries are attached to GitHub Release. Remotion inputs remain source assets.
+/artifacts/submission/*.mp4
+/artifacts/submission/*.zip
+/artifacts/submission/submission-SHA256SUMS.txt

@@ -1,0 +1,113 @@
+{
+  "case": {
+    "id": "hour-ami-IN1016",
+    "duration_s": 3600,
+    "language": "en",
+    "kind": "natural meeting, first 3600 seconds, no repetition",
+    "source_audio": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/IN1016/audio/IN1016.Mix-Headset.wav",
+    "source_annotations": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "license": "CC BY 4.0, AMI corpus",
+    "reference_segments": 848,
+    "reference_words": 13643,
+    "speakers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "sha256": "ecb640a97a6f53e13d4de7d146275f91f2bb93788280840bf45323b4683b4254"
+  },
+  "serial": "emulator-5556",
+  "label": "v1.2-original",
+  "status": "app_error",
+  "stages": [
+    {
+      "elapsed_s": 9.0,
+      "stage": "Подготовка записи",
+      "ui": [
+        "Назад",
+        "Обработка записи",
+        "hour-ami-IN1016.wav",
+        "WAV / 109.9 МБ",
+        "Подготовка записи",
+        "Подготовка записи",
+        "Длительность этого этапа пока неизвестна",
+        "Подготовка записи",
+        "2",
+        "Определение участников",
+        "3",
+        "Распознавание речи",
+        "4",
+        "Создание резюме",
+        "5",
+        "Сохранение",
+        "Отменить обработку",
+        "Отменить обработку",
+        "Запись остаётся у вас",
+        "Это может занять несколько минут. Отмена завершится после текущего блока."
+      ]
+    },
+    {
+      "elapsed_s": 22.33,
+      "stage": "Подготовка записи",
+      "ui": [
+        "Назад",
+        "Обработка записи",
+        "hour-ami-IN1016.wav",
+        "WAV / 109.9 МБ",
+        "Обработка завершена",
+        "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592",
+        "Длительность этого этапа пока неизвестна",
+        "1",
+        "Подготовка записи",
+        "2",
+        "Определение участников",
+        "3",
+        "Распознавание речи",
+        "4",
+        "Создание резюме",
+        "5",
+        "Сохранение",
+        "Вернуться к записи",
+        "Вернуться к записи",
+        "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592"
+      ]
+    }
+  ],
+  "sampled_peak_pss_kb": 100137,
+  "ui": [
+    "Назад",
+    "Обработка записи",
+    "hour-ami-IN1016.wav",
+    "WAV / 109.9 МБ",
+    "Обработка завершена",
+    "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592",
+    "Длительность этого этапа пока неизвестна",
+    "1",
+    "Подготовка записи",
+    "2",
+    "Определение участников",
+    "3",
+    "Распознавание речи",
+    "4",
+    "Создание резюме",
+    "5",
+    "Сохранение",
+    "Вернуться к записи",
+    "Вернуться к записи",
+    "Call to function 'AudioEngine.transcribe' has been rejected.\n→ Caused by: java.lang.OutOfMemoryError: Failed to allocate a 230400016 byte allocation with 7710750 free bytes and 184MB until OOM, target footprint 15421502, growth limit 201326592"
+  ],
+  "elapsed_s": 22.69,
+  "rtf_completed": null,
+  "device": {
+    "ro.product.model": "sdk_gphone64_x86_64",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.version.release": "17",
+    "dalvik.vm.heapsize": "576m",
+    "dalvik.vm.heapgrowthlimit": "192m"
+  },
+  "apk_sha256": "be3e1284aed32fdc1de937663d411f47b427873c7454806542b8c7037da460da",
+  "wer": null,
+  "der": null,
+  "metrics_unavailable_reason": "Audio preparation failed before diarization and ASR; no hypothesis exists."
+}
