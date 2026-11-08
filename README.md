@@ -9,18 +9,22 @@ Android-приложение для локальной расшифровки р
 | № | Материал | Файл / ссылка |
 |---|---|---|
 | 1 | APK Android ARM64/x86_64, около 911 МБ | [Скачать APK](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk) · [SHA-256 APK](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/SHA256SUMS.txt) |
-| 2 | Исходный код проекта | [Скачать исходники ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-source.zip) · [Приложение](app/) · [Исходники видео Remotion](tools/demo-video/) |
+| 2 | Исходный код проекта | [Скачать исходники ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-source-real-demo.zip) · [Приложение](app/) · [Исходники видео Remotion](tools/demo-video/) |
 | 3 | Инструкция по установке и использованию | [INSTALL.md](docs/submission/INSTALL.md) |
 | 4 | Архитектура решения и модели | [ARCHITECTURE.md](docs/submission/ARCHITECTURE.md) · [Источники и лицензии моделей](docs/model-bundle.md) |
 | 5 | Ограничения решения | [LIMITATIONS.md](docs/submission/LIMITATIONS.md) |
 | 6 | Результаты собственных тестов | [TESTS.md](docs/submission/TESTS.md) · [Агрегаты пользовательских сценариев](artifacts/submission/user-scenarios.json) · [Замеры ASR/DER/скорости](docs/runtime-options-2026-11-08.md) |
-| 7 | Видеодемонстрация через Remotion | [Смотреть / скачать MP4](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo.mp4) · [Описание и воспроизведение рендера](docs/submission/VIDEO.md) |
+| 7 | Видеодемонстрация через Remotion | [Смотреть / скачать MP4](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo-real.mp4) · [Описание и воспроизведение рендера](docs/submission/VIDEO.md) |
 
-[Документация единым ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-docs.zip) · [Контрольные суммы всех материалов](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-SHA256SUMS.txt) · [Состав комплекта](docs/submission/README.md).
+[Документация единым ZIP](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/submission-docs-real-demo.zip) · [Контрольные суммы всех материалов](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo-real-SHA256SUMS.txt) · [Состав комплекта](docs/submission/README.md).
 
 После восстановления эмулятора на точном опубликованном APK прошли русский WAV → ASR/диаризация → JSON → локальное резюме и пользовательские сценарии. Проверены плеер, перемотка, фактические 2×, экспорт, история после перезапуска и диктофон с сохранением/повторным воспроизведением. Реальный Redmi, акустическое качество и часовой TitaNet-прогон не проверены. В аудиотеке — компактный play/pause, без seek/скорости.
 
 **Доступ для жюри:** репозиторий закрытый, GitHub-ссылки требуют доступа. Выдайте организаторам доступ либо загрузите скачанные файлы на площадку сдачи. Адрес такой площадки в задаче не указан; этот комплект публикуется в GitHub Release.
+
+### Настоящая видеодемонстрация через Remotion
+
+[MP4: живые пользовательские сценарии](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/demo-real.mp4). Крупный вертикальный экран, около 2:48, русские голосовые пояснения и видимые реальные нажатия. Весь видеоряд взят из четырёх непрерывных записей приложения: импорт нового M4A и полный ASR/LLM; плеер, перемотка и скорость; имена, JSON/TXT и история; диктофон, сохранение и повторное открытие. Ускорение монтажа указано на экране. Звуковая дорожка — отдельный синтезированный комментарий к действиям. [Исходники и команды рендера](tools/demo-video/README.md).
 
 ## Обновление от 8 ноября
 

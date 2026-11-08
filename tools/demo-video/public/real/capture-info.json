@@ -1,0 +1,9 @@
+{
+  "package": "team.hex.nuclearstenographer",
+  "apk_sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "device": "Release12 x86_64 API37",
+  "capture": "Android screenrecord; four real workflows",
+  "show_touches_restored": "null",
+  "microphone": "Virtual emulator input; host microphone not enabled",
+  "voice": "Microsoft Irina Desktop synthetic action commentary; not source audio"
+}
