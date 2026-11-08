@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   der:
+    if: ${{ !contains(github.event.head_commit.message, '[variants]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -54,6 +55,7 @@ jobs:
           path: /tmp/der-hour.json
 
   ui:
+    if: ${{ !contains(github.event.head_commit.message, '[variants]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 200
     steps:
@@ -120,3 +122,25 @@ jobs:
         with:
           name: hour-ui
           path: artifacts/test-results/hour-ami-2026-11-08/ci/
+
+  variants:
+    # Research run, only for commits marked [variants]: which segmentation choice drives missed speech.
+    if: ${{ contains(github.event.head_commit.message, '[variants]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python dependencies
+        run: python3 -m venv /tmp/venv && /tmp/venv/bin/pip install --quiet sherpa-onnx==2.0.1 onnxruntime numpy scipy soundfile
+      - name: AMI hour and manual reference
+        run: python3 tools/benchmark/prepare_hour_case.py --output /tmp/hour
+      - name: Models
+        run: |
+          mkdir -p /tmp/m && cd /tmp/m
+          R=https://github.com/k2-fsa/sherpa-onnx/releases/download
+          curl -sSfL $R/speaker-segmentation-models/sherpa-onnx-pyannote-segmentation-3-0.tar.bz2 | tar xj
+          cp sherpa-onnx-pyannote-segmentation-3-0/model.int8.onnx pyannote-segmentation.int8.onnx
+          curl -sSfL -o campplus-zh-en.onnx $R/speaker-recongition-models/3dspeaker_speech_campplus_sv_zh_en_16k-common_advanced.onnx
+      - name: Variants
+        working-directory: tools/benchmark
+        run: /tmp/venv/bin/python der_hour_variants.py --audio /tmp/hour/hour-ami-IN1016.wav --rttm /tmp/hour/hour-ami-IN1016.rttm --models /tmp/m
