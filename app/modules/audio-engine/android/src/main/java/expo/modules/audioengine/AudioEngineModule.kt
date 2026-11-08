@@ -82,15 +82,26 @@ class AudioEngineModule : Module() {
 
     AsyncFunction("transcribe") { fileUri: String -> processing {
       sendEvent("onProgress", mapOf("stage" to "preparing"))
+      var mark = SystemClock.elapsedRealtime()
+      fun lap(what: String) {
+        val now = SystemClock.elapsedRealtime()
+        android.util.Log.i("AudioEngine", "timing $what ${now - mark} ms")
+        mark = now
+      }
       val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
+      lap("models")
       readAudio(fileUri).use { audio ->
+        lap("decode ${audio.durationMs} ms of audio")
         cancellation.check()
-        sendEvent("onProgress", mapOf("stage" to "diarizing", "durationMs" to audio.durationMs, "waveform" to waveform(audio)))
+        val envelope = waveform(audio)
+        lap("waveform")
+        sendEvent("onProgress", mapOf("stage" to "diarizing", "durationMs" to audio.durationMs, "waveform" to envelope))
         // SpeakerDiarizer releases native resources before returning; only then create ASR.
         val intervals = SpeakerDiarizer.process(audio, models, { cancellation.check() }) { done, total ->
           if (done % 12 == 0 || done == total) sendEvent("onProgress", mapOf("stage" to "diarizing", "completed" to done, "total" to total))
         }
         cancellation.check()
+        lap("diarization ${intervals.size} intervals, ${intervals.map { it.speakerId }.distinct().size} speakers")
         val ids = linkedMapOf<String, Int>()
         val mapped = intervals.map {
           expo.modules.audioengine.audio.SpeakerInterval(it.startMs, it.endMs,
@@ -98,7 +109,7 @@ class AudioEngineModule : Module() {
         }
         IntervalTranscriber { GigaAmRecognizer(models) }.transcribe(audio, mapped, cancellation) { event ->
           sendEvent("onProgress", mapOf("stage" to event.stage, "completed" to event.completed, "total" to event.total))
-        }
+        }.also { lap("asr") }
       }
     } }
   }

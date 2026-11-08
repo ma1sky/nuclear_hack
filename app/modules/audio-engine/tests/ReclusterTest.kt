@@ -19,11 +19,14 @@ fun main() {
   check(back == b && back != a) { "overlapping local speaker of the same window must not be A: $same" }
   println("PASS cannot-link moves the overlapped local speaker to another voice")
 
+  check(same.size == 3) { "overlap must survive as its own segment: $same" }
+
+  // Without the rule the backchannel gets A's label and is merged into A's 0-4 s turn (previous behaviour).
   val off = labels(1, cannotLink = false)
-  check(off.first { it.start == 1.0 }.speaker == off.first { it.start == 0.0 }.speaker) { "without the rule the backchannel joins A: $off" }
+  check(off.size == 2 && off.any { it.start == 0.0 && it.end == 4.0 }) { "without the rule the backchannel joins A: $off" }
   println("PASS without cannot-link the result is unchanged (previous behaviour)")
 
   val otherWindow = labels(4, cannotLink = true) // a different window: no constraint
-  check(otherWindow.first { it.start == 1.0 }.speaker == otherWindow.first { it.start == 0.0 }.speaker) { "rule must only apply within one window: $otherWindow" }
+  check(otherWindow.size == 2 && otherWindow.any { it.start == 0.0 && it.end == 4.0 }) { "rule must only apply within one window: $otherWindow" }
   println("PASS rule applies only within one window")
 }

@@ -109,6 +109,8 @@ jobs:
           script: |
             adb install -r -g /tmp/app.apk
             python3 tools/benchmark/run_hour_ui.py --serial emulator-5554 --label ci --timeout 5400 --adb adb --audio-dir /tmp/hour || true
+            adb logcat -d -s AudioEngine:I SpeakerDiarizer:W > artifacts/test-results/hour-ami-2026-11-08/ci/timings.log || true
+            adb shell cat /proc/cpuinfo | grep -m1 flags > artifacts/test-results/hour-ami-2026-11-08/ci/cpu.txt || true
 
       - name: Result
         if: always()
@@ -116,6 +118,8 @@ jobs:
           R=artifacts/test-results/hour-ami-2026-11-08/ci/result.json
           [ -f $R ] && python3 -c "import json;r=json.load(open('$R'));print(json.dumps({k:v for k,v in r.items() if k!='stages'},ensure_ascii=False,indent=1));[print(s['elapsed_s'],s['stage']) for s in r.get('stages',[])]"
           grep -E "AndroidRuntime|FATAL|OutOfMemory|SpeakerDiarizer|onnxruntime" artifacts/test-results/hour-ami-2026-11-08/ci/logcat.log | tail -40 || true
+          cat artifacts/test-results/hour-ami-2026-11-08/ci/timings.log || true
+          tr ' ' '\n' < artifacts/test-results/hour-ami-2026-11-08/ci/cpu.txt | grep -E "^(avx|avx2|avx512|sse4_2|fma|f16c)" | sort -u | tr '\n' ' ' || true
 
       - uses: actions/upload-artifact@v4
         if: always()

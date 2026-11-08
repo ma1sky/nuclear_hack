@@ -49,7 +49,9 @@ internal object SpeakerDiarizer {
     if (segmenter == null) {
       return chunked(audio, models, check)
     }
+    val started = android.os.SystemClock.elapsedRealtime()
     val segments = segmenter.use { it.segment(audio, check, progress) }
+    android.util.Log.i("AudioEngine", "timing segmentation ${android.os.SystemClock.elapsedRealtime() - started} ms, ${segments.size} segments, $threads threads")
     check()
     return assign(audio, segments, models, check, reclusterParams)
   }
