@@ -104,9 +104,10 @@ jobs:
           ram-size: 4096M
           disk-size: 8G
           cores: 4
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-boot-anim -camera-back none -noaudio
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-boot-anim -camera-back none -noaudio -qemu -cpu host
           disable-animations: true
           script: |
+            adb shell settings put global hide_error_dialogs 1 || true
             adb install -r -g /tmp/app.apk
             python3 tools/benchmark/run_hour_ui.py --serial emulator-5554 --label ci --timeout 5400 --adb adb --audio-dir /tmp/hour || true
             adb logcat -d -s AudioEngine:I SpeakerDiarizer:W > artifacts/test-results/hour-ami-2026-11-08/ci/timings.log || true

@@ -36,6 +36,9 @@ def main():
         end=time.monotonic()+timeout
         while True:
             ns=snap()
+            if any("isn't responding" in (n.get("text") or "") for n in ns):   # system ANR dialog on a cold emulator
+                waits=[n for n in ns if n.get("text")=="Wait"]
+                if waits: click(waits[0]); continue
             found=[n for n in ns if (n.get("text") in wanted or n.get("content-desc") in wanted) and n.get("enabled")=="true"]
             if found: return found
             if time.monotonic()>end: raise RuntimeError(f"'{label}' not on screen after {timeout}s; UI: {labels(ns)}")
