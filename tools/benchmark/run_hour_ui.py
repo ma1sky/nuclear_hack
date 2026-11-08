@@ -45,23 +45,32 @@ def main():
     result={"case":manifest,"serial":args.serial,"label":args.label,"status":"automation_error","stages":[],"sampled_peak_pss_kb":0}
     started=None
     try:
-        adb("push",str(audio),"/sdcard/Download/"+audio.name)
+        adb("push",str(audio),"/sdcard/Download/"+audio.name, timeout=600)
+        for scan in (("shell","content","call","--method","scan_volume","--uri","content://media","--arg","external_primary"),
+                     ("shell","am","broadcast","-a","android.intent.action.MEDIA_SCANNER_SCAN_FILE","-d","file:///sdcard/Download/"+audio.name)):
+            try: adb(*scan, timeout=300)   # index the pushed file so the system picker lists it
+            except Exception: pass
         result["step"]="launch"
         if b"Error" in adb("shell","am","start","-W","-a","android.intent.action.VIEW","-d","stenographer:///","team.hex.nuclearstenographer"):
             adb("shell","monkey","-p","team.hex.nuclearstenographer","-c","android.intent.category.LAUNCHER","1")
         result["step"]="home screen"
-        tap(["Выбрать файл","Выбрать аудиозапись"], 600);time.sleep(2);ns=snap()
+        tap(["Выбрать файл","Выбрать аудиозапись"], 600)
         result["step"]="file picker"
-        if "Show roots" in labels(ns):
-            tap("Show roots");click([n for n in snap() if n.get("text")=="Downloads"][-1])
-        tap("Search", 30)
-        field=next(n for n in snap() if n.get("class") in ["android.widget.EditText","android.widget.AutoCompleteTextView"])
-        click(field)
-        adb("shell","input","keyevent","123")
-        adb("shell","input","keyevent",*(["67"]*(len(field.get("text",""))+2)))
-        adb("shell","input","text",audio.name);adb("shell","input","keyevent","66");time.sleep(1)
-        time.sleep(2)
-        click([n for n in wait_for(audio.name, 30) if n.get("class") not in ["android.widget.EditText","android.widget.AutoCompleteTextView"]][-1])
+        wait_for(["Show roots","Search"], 180)   # DocumentsUI is slow to start on a cold emulator
+        try:
+            tap("Show roots", 20)
+            click([n for n in wait_for("Downloads", 30) if n.get("text")=="Downloads"][-1])
+            time.sleep(3)
+            target=[n for n in wait_for(audio.name, 30) if n.get("class") not in ["android.widget.EditText","android.widget.AutoCompleteTextView"]]
+        except RuntimeError:
+            tap("Search", 30)
+            field=next(n for n in snap() if n.get("class") in ["android.widget.EditText","android.widget.AutoCompleteTextView"])
+            click(field)
+            adb("shell","input","keyevent","123")
+            adb("shell","input","keyevent",*(["67"]*(len(field.get("text",""))+2)))
+            adb("shell","input","text",audio.name);adb("shell","input","keyevent","66");time.sleep(3)
+            target=[n for n in wait_for(audio.name, 60) if n.get("class") not in ["android.widget.EditText","android.widget.AutoCompleteTextView"]]
+        click(target[-1])
         result["step"]="transcribe"
         tap("Расшифровать", 60)
         started=time.monotonic()
