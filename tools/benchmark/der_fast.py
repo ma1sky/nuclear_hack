@@ -1,7 +1,8 @@
 """DER of the app's diarization on one annotated recording (e.g. the AMI hour from prepare_hour_case.py).
 
 Configurations:
-  fast  — this version: FastSegmenter (fastseg_reference.py) + Recluster (CAM++ zh-en, AHC tau 0.6)
+  fast  — this version: FastSegmenter (fastseg_reference.py) + Recluster (CAM++ zh-en, AHC tau 0.6, cannot-link)
+  fast_nocl — the same without the cannot-link rule for overlapping local speakers
   v12   — v1.2: sherpa-onnx diarization, ERes2Net-base, FastClustering threshold 0.8
 DER: collar 0 (and 0.25 s), overlaps scored, 10 ms step, optimal speaker mapping, weighted by reference speech.
 
@@ -46,8 +47,10 @@ def der(ref, hyp, duration, collar=0.0, step=0.01):
                 confusion=float(conf / denom), ref_speakers=len(rid), hyp_speakers=len(hid))
 
 
-def recluster(audio, segs, extractor, tau=0.6, min_emb=0.6, win=3.0, hop=1.5, small=0.02, small_min=2.0, iters=2, merge_gap=0.5):
-    """Python twin of Recluster.kt (average-linkage AHC on cosine distance + small-cluster folding)."""
+def recluster(audio, segs, extractor, tau=0.6, min_emb=0.6, win=3.0, hop=1.5, small=0.02, small_min=2.0, iters=2, merge_gap=0.5, cannot_link=True):
+    """Python twin of Recluster.kt (average-linkage AHC on cosine distance + small-cluster folding).
+    segs: (start, end, track) with track = window * 3 + local speaker (FastSegmenter). cannot_link: two local
+    speakers of one window that talk at the same time are different people (recovers overlapped speech)."""
     def E(x):
         s = extractor.create_stream(); s.accept_waveform(SR, x); s.input_finished()
         v = np.array(extractor.compute(s), np.float32); return v / (np.linalg.norm(v) + 1e-9)
@@ -76,9 +79,31 @@ def recluster(audio, segs, extractor, tau=0.6, min_emb=0.6, win=3.0, hop=1.5, sm
         lab = new
     out = [None] * len(items)
     for j, i in enumerate(idx): out[i] = int(lab[j])
-    centers = np.array([(items[i][0] + items[i][1]) / 2 for i in idx])
-    for i, it in enumerate(items):
-        if out[i] is None: out[i] = out[idx[int(np.argmin(np.abs(centers - (it[0] + it[1]) / 2)))]]
+    tracks = [t for _, _, t in segs]
+    ov = lambda i, j: min(items[i][1], items[j][1]) - max(items[i][0], items[j][0]) > 0
+    for i, it in enumerate(items):  # short segments: nearest embedded neighbour that does not overlap them
+        if out[i] is not None: continue
+        cand = sorted(idx, key=lambda j: abs((items[j][0] + items[j][1]) / 2 - (it[0] + it[1]) / 2))
+        out[i] = out[next((j for j in cand if not (cannot_link and ov(i, j))), cand[0])]
+    if cannot_link:
+        ks = sorted(set(int(k) for k in lab))
+        cent = {}
+        for k in ks:
+            c = np.average(X[lab == k], axis=0, weights=W[lab == k]); cent[k] = c / (np.linalg.norm(c) + 1e-9)
+        order = sorted(range(len(items)), key=lambda i: items[i][0])
+        for a_ in range(len(order)):
+            i = order[a_]
+            for b_ in range(a_ + 1, len(order)):
+                j = order[b_]
+                if items[j][0] >= items[i][1]: break
+                if tracks[i] // 3 != tracks[j] // 3 or tracks[i] == tracks[j] or out[i] != out[j] or not ov(i, j): continue
+                weak = i if items[i][3] < items[j][3] else j
+                bad = out[weak]
+                if items[weak][2] is not None and len(cent) > 1:
+                    out[weak] = max((k for k in cent if k != bad), key=lambda k: float(items[weak][2] @ cent[k]))
+                else:
+                    near = sorted((k for k in idx if out[k] != bad), key=lambda k: abs(items[k][0] - items[weak][0]))
+                    if near: out[weak] = out[near[0]]
     merged = []
     for s, e, k in sorted((items[i][0], items[i][1], out[i]) for i in range(len(items))):
         if merged and merged[-1][2] == k and s - merged[-1][1] <= merge_gap: merged[-1] = (merged[-1][0], max(e, merged[-1][1]), k)
@@ -90,7 +115,7 @@ def main():
     import sherpa_onnx as so
     ap = argparse.ArgumentParser()
     ap.add_argument('--audio', required=True); ap.add_argument('--rttm', required=True); ap.add_argument('--models', required=True)
-    ap.add_argument('--configs', default='fast,v12'); ap.add_argument('--threads', type=int, default=4); ap.add_argument('--out')
+    ap.add_argument('--configs', default='fast,fast_nocl,v12'); ap.add_argument('--threads', type=int, default=4); ap.add_argument('--out')
     a = ap.parse_args(); M = Path(a.models)
     audio, sr = sf.read(a.audio, dtype='float32'); assert sr == SR
     if audio.ndim > 1: audio = audio.mean(axis=1)
@@ -99,10 +124,10 @@ def main():
     results = {'audio': a.audio, 'duration_s': duration, 'configs': {}}
     for cfg in a.configs.split(','):
         t0 = time.time()
-        if cfg == 'fast':
+        if cfg in ('fast', 'fast_nocl'):
             ext = so.SpeakerEmbeddingExtractor(so.SpeakerEmbeddingExtractorConfig(model=str(M / 'campplus-zh-en.onnx'), num_threads=a.threads))
             segs = fr.segment(audio, seg_model, a.threads); t1 = time.time()
-            hyp = recluster(audio, segs, ext); timing = {'segmentation_s': round(t1 - t0, 1), 'clustering_s': round(time.time() - t1, 1)}
+            hyp = recluster(audio, segs, ext, cannot_link=(cfg == 'fast')); timing = {'segmentation_s': round(t1 - t0, 1), 'clustering_s': round(time.time() - t1, 1)}
         elif cfg == 'v12':
             c = so.OfflineSpeakerDiarizationConfig(
                 segmentation=so.OfflineSpeakerSegmentationModelConfig(pyannote=so.OfflineSpeakerSegmentationPyannoteModelConfig(model=seg_model), num_threads=a.threads),

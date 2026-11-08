@@ -43,8 +43,10 @@ jobs:
           OUT=build/audio-tests
           mkdir -p $OUT
           java -cp "$KLIB/*" org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect -classpath "$KLIB/kotlin-stdlib.jar" -d $OUT \
-            android/src/main/java/expo/modules/audioengine/audio/*.kt android/src/main/java/expo/modules/audioengine/models/*.kt tests/*.kt
+            android/src/main/java/expo/modules/audioengine/audio/*.kt android/src/main/java/expo/modules/audioengine/models/*.kt \
+            android/src/main/java/expo/modules/audioengine/Recluster.kt tests/*.kt
           java -cp "$OUT:$KLIB/kotlin-stdlib.jar" expo.modules.audioengine.audio.AudioPipelineTestKt
+          java -cp "$OUT:$KLIB/kotlin-stdlib.jar" expo.modules.audioengine.ReclusterTestKt
           java -Xmx96m -cp "$OUT:$KLIB/kotlin-stdlib.jar" expo.modules.audioengine.audio.LongAudioTestKt
           # Compile the Android-side classes against sherpa-onnx and android.jar (fails fast, before Gradle).
           curl -sSfL -o /tmp/sherpa.aar https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-2.0.1.aar

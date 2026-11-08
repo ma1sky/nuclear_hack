@@ -32,6 +32,11 @@ internal object Recluster {
     val smallMin: Double = 2.0,
     val iterations: Int = 2,
     val mergeGap: Double = 0.5,
+    /**
+     * Segments carry FastSegmenter tracks (window * 3 + local speaker): two local speakers of one window
+     * talking at the same time are different people. Recovers overlapped speech (AMI hour: miss 20% -> see docs).
+     */
+    val cannotLink: Boolean = false,
   )
 
   fun interface Embedder { fun embed(samples: FloatArray): FloatArray? }
@@ -96,12 +101,44 @@ internal object Recluster {
     }
     val out = IntArray(segments.size) { -1 }
     idx.forEachIndexed { j, i -> out[i] = labels[j] }
+    fun overlaps(i: Int, j: Int) = min(segments[i].end, segments[j].end) - max(segments[i].start, segments[j].start) > 0
     val centers = idx.map { (segments[it].start + segments[it].end) / 2 }
     for (i in segments.indices) if (out[i] < 0) {
+      // Short segments take the label of the nearest embedded neighbour; with cannotLink, one that does not
+      // overlap them (an overlapping segment of another local speaker is another voice).
       val c = (segments[i].start + segments[i].end) / 2
-      out[i] = out[idx[centers.indices.minBy { abs(centers[it] - c) }]]
+      val byDistance = centers.indices.sortedBy { abs(centers[it] - c) }
+      val pick = byDistance.firstOrNull { !(p.cannotLink && overlaps(i, idx[it])) } ?: byDistance.first()
+      out[i] = out[idx[pick]]
     }
+    if (p.cannotLink) applyCannotLink(segments, vecs, idx, x, w, labels, out)
     return merge(segments.indices.map { Seg(segments[it].start, segments[it].end, out[it]) }.sortedBy { it.start }, p.mergeGap)
+  }
+
+  /** Overlapping segments of different local speakers of one window that got the same label: move the shorter one. */
+  private fun applyCannotLink(segments: List<Seg>, vecs: Array<FloatArray?>, idx: List<Int>, x: List<FloatArray>, w: DoubleArray, labels: IntArray, out: IntArray) {
+    val ids = labels.distinct().sorted()
+    val centroid = ids.associateWith { id -> centroid(x, w, labels, id) }
+    val order = segments.indices.sortedBy { segments[it].start }
+    for (a in order.indices) {
+      val i = order[a]
+      for (b in a + 1 until order.size) {
+        val j = order[b]
+        if (segments[j].start >= segments[i].end) break
+        val si = segments[i]; val sj = segments[j]
+        if (si.speaker / 3 != sj.speaker / 3 || si.speaker == sj.speaker || out[i] != out[j]) continue
+        if (min(si.end, sj.end) - max(si.start, sj.start) <= 0) continue
+        val weak = if (si.end - si.start < sj.end - sj.start) i else j
+        val bad = out[weak]
+        val v = vecs[weak]
+        if (v != null && centroid.size > 1) {
+          out[weak] = centroid.keys.filter { it != bad }.maxBy { dot(v, centroid.getValue(it)) }
+        } else {
+          val near = idx.filter { out[it] != bad }.minByOrNull { abs(segments[it].start - segments[weak].start) }
+          if (near != null) out[weak] = out[near]
+        }
+      }
+    }
   }
 
   private fun merge(list: List<Seg>, gap: Double): List<Seg> {

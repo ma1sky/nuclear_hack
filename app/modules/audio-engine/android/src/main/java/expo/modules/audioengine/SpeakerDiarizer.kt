@@ -33,7 +33,9 @@ internal object SpeakerDiarizer {
   val threads: Int = Runtime.getRuntime().availableProcessors().coerceIn(1, 4)
 
   /** Final speaker clustering threshold, chosen on the dev set (docs/der-fast-2026-11-08.md). */
-  private val reclusterParams = Recluster.Params(tau = 0.6)
+  private val reclusterParams = Recluster.Params(tau = 0.6, cannotLink = true)
+  /** sherpa fallback: its speaker labels are not window-local tracks, so no cannot-link rule. */
+  private val fallbackParams = Recluster.Params(tau = 0.6)
 
   fun process(audio: AudioSource, models: Map<String, String>, check: () -> Unit = {}, progress: (Int, Int) -> Unit = { _, _ -> }): List<SpeakerInterval> {
     if (audio.sampleCount == 0L) return emptyList()
@@ -49,11 +51,11 @@ internal object SpeakerDiarizer {
     }
     val segments = segmenter.use { it.segment(audio, check, progress) }
     check()
-    return assign(audio, segments, models, check)
+    return assign(audio, segments, models, check, reclusterParams)
   }
 
   /** Global speaker IDs for local segments: one CAM++ embedding pass per segment + average-linkage AHC. */
-  private fun assign(audio: AudioSource, segments: List<Recluster.Seg>, models: Map<String, String>, check: () -> Unit): List<SpeakerInterval> {
+  private fun assign(audio: AudioSource, segments: List<Recluster.Seg>, models: Map<String, String>, check: () -> Unit, params: Recluster.Params): List<SpeakerInterval> {
     val extractor = SpeakerEmbeddingExtractor(config = SpeakerEmbeddingExtractorConfig(model = models.getValue("embedding"), numThreads = threads))
     val clustered = try {
       Recluster.run(audio, segments, Recluster.Embedder { chunk ->
@@ -63,7 +65,7 @@ internal object SpeakerDiarizer {
           stream.inputFinished()
           if (extractor.isReady(stream)) extractor.compute(stream) else null
         } finally { stream.release() }
-      }, reclusterParams, check)
+      }, params, check)
     } finally {
       extractor.release()
     }
@@ -100,7 +102,7 @@ internal object SpeakerDiarizer {
       engine.release()
     }
     check()
-    return assign(audio, segments, models, check)
+    return assign(audio, segments, models, check, fallbackParams)
   }
 
   private fun mergeAndFilter(intervals: List<SpeakerInterval>): List<SpeakerInterval> {
