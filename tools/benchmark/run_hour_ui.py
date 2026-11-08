@@ -29,30 +29,43 @@ def main():
         b=list(map(int,re.findall(r"\d+",node.get("bounds",""))))
         assert len(b)==4 and b[2]>b[0] and b[3]>b[1]
         adb("shell","input","tap",str((b[0]+b[2])//2),str((b[1]+b[3])//2));time.sleep(.6)
-    def tap(label):
-        ns=snap()
-        click(next(n for n in ns if label in [n.get("text"),n.get("content-desc")] and n.get("enabled")=="true"))
+    def wait_for(label, timeout=60):
+        """Poll the UI until a node with this text/content-desc appears (first launch unpacks the models).
+        `label` may be a list of alternatives (fresh install shows "Выбрать аудиозапись", later "Выбрать файл")."""
+        wanted=[label] if isinstance(label,str) else label
+        end=time.monotonic()+timeout
+        while True:
+            ns=snap()
+            found=[n for n in ns if (n.get("text") in wanted or n.get("content-desc") in wanted) and n.get("enabled")=="true"]
+            if found: return found
+            if time.monotonic()>end: raise RuntimeError(f"'{label}' not on screen after {timeout}s; UI: {labels(ns)}")
+            time.sleep(2)
+    def tap(label, timeout=60):
+        click(wait_for(label, timeout)[0])
     result={"case":manifest,"serial":args.serial,"label":args.label,"status":"automation_error","stages":[],"sampled_peak_pss_kb":0}
     started=None
     try:
         adb("push",str(audio),"/sdcard/Download/"+audio.name)
-        adb("shell","am","start","-a","android.intent.action.VIEW","-d","stenographer:///","team.hex.nuclearstenographer")
-        for _ in range(50):
-            ns=snap()
-            if "Добавить аудио" in labels(ns): break
-            time.sleep(1)
-        tap("Выбрать файл");ns=snap()
+        result["step"]="launch"
+        if b"Error" in adb("shell","am","start","-W","-a","android.intent.action.VIEW","-d","stenographer:///","team.hex.nuclearstenographer"):
+            adb("shell","monkey","-p","team.hex.nuclearstenographer","-c","android.intent.category.LAUNCHER","1")
+        result["step"]="home screen"
+        tap(["Выбрать файл","Выбрать аудиозапись"], 600);time.sleep(2);ns=snap()
+        result["step"]="file picker"
         if "Show roots" in labels(ns):
             tap("Show roots");click([n for n in snap() if n.get("text")=="Downloads"][-1])
-        tap("Search")
+        tap("Search", 30)
         field=next(n for n in snap() if n.get("class") in ["android.widget.EditText","android.widget.AutoCompleteTextView"])
         click(field)
         adb("shell","input","keyevent","123")
         adb("shell","input","keyevent",*(["67"]*(len(field.get("text",""))+2)))
         adb("shell","input","text",audio.name);adb("shell","input","keyevent","66");time.sleep(1)
-        click([n for n in snap() if n.get("text")==audio.name and n.get("class") not in ["android.widget.EditText","android.widget.AutoCompleteTextView"]][-1])
+        time.sleep(2)
+        click([n for n in wait_for(audio.name, 30) if n.get("class") not in ["android.widget.EditText","android.widget.AutoCompleteTextView"]][-1])
+        result["step"]="transcribe"
+        tap("Расшифровать", 60)
         started=time.monotonic()
-        tap("Расшифровать")
+        result["step"]="processing"
         while time.monotonic()-started < args.timeout:
             ns=snap();ls=labels(ns)
             elapsed=round(time.monotonic()-started,2)
@@ -76,7 +89,13 @@ def main():
         (out/"screen.png").write_bytes(adb("exec-out","screencap","-p"))
         (out/"logcat.log").write_bytes(adb("logcat","-d","-t","1200"))
         result["device"]={key:adb("shell","getprop",key).decode().strip() for key in ["ro.product.model","ro.product.cpu.abi","ro.build.version.release","dalvik.vm.heapsize"]}
-    except Exception as error:result["error"]=repr(error)
+    except Exception as error:
+        result["error"]=repr(error)
+        for name,cmd in [("screen.png",("exec-out","screencap","-p")),("logcat.log",("logcat","-d","-t","1500"))]:
+            try:(out/name).write_bytes(adb(*cmd))
+            except Exception:pass
+        try:result["ui"]=labels(snap())
+        except Exception:pass
     (out/"result.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
     print(json.dumps({k:v for k,v in result.items() if k not in ["stages","case"]},ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
