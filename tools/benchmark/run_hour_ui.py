@@ -7,13 +7,16 @@ def main():
     parser.add_argument("--serial", default="emulator-5556")
     parser.add_argument("--label", required=True)
     parser.add_argument("--timeout", type=int, default=7200)
+    parser.add_argument("--adb", default=None, help="adb executable (default: Windows SDK path, else adb on PATH)")
+    parser.add_argument("--audio-dir", type=Path, default=None, help="folder made by prepare_hour_case.py")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    audio = root / "recordings/hour-qa/hour-ami-IN1016.wav"
+    audio = (args.audio_dir or root / "recordings/hour-qa") / "hour-ami-IN1016.wav"
     manifest = json.loads((audio.parent / "manifest.json").read_text(encoding="utf-8"))
     out = root / "artifacts/test-results/hour-ami-2026-11-08" / args.label
     out.mkdir(parents=True, exist_ok=True)
-    adb_path = Path.home() / "AppData/Local/Android/Sdk/platform-tools/adb.exe"
+    windows_adb = Path.home() / "AppData/Local/Android/Sdk/platform-tools/adb.exe"
+    adb_path = args.adb or (windows_adb if windows_adb.exists() else "adb")
     def adb(*cmd, timeout=90):
         r = subprocess.run([str(adb_path), "-s", args.serial, *cmd], capture_output=True, timeout=timeout)
         if r.returncode: raise RuntimeError(r.stderr.decode(errors="replace"))
