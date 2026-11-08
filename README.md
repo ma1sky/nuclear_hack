@@ -2,13 +2,22 @@
 
 Android-приложение для локальной расшифровки разговоров с автоматическим разделением говорящих и временными метками реплик.
 
-## Локальное обновление от 8 ноября
+## Обновление от 8 ноября
+
+- [Полный часовой тест: память выдержала, качество не прошло](docs/hour-audio-full-test-2026-11-08.md).
+
+- [Исправление OOM длинного аудио и тестовый APK](docs/oom-fix-2026-11-08.md).
+
 
 - [Обновление UI по Figma и запуск ярлыком](docs/figma-ui-refresh-2026-11-08.md).
 - [Часовая встреча AMI: протокол и обнаруженный OOM](docs/hour-audio-test-2026-11-08.md).
 - [Установка ярлыка эмулятора](tools/windows-build/README.md#ярлык-эмулятора-и-приложения).
 
 ## APK
+
+[Предварительный релиз v1.2.3: ускоренная обработка](https://github.com/ma1sky/nuclear_hack/releases/tag/v1.2.3-runtime-preview.1) · [Новый APK ARM64/x86_64](https://github.com/ma1sky/nuclear_hack/releases/download/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk) · [Описание ускорения и ограничений](docs/releases/v1.2.3-runtime-preview.1.md) · [SHA-256](artifacts/releases/v1.2.3-runtime-preview.1/SHA256SUMS.txt).
+
+На пятиминутном русском подкасте текст доступен за 94 вместо 157 секунд, полный цикл — 248 вместо 339 секунд на эмуляторе. Есть регрессия DER на отдельном размеченном файле; Redmi и часовой прогон новой модели не проверены. Стабильный [v1.2](https://github.com/ma1sky/nuclear_hack/releases/tag/v1.2) сохранён.
 
 [Скачать релиз v1.0.0-hackathon.1](https://github.com/ma1sky/nuclear_hack/releases/tag/v1.0.0-hackathon.1) · [APK для ARM64/x86_64](https://github.com/ma1sky/nuclear_hack/releases/download/v1.0.0-hackathon.1/nuclear-stenographer-1.0.0-arm64-x86_64.apk) · [SHA-256](artifacts/releases/v1.0.0-hackathon.1/SHA256SUMS.txt).
 
@@ -64,3 +73,6 @@ Android-приложение для локальной расшифровки р
 [Отчёт проверки объединения](docs/integration-review.md).
 
 Обновление интерфейса по Figma: [релиз и APK](https://github.com/ma1sky/nuclear_hack/releases/tag/ui-2026-11-07), [описание функций и проверок](docs/figma-ui-implementation.md).
+
+
+[Ускорение и проверка TitaNet, ASR и LLM](docs/runtime-options-2026-11-08.md) — экспериментальный APK, измеренное ускорение и случаи ухудшения DER. Прежний Eres2Net доступен как профиль сборки.

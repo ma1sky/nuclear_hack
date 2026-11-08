@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ActivityIndicator, Alert, FlatList, View } from "react-native";
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useWorkspace } from "../state/WorkspaceProvider";
 import {
   Action,
@@ -76,7 +76,7 @@ function participants(count: number) {
 }
 function transcriptDetail(record: SavedTranscript) {
   const format = record.fileName.split(".").pop()?.toUpperCase() || "АУДИО";
-  const count = new Set(record.exportData.transcript.map(turn => turn.speaker_id)).size;
+  const count = new Set(record.exportData.transcript.map(turn => turn.speaker_id).filter(id => id !== "speaker_unknown")).size;
   return [format, record.durationMs ? seconds(record.durationMs / 1000) : undefined, participants(count)].filter(Boolean).join(" / ");
 }
 function AudioRenameDialog({ record, visible, name, onNameChange, onClose }: {
@@ -98,10 +98,11 @@ function Recent({ record }: { record: SavedTranscript }) {
   const w = useWorkspace();
   const [menu, setMenu] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
-  const open = () => { w.handleSelectHistory(record); router.push("/result"); };
+  const blocked = w.busy && w.activeRecordId !== record.id;
+  const open = () => { if (!blocked) { w.handleSelectHistory(record); router.push("/result"); } };
   return <>
     <Surface><View style={s.row}>
-      <Button variant="ghost" size="icon" accessibilityLabel={`Открыть расшифровку: ${record.title}`} onPress={open}
+      <Button variant="ghost" size="icon" accessibilityLabel={`Открыть расшифровку: ${record.title}`} disabled={blocked} onPress={open}
         style={{ flex: 1, padding: 0 }} contentStyle={{ flex: 1, justifyContent: "flex-start" }}>
         <FileRow name={record.title} detail={transcriptDetail(record)} />
       </Button>
@@ -109,11 +110,11 @@ function Recent({ record }: { record: SavedTranscript }) {
     </View></Surface>
     <DesignDialog visible={menu} title="Действия с расшифровкой" onClose={() => setMenu(false)}>
       <Copy kind="label">{record.title}</Copy>
-      <Action label="Открыть расшифровку" icon="document" onPress={() => { setMenu(false); open(); }} />
-      <Action label="Экспорт" icon="export" variant="outline" onPress={() => {
+      <Action label="Открыть расшифровку" disabled={blocked} icon="document" onPress={() => { setMenu(false); open(); }} />
+      <Action label="Экспорт" disabled={blocked} icon="export" variant="outline" onPress={() => {
         w.handleSelectHistory(record); setMenu(false); setExportOpen(true);
       }} />
-      <Action label="Удалить расшифровку" icon="trash" danger variant="ghost" onPress={() => {
+      <Action label="Удалить расшифровку" icon="trash" disabled={w.busy} danger variant="ghost" onPress={() => {
         setMenu(false); Alert.alert("Удалить расшифровку?", "Исходное аудио останется на устройстве.", [
           { text: "Отмена", style: "cancel" }, { text: "Удалить", style: "destructive", onPress: () => void w.handleDeleteHistory(record.id) },
         ]);
@@ -273,9 +274,14 @@ const stageLabels = [
 export function ProcessingScreen() {
   const w = useWorkspace();
   const percent = measuredSegmentProgress(w.progress);
-  useEffect(() => {
-    if (!w.busy && w.progress.stage === "done") router.replace("/result");
-  }, [w.busy, w.progress.stage]);
+  const openedResult = useRef(false);
+  useFocusEffect(React.useCallback(() => {
+    if (!w.currentTranscript) openedResult.current = false;
+    if (!openedResult.current && w.currentTranscript && ["summarizing", "saving", "done"].includes(w.progress.stage)) {
+      openedResult.current = true;
+      router.replace("/result");
+    }
+  }, [w.currentTranscript, w.progress.stage]));
   const index = stages.indexOf(w.progress.stage);
   return (
     <Screen
@@ -302,7 +308,7 @@ export function ProcessingScreen() {
         <Copy kind="caption">
           {percent !== undefined
             ? `Распознано ${percent}% реплик на текущем этапе`
-            : "Длительность этого этапа пока неизвестна"}
+            : w.progress.message || "Длительность этого этапа пока неизвестна"}
         </Copy>
         {percent !== undefined ? (
           <View
@@ -356,16 +362,23 @@ export function ProcessingScreen() {
     </Screen>
   );
 }
+function participantLabel(id: string, index: number) {
+  if (id === "speaker_unknown") return "Голос не определён";
+  const number = id.match(/^speaker_(\d+)$/)?.[1];
+  return "Участник " + (number || index + 1);
+}
 function SpeakerChip({ id, index }: { id: string; index: number }) {
-  const w = useWorkspace(); const tone = getSpeakerColor(id);
+  const w = useWorkspace();
+  const unknown = id === "speaker_unknown";
+  const tone = unknown ? { bg: colors.muted, text: colors.mutedForeground } : getSpeakerColor(id);
+  const badge = <View style={[s.row, { backgroundColor: tone.bg, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6, flexShrink: 1 }]}>
+    <Copy kind="label" numberOfLines={1} style={{ color: tone.text, flexShrink: 1 }}>{w.speakerNames[id] || participantLabel(id, index)}</Copy>
+    {!unknown && <Icon name={index % 2 ? "pencilGreen" : "pencilBlue"} color={tone.text} />}
+  </View>;
+  if (unknown) return <View style={{ minHeight: 48, justifyContent: "center" }}>{badge}</View>;
   return <Button variant="ghost" size="icon" disabled={w.busy} onPress={() => w.openRenameSpeaker(id)}
-    accessibilityLabel={`Переименовать участника: ${w.speakerNames[id] || id}`}
-    style={{ paddingHorizontal: 0, minHeight: 48, flexShrink: 1 }}>
-    <View style={[s.row, { backgroundColor: tone.bg, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 6, flexShrink: 1 }]}>
-      <Copy kind="label" numberOfLines={1} style={{ color: tone.text, flexShrink: 1 }}>{w.speakerNames[id] || `Участник ${index + 1}`}</Copy>
-      <Icon name={index % 2 ? "pencilGreen" : "pencilBlue"} color={tone.text} />
-    </View>
-  </Button>;
+    accessibilityLabel={"Переименовать участника: " + (w.speakerNames[id] || id)}
+    style={{ paddingHorizontal: 0, minHeight: 48, flexShrink: 1 }}>{badge}</Button>;
 }
 export function ResultScreen() {
   const w = useWorkspace();
@@ -378,7 +391,7 @@ export function ResultScreen() {
   return (
     <Screen
       title={w.selectedFile?.name || "Расшифровка"}
-      subtitle={`${w.durationMs ? seconds(w.durationMs / 1000) + " / " : ""}${participants(ids.length)}`}
+      subtitle={`${w.durationMs ? seconds(w.durationMs / 1000) + " / " : ""}${participants(ids.filter(id => id !== "speaker_unknown").length) + (ids.includes("speaker_unknown") ? " / есть неопределённые" : "")}`}
       scroll={false}
       footer={
         <Player
@@ -405,9 +418,16 @@ export function ResultScreen() {
           data={entries}
           keyExtractor={(_, i) => String(i)}
           ListHeaderComponent={
-            <View style={[s.row, { justifyContent: "space-between" }]}>
-              <Copy kind="title">Стенограмма</Copy>
-              <Copy kind="caption">{entries.length} реплик</Copy>
+            <View style={{ gap: 12 }}>
+              {w.isGeneratingSummary && <Surface>
+                <View style={s.row}><ActivityIndicator color={colors.primary} /><Copy kind="label" style={{ flex: 1 }}>Текст готов. Резюме формируется…</Copy></View>
+                <Action label="Остановить резюме" variant="ghost" onPress={() => void w.cancelProcessing()} />
+              </Surface>}
+              <ErrorNote />
+              <View style={[s.row, { justifyContent: "space-between" }]}>
+                <Copy kind="title">Стенограмма</Copy>
+                <Copy kind="caption">{entries.length} реплик</Copy>
+              </View>
             </View>
           }
           ListEmptyComponent={
@@ -456,7 +476,7 @@ export function ResultScreen() {
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 16, gap: 24 }}
           ListHeaderComponent={
             <View style={{ gap: 24 }}>
-              {w.busy && (
+              {w.isGeneratingSummary && (
                 <Surface>
                   <Copy>Формируется резюме…</Copy>
                   <Action
@@ -515,9 +535,9 @@ export function ResultScreen() {
           key={w.targetSpeakerId}
           initialName={
             w.speakerNames[w.targetSpeakerId] ||
-            `Участник ${ids.indexOf(w.targetSpeakerId) + 1}`
+            participantLabel(w.targetSpeakerId, ids.indexOf(w.targetSpeakerId))
           }
-          participant={`Участник ${ids.indexOf(w.targetSpeakerId) + 1}`}
+          participant={participantLabel(w.targetSpeakerId, ids.indexOf(w.targetSpeakerId))}
           onSave={(name) => w.handleSaveSpeakerName(w.targetSpeakerId!, name)}
           onClose={() => w.setRenameModalVisible(false)}
         />

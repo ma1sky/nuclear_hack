@@ -29,6 +29,7 @@ import { ensureDemoAssets } from "../services/demoAudio";
 
 function useWorkspaceState() {
   const currentRecord = useRef<SavedTranscript | null>(null);
+  const [activeRecordId, setActiveRecordId] = useState<string | null>(null);
   const [recordings, setRecordings] = useState<AudioRecording[]>([]);
   const [waveform, setWaveform] = useState<number[]>([]);
   const [durationMs, setDurationMs] = useState(0);
@@ -104,6 +105,7 @@ function useWorkspaceState() {
 
   // 1. Audio selection
   async function chooseAudioFile() {
+    if (operation.current) return false;
     setError(null);
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -140,6 +142,7 @@ function useWorkspaceState() {
       percentage: 5,
     });
 
+    let transcriptSaved = false;
     try {
       modelPaths.current = await AudioEngineService.prepareModels();
       if (cancelled.current) throw new Error("Обработка отменена");
@@ -174,7 +177,9 @@ function useWorkspaceState() {
       };
 
       await saveTranscript(record);
+      transcriptSaved = true;
       currentRecord.current = record;
+      setActiveRecordId(record.id);
       await refreshHistory();
 
       // Step B: Local LLM Summarization (runs after sherpa is released)
@@ -185,6 +190,7 @@ function useWorkspaceState() {
       });
 
       let summaryText = "";
+      setIsGeneratingSummary(true);
       try {
         summaryText = await generateMeetingSummary(transcriptResult, {
           modelPath: modelPaths.current.llm,
@@ -196,6 +202,8 @@ function useWorkspaceState() {
           "Расшифровка готова, но резюме не сформировано: " + String(llmErr),
         );
         // Requirement: LLM failure must preserve transcript!
+      } finally {
+        setIsGeneratingSummary(false);
       }
 
       if (cancelled.current) throw new Error("Обработка отменена");
@@ -207,8 +215,9 @@ function useWorkspaceState() {
 
       setProgress({ stage: "done", message: "Готово!", percentage: 100 });
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : "Ошибка при обработке записи";
+      const msg = cancelled.current
+        ? (transcriptSaved ? "Формирование резюме отменено. Расшифровка сохранена." : "Обработка отменена.")
+        : err instanceof Error ? err.message : "Ошибка при обработке записи";
       setError(msg);
       setProgress({ stage: "error", message: msg });
     } finally {
@@ -251,7 +260,12 @@ function useWorkspaceState() {
         await refreshHistory();
       }
     } catch (err) {
-      Alert.alert("Ошибка LLM", "Не удалось обновить резюме: " + String(err));
+      if (cancelled.current) {
+        setError("Формирование резюме отменено. Расшифровка сохранена.");
+      } else {
+        setError("Не удалось обновить резюме: " + String(err));
+        Alert.alert("Ошибка LLM", "Не удалось обновить резюме: " + String(err));
+      }
     } finally {
       operation.current = false;
       setBusy(false);
@@ -317,6 +331,7 @@ function useWorkspaceState() {
       lastModified: new Date(item.createdAt).getTime(),
     });
     currentRecord.current = item;
+    setActiveRecordId(item.id);
     setWaveform(item.waveform || []);
     setDurationMs(item.durationMs || 0);
     setSpeakerNames(item.speakerNames || {});
@@ -329,6 +344,7 @@ function useWorkspaceState() {
   }
 
   async function handleDeleteHistory(id: string) {
+    if (operation.current && currentRecord.current?.id === id) return;
     await deleteTranscript(id);
     if (currentRecord.current?.id === id) currentRecord.current = null;
     await refreshHistory();
@@ -342,6 +358,7 @@ function useWorkspaceState() {
   ) {
     if (operation.current) return;
     currentRecord.current = null;
+    setActiveRecordId(null);
     setWaveform(file.waveform || []);
     setDurationMs(file.durationMs || 0);
     setSelectedFile({ ...file, lastModified: Date.now() });
@@ -352,6 +369,7 @@ function useWorkspaceState() {
     setProgress({ stage: "idle" });
   }
   return {
+    activeRecordId,
     selectedFile,
     waveform,
     durationMs,

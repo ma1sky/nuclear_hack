@@ -18,7 +18,7 @@ class AudioEngineModule : Module() {
     return try { block() } finally { running.set(false) }
   }
 
-  private fun readAudio(fileUri: String): PreparedAudio {
+  private fun readAudio(fileUri: String): DiskAudio {
     val context = requireNotNull(appContext.reactContext)
     val uri = Uri.parse(fileUri)
     if (uri.scheme == "content") {
@@ -27,11 +27,11 @@ class AudioEngineModule : Module() {
         requireNotNull(context.contentResolver.openInputStream(uri)).use { source ->
           copy.outputStream().use { source.copyTo(it) }
         }
-        return AndroidAudioPreparer.prepare(copy, cancellation)
+        return AndroidAudioPreparer.prepare(copy, cancellation, context.cacheDir)
       } finally { copy.delete() }
     }
     require(uri.scheme == "file" || uri.scheme == null) { "Нужна локальная аудиозапись." }
-    return AndroidAudioPreparer.prepare(File(requireNotNull(if (uri.scheme == "file") uri.path else fileUri)), cancellation)
+    return AndroidAudioPreparer.prepare(File(requireNotNull(if (uri.scheme == "file") uri.path else fileUri)), cancellation, context.cacheDir)
   }
 
   override fun definition() = ModuleDefinition {
@@ -43,40 +43,50 @@ class AudioEngineModule : Module() {
 
     AsyncFunction("diarize") { fileUri: String -> processing {
       val start = SystemClock.elapsedRealtime()
-      val audio = readAudio(fileUri)
+      readAudio(fileUri).use { audio ->
       val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
       cancellation.check()
-      val intervals = SpeakerDiarizer.process(audio.samples, models)
+      val intervals = SpeakerDiarizer.process(audio, models, cancellation)
       cancellation.check()
       mapOf("durationMs" to audio.durationMs, "elapsedMs" to SystemClock.elapsedRealtime() - start,
         "intervals" to intervals.map { mapOf("startMs" to it.startMs, "endMs" to it.endMs, "speakerId" to it.speakerId) })
-    } }
+    } } }
 
     AsyncFunction("transcribe") { fileUri: String -> processing {
       sendEvent("onProgress", mapOf("stage" to "preparing"))
       val models = ModelAssets.prepare(requireNotNull(appContext.reactContext))
-      val audio = readAudio(fileUri)
+      readAudio(fileUri).use { audio ->
       cancellation.check()
       val waveform = (0 until 61).map { bucket ->
         cancellation.check()
-        val first = (bucket.toLong() * audio.samples.size / 61).toInt()
-        val last = ((bucket + 1L) * audio.samples.size / 61).toInt()
+        val first = (bucket.toLong() * audio.sampleCount / 61).toInt()
+        val last = ((bucket + 1L) * audio.sampleCount / 61).toInt()
         var energy = 0.0
-        for (sample in first until last) energy += audio.samples[sample].toDouble() * audio.samples[sample]
+        var offset = first
+        while (offset < last) {
+          cancellation.check()
+          val next = minOf(last, offset + 16000)
+          for (sample in audio.readSamples(offset, next)) energy += sample.toDouble() * sample
+          offset = next
+        }
         kotlin.math.sqrt(energy / (last - first).coerceAtLeast(1)).coerceIn(0.0, 1.0)
       }
       sendEvent("onProgress", mapOf("stage" to "diarizing", "durationMs" to audio.durationMs, "waveform" to waveform))
       // SpeakerDiarizer releases native resources before returning; only then create ASR.
-      val intervals = SpeakerDiarizer.process(audio.samples, models)
+      val intervals = SpeakerDiarizer.process(audio, models, cancellation) { completed, total ->
+        sendEvent("onProgress", mapOf("stage" to "diarizing", "completed" to completed, "total" to total,
+          "message" to ("Обработано окон: " + completed + " из " + total)))
+      }
       cancellation.check()
       val ids = linkedMapOf<String, Int>()
       val mapped = intervals.map {
         expo.modules.audioengine.audio.SpeakerInterval(it.startMs, it.endMs,
           ids.getOrPut(it.speakerId) { ids.size })
       }
-      IntervalTranscriber { GigaAmRecognizer(models) }.transcribe(audio, mapped, cancellation) { event ->
+      IntervalTranscriber { GigaAmRecognizer(models) }.transcribe(audio, mapped, cancellation,
+        speakerLabels = ids.filterKeys { it == "speaker_unknown" }.entries.associate { it.value to it.key }) { event ->
         sendEvent("onProgress", mapOf("stage" to event.stage, "completed" to event.completed, "total" to event.total))
       }
-    } }
+    } } }
   }
 }

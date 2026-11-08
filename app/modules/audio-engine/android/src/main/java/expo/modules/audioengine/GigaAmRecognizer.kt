@@ -1,14 +1,20 @@
 package expo.modules.audioengine
 
+import android.os.Build
 import com.k2fsa.sherpa.onnx.OfflineRecognizer
 import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
 import com.k2fsa.sherpa.onnx.OfflineModelConfig
 import com.k2fsa.sherpa.onnx.OfflineNemoEncDecCtcModelConfig
 import expo.modules.audioengine.audio.SpeechRecognizer
 
+// Four threads were measured on the 6-vCPU x86 emulator. Keep ARM at two until device profiling.
+private fun defaultAsrThreads(): Int =
+  if (Build.SUPPORTED_ABIS.firstOrNull() == "x86_64" && Runtime.getRuntime().availableProcessors() >= 4) 4 else 2
+
 internal class GigaAmRecognizer(
   private val models: Map<String, String>,
-  private val forcedLanguage: String? = null
+  private val forcedLanguage: String? = null,
+  private val cpuThreads: Int = defaultAsrThreads()
 ) : SpeechRecognizer {
   private val hasEnglishModel = models.containsKey("asr_en") && models.containsKey("tokens_en")
 
@@ -29,11 +35,12 @@ internal class GigaAmRecognizer(
   }
 
   private fun createRecognizer(modelKey: String, tokensKey: String): OfflineRecognizer {
+    android.util.Log.i("AudioEngine", "asr threads=" + cpuThreads + " model=" + modelKey)
     return OfflineRecognizer(config = OfflineRecognizerConfig(
       modelConfig = OfflineModelConfig(
         nemo = OfflineNemoEncDecCtcModelConfig(model = models.getValue(modelKey)),
         tokens = models.getValue(tokensKey),
-        numThreads = 2,
+        numThreads = cpuThreads,
         provider = "cpu",
       ),
       blankPenalty = 0.0f,

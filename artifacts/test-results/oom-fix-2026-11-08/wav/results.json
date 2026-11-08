@@ -1,0 +1,14 @@
+{
+  "new_transcription_elapsed_s": 15.7,
+  "strict_export": true,
+  "json_returns_to_export": true,
+  "local_summary": true,
+  "exact_reference_match": true,
+  "apk_sha256": "b5fb30861cf866ed39f990527a3400453c23cf405d2849a656b1c6bec0190fca",
+  "duration_s": 4,
+  "language": "ru",
+  "wer": 0.0,
+  "quality_scope": "WER only for this six-word reference",
+  "full_hour_completed": false,
+  "raw_ui_and_transcript": "Kept locally outside Git; only aggregate metrics are published."
+}

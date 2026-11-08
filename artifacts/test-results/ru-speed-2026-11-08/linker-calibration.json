@@ -1,0 +1,749 @@
+{
+  "inference_platform": "PC",
+  "sherpa_version": "2.0.1",
+  "cases": [
+    {
+      "id": "calibration-1",
+      "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+      "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+      "source_case": "rec_0000",
+      "reference_speakers": 1
+    },
+    {
+      "id": "calibration-2",
+      "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+      "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+      "source_case": "rec_0055",
+      "reference_speakers": 2
+    },
+    {
+      "id": "calibration-3",
+      "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+      "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+      "source_case": "rec_0273",
+      "reference_speakers": 3
+    }
+  ],
+  "results": [
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.2,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.25,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.3,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.35,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.4,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.45,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.5,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.55,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.6,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-1",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-1.rttm",
+        "source_case": "rec_0000",
+        "reference_speakers": 1
+      },
+      "threshold": 0.65,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.2676608638821223,
+        "miss_s": 0.19,
+        "false_alarm_s": 9.950000000000001,
+        "confusion_s": 34.910000000000004,
+        "reference_speakers": 1,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 168.31
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.2,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.25,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.3,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.35,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.4,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.45,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.5,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.55,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.6,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-2",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-2.rttm",
+        "source_case": "rec_0055",
+        "reference_speakers": 2
+      },
+      "threshold": 0.65,
+      "known_speakers": 2,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.35756972111553786,
+        "miss_s": 13.26,
+        "false_alarm_s": 5.4,
+        "confusion_s": 49.550000000000004,
+        "reference_speakers": 2,
+        "predicted_speakers": 2,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 190.76
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.2,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.25,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.3,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.35,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.4,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.45,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.5,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.55,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.6,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    },
+    {
+      "case": {
+        "id": "calibration-3",
+        "file": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.wav",
+        "rttm": "D:\\programming\\nuclear_hack\\recordings\\ru-speed\\calibration-3.rttm",
+        "source_case": "rec_0273",
+        "reference_speakers": 3
+      },
+      "threshold": 0.65,
+      "known_speakers": 3,
+      "unknown_groups": 0,
+      "score": {
+        "der": 0.10372416968859725,
+        "miss_s": 6.69,
+        "false_alarm_s": 2.67,
+        "confusion_s": 8.66,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 173.73
+      }
+    }
+  ]
+}

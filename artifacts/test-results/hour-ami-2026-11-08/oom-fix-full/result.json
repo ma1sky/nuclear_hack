@@ -1,0 +1,412 @@
+{
+  "case": {
+    "id": "hour-ami-IN1016",
+    "duration_s": 3600,
+    "language": "en",
+    "kind": "natural meeting, first 3600 seconds, no repetition",
+    "source_audio": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/IN1016/audio/IN1016.Mix-Headset.wav",
+    "source_annotations": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "license": "CC BY 4.0, AMI corpus",
+    "reference_segments": 848,
+    "reference_words": 13643,
+    "speakers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "sha256": "ecb640a97a6f53e13d4de7d146275f91f2bb93788280840bf45323b4683b4254"
+  },
+  "serial": "emulator-5556",
+  "label": "oom-fix-full",
+  "status": "completed",
+  "stages": [
+    {
+      "elapsed_s": 5.0,
+      "stage": "Подготовка записи"
+    },
+    {
+      "elapsed_s": 10.88,
+      "stage": "Определение участников"
+    },
+    {
+      "elapsed_s": 1103.95,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1109.72,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1116.23,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1123.06,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1134.75,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1140.61,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1146.34,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1159.5,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1165.33,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1171.58,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1177.44,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1190.11,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1195.94,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1201.69,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1209.22,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1215.92,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1222.8,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1230.42,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1236.61,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1242.41,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1248.33,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1254.16,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1265.92,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1272.58,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1285.69,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1292.36,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1298.77,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1305.52,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1311.23,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1317.25,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1324.81,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1330.61,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1340.42,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1347.14,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1352.86,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1364.38,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1371.41,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1382.91,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1388.67,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1394.67,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1400.83,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1407.11,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1414.05,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1419.83,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1426.09,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1433.02,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1439.41,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1445.62,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1451.33,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1457.31,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1464.98,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1470.83,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1476.92,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1483.39,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1489.14,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1494.88,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1500.73,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1507.11,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1513.86,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1520.06,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1527.34,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1533.11,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1544.77,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1550.8,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1556.55,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1564.73,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1570.48,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1582.0,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1589.05,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1594.95,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1600.91,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1606.7,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1613.61,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1621.42,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1627.64,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1634.48,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1640.23,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1646.47,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1653.06,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1660.53,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1667.88,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1676.91,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1682.7,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1689.34,
+      "stage": "Распознавание речи"
+    },
+    {
+      "elapsed_s": 1696.97,
+      "stage": "Создание резюме"
+    },
+    {
+      "elapsed_s": 2084.14,
+      "stage": null
+    }
+  ],
+  "sampled_peak_pss_kb": 934573,
+  "started_utc": "2026-11-08T00:10:14Z",
+  "elapsed_s": 2084.56,
+  "rtf_completed": 0.5790444444444445,
+  "device": {
+    "ro.product.model": "sdk_gphone64_x86_64",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.version.release": "17",
+    "dalvik.vm.heapsize": "576m",
+    "dalvik.vm.heapgrowthlimit": "192m",
+    "emulator_ram_mb": 4096
+  },
+  "apk_sha256": "b5fb30861cf866ed39f990527a3400453c23cf405d2849a656b1c6bec0190fca",
+  "apk_verified_on_device": true,
+  "host_cpu": "AMD Ryzen 5 3600, 6 cores / 12 threads",
+  "airplane_mode": "1",
+  "stage_observations": [
+    {
+      "stage": "Подготовка записи",
+      "first_observed_s": 5.0
+    },
+    {
+      "stage": "Определение участников",
+      "first_observed_s": 10.88
+    },
+    {
+      "stage": "Распознавание речи",
+      "first_observed_s": 1103.95
+    },
+    {
+      "stage": "Создание резюме",
+      "first_observed_s": 1696.97
+    }
+  ],
+  "raw_ui_and_transcript": "Kept locally outside Git; only aggregate metrics are published."
+}

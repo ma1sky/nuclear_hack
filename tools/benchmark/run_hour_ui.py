@@ -31,6 +31,7 @@ def main():
         click(next(n for n in ns if label in [n.get("text"),n.get("content-desc")] and n.get("enabled")=="true"))
     result={"case":manifest,"serial":args.serial,"label":args.label,"status":"automation_error","stages":[],"sampled_peak_pss_kb":0}
     started=None
+    result["started_utc"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
     try:
         adb("push",str(audio),"/sdcard/Download/"+audio.name)
         adb("shell","am","start","-a","android.intent.action.VIEW","-d","stenographer:///","team.hex.nuclearstenographer")
@@ -53,13 +54,13 @@ def main():
         while time.monotonic()-started < args.timeout:
             ns=snap();ls=labels(ns)
             elapsed=round(time.monotonic()-started,2)
-            stage=next((s for s in ["Подготовка записи","Определение участников","Распознавание речи","Создание резюме","Сохранение"] if s in ls),None)
+            stage="Распознавание речи" if any(re.search(r"\d+ из \d+ реплик", t) for t in ls) else next((t for t in ls if t in ["Подготовка записи","Определение участников","Распознавание речи","Создание резюме","Сохранение"]),None)
             mem=adb("shell","dumpsys","meminfo","team.hex.nuclearstenographer").decode(errors="replace")
             m=re.search(r"TOTAL PSS:\s*(\d+)",mem)
             if m:result["sampled_peak_pss_kb"]=max(result["sampled_peak_pss_kb"],int(m[1]))
             if not result["stages"] or result["stages"][-1]["ui"]!=ls:
                 result["stages"].append({"elapsed_s":elapsed,"stage":stage,"ui":ls})
-            (out/"status.json").write_text(json.dumps({"elapsed_s":elapsed,"ui":ls},ensure_ascii=False,indent=2),encoding="utf-8")
+            (out/"status.json").write_text(json.dumps({"elapsed_s":elapsed,"stage":stage,"sampled_peak_pss_kb":result["sampled_peak_pss_kb"],"ui":ls},ensure_ascii=False,indent=2),encoding="utf-8")
             if "Закрыть сообщение об ошибке" in ls or any("OutOfMemoryError" in text or "Call to function" in text for text in ls):
                 result.update(status="app_error",ui=ls);break
             if "Стенограмма" in ls:

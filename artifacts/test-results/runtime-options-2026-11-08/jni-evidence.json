@@ -1,0 +1,11 @@
+{
+  "reference_apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+  "final_apk_sha256": "1949fe7457fb9abfeed62d331755ae39bbe8e801c6bb36a5c84d9488cb73a8d4",
+  "identical_jni_libraries": {
+    "libc++_shared.so": "0a2c7afa35b183fdd5a3cb20e2080ad54cbea06c2a4f0bc8f122cb7d1e9e0b9f",
+    "libonnxruntime.so": "b626c070616d88bd643a6e63dc996d8d478d061176b056d52ce44c961bd355aa",
+    "libsherpa-onnx-jni.so": "878d61116f244131263eec24297ef05bf508d02bccdede2a4e3ad3202bbdaa48",
+    "libsherpa-onnx-c-api.so": "8285ecf2e6275374d4c8c5b46020cbb1de82db9bd6b6baad011fdc480cf10ba2",
+    "libsherpa-onnx-cxx-api.so": "edcd50a1608458867d78213385f5e3013a39db7b7af43d4f87d72e4d84e5e3dc"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "android_engine": {
+    "eres2net": {
+      "cases": 3,
+      "weighted_der": 0.4307277941404433,
+      "multispeaker_weighted_der": 0.499654019144274,
+      "elapsed_s": 145.574
+    },
+    "titanet": {
+      "cases": 3,
+      "weighted_der": 0.33628507208184777,
+      "multispeaker_weighted_der": 0.4073347941413908,
+      "elapsed_s": 64.584
+    }
+  },
+  "selected": {
+    "embedding": "TitaNet Small",
+    "clustering_distance": 0.75,
+    "local_merge_similarity": 0.85,
+    "cross_window_similarity": 0.55,
+    "diarization_threads": 2,
+    "asr_threads_x86_with_4_cpus": 4,
+    "asr_threads_arm": 2,
+    "llm_threads": 2,
+    "llm_limit": 160
+  },
+  "app_cases": 4
+}

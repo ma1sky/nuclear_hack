@@ -63,6 +63,17 @@ fun main() {
       val r = pipeline.transcribe(PreparedAudio(FloatArray(45 * 16000)), listOf(SpeakerInterval(1000, 45000, 1)))
       check(calls == 3 && r.getValue("transcript").single()["start_ms"] == 1000L)
     }
+    test("unknown voice preserved and empty ASR does not consume a numbered identity") {
+      val answers = listOf("", "uncertain", "known").iterator()
+      val p = IntervalTranscriber { object : SpeechRecognizer {
+        override fun recognize(samples: FloatArray, sampleRate: Int) = answers.next()
+        override fun close() {}
+      } }
+      val result = p.transcribe(PreparedAudio(FloatArray(48000)), listOf(
+        SpeakerInterval(0, 1000, 42), SpeakerInterval(1000, 2000, 99), SpeakerInterval(2000, 3000, 7)),
+        speakerLabels = mapOf(99 to "speaker_unknown")).getValue("transcript")
+      check(result.map { it["speaker_id"] } == listOf("speaker_unknown", "speaker_1"))
+    }
     test("invalid boundary rejected") { rejected { pipeline.transcribe(PreparedAudio(FloatArray(16000)), listOf(SpeakerInterval(0, 1001, 0))) } }
     test("cancel releases recognizer") {
       val token = ProcessingCancellation(); closed = false

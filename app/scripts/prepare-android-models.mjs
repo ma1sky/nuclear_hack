@@ -14,7 +14,8 @@ const bundle = join(models, 'bundles', onlyDiarization ? 'diarization' : 'full',
 const releases = 'https://github.com/k2-fsa/sherpa-onnx/releases/download';
 const pyannote = 'sherpa-onnx-pyannote-segmentation-3-0';
 const gigaam = 'sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19';
-const embedding = '3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx';
+const baselineEmbedding = process.env.STENOGRAPHER_EMBEDDING === 'eres2net';
+const embedding = baselineEmbedding ? '3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx' : 'nemo_en_titanet_small.onnx';
 const qwen = 'qwen2.5-0.5b-instruct-q4_k_m.gguf';
 const testWav = '1-two-speakers-en.wav';
 
@@ -79,8 +80,9 @@ await download(`${releases}/v2.0.1/sherpa-onnx-2.0.1.aar`, 'a8d09d1d32f3eb852048
 const segmentation = await download(`${releases}/speaker-segmentation-models/${pyannote}.tar.bz2`, '24615ee884c897d9d2ba09bb4d30da6bb1b15e685065962db5b02e76e4996488');
 await addModel('segmentation', 'pyannote-segmentation.int8.onnx', segmentation, `${pyannote}/model.int8.onnx`);
 extract(segmentation, `${pyannote}/LICENSE`, join(bundle, 'LICENSE.pyannote'));
-const speakerModel = await download(`${releases}/speaker-recongition-models/${embedding}`, '1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b');
-await addModel('embedding', '3dspeaker.onnx', speakerModel);
+const speakerModel = await download(`${releases}/speaker-recongition-models/${embedding}`, baselineEmbedding ? '1a331345f04805badbb495c775a6ddffcdd1a732567d5ec8b3d5749e3c7a5e4b' : 'ad4a1802485d8b34c722d2a9d04249662f2ece5d28a7a039063ca22f515a789e');
+await addModel('embedding', baselineEmbedding ? '3dspeaker.onnx' : embedding, speakerModel);
+await copyFile(fileURLToPath(new URL('../../docs/licenses/titanet-small.txt', import.meta.url)), join(bundle, 'LICENSE.titanet'));
 await download(`${releases}/speaker-segmentation-models/${testWav}`, 'f1c877dc01595e28be7147bf2fe38e5268147a868bf3fdb5c37b97f5940e21f3');
 
 if (!onlyDiarization) {

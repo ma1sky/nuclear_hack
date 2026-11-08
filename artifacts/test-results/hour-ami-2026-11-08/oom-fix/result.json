@@ -1,0 +1,55 @@
+{
+  "case": {
+    "id": "hour-ami-IN1016",
+    "duration_s": 3600,
+    "language": "en",
+    "kind": "natural meeting, first 3600 seconds, no repetition",
+    "source_audio": "https://groups.inf.ed.ac.uk/ami/AMICorpusMirror/amicorpus/IN1016/audio/IN1016.Mix-Headset.wav",
+    "source_annotations": "https://groups.inf.ed.ac.uk/ami/AMICorpusAnnotations/ami_public_manual_1.6.2.zip",
+    "license": "CC BY 4.0, AMI corpus",
+    "reference_segments": 848,
+    "reference_words": 13643,
+    "speakers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "sha256": "ecb640a97a6f53e13d4de7d146275f91f2bb93788280840bf45323b4683b4254"
+  },
+  "serial": "emulator-5556",
+  "label": "oom-fix",
+  "status": "cancelled_after_hour_preparation",
+  "stages": [
+    {
+      "elapsed_s": 5.25,
+      "stage": "Подготовка записи"
+    },
+    {
+      "elapsed_s": 16.74,
+      "stage": "Подготовка записи"
+    },
+    {
+      "elapsed_s": 22.62,
+      "stage": "Подготовка записи"
+    }
+  ],
+  "sampled_peak_pss_kb": 402057,
+  "hour_preparation_passed": true,
+  "cancel_requested_at_s": 16.74,
+  "rtf_completed": null,
+  "device": {
+    "ro.product.model": "sdk_gphone64_x86_64",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.version.release": "17",
+    "dalvik.vm.heapsize": "576m",
+    "dalvik.vm.heapgrowthlimit": "192m"
+  },
+  "apk_sha256": "b5fb30861cf866ed39f990527a3400453c23cf405d2849a656b1c6bec0190fca",
+  "elapsed_s_before_cancellation_wait": 23.12,
+  "scope": "Entire 3600-second file prepared; cancellation after entering diarization. Not a completed hour transcript.",
+  "timing_note": "Final cooperative cancellation observed on follow-up UI poll; its total elapsed time was not measured.",
+  "wer": null,
+  "der": null,
+  "raw_ui_and_transcript": "Kept locally outside Git; only aggregate metrics are published."
+}

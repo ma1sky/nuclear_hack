@@ -83,6 +83,87 @@ object WavPreparer {
     }
   }
 
+  fun prepareDisk(file: File, directory: File, cancellation: CancellationCheck): DiskAudio {
+    return parseToDisk(file, directory, cancellation)
+  }
+
+  private fun parseToDisk(file: File, directory: File, cancellation: CancellationCheck): DiskAudio {
+    cancellation.check()
+    return RandomAccessFile(file, "r").use { input ->
+      require(input.length() >= 12) { "Truncated WAV header" }
+      require(tag(input) == "RIFF") { "Only RIFF WAV PCM16 is supported" }
+      val riffEnd = uint32(input) + 8
+      require(riffEnd in 12..input.length()) { "Invalid RIFF size" }
+      require(tag(input) == "WAVE") { "Not a WAVE file" }
+      var channels = 0
+      var rate = 0
+      var alignment = 0
+      var dataOffset = -1L
+      var dataLength = 0L
+      var hasFormat = false
+      while (input.filePointer + 8 <= riffEnd) {
+        cancellation.check()
+        val chunk = tag(input)
+        val size = uint32(input)
+        val start = input.filePointer
+        require(size <= riffEnd - start) { "Truncated WAV chunk: $chunk" }
+        when (chunk) {
+          "fmt " -> {
+            require(!hasFormat && size >= 16) { "Invalid or duplicate WAV format" }
+            val encoding = uint16(input)
+            channels = uint16(input)
+            rate = uint32(input).also { require(it in 8000..192000) { "Unsupported sample rate" } }.toInt()
+            val byteRate = uint32(input)
+            alignment = uint16(input)
+            val bits = uint16(input)
+            require(encoding == 1 && bits == 16) { "Only uncompressed WAV PCM16 is supported" }
+            require(channels in 1..2 && alignment == channels * 2) { "Unsupported channel layout" }
+            require(byteRate == rate.toLong() * alignment) { "Invalid WAV byte rate" }
+            hasFormat = true
+          }
+          "data" -> {
+            require(dataOffset < 0) { "Multiple WAV data chunks are unsupported" }
+            dataOffset = start
+            dataLength = size
+          }
+        }
+        val next = start + size + (size and 1)
+        require(next <= riffEnd) { "Missing WAV chunk padding" }
+        input.seek(next)
+      }
+      require(input.filePointer == riffEnd) { "Invalid trailing WAV chunk" }
+      require(hasFormat && dataOffset >= 0) { "Missing WAV format or data" }
+      require(dataLength % alignment == 0L) { "Incomplete PCM frame" }
+      val frames = dataLength / alignment
+      require(frames <= Int.MAX_VALUE) { "WAV is too large" }
+      input.seek(dataOffset)
+      val raw = DiskAudio.newFile(directory)
+      try {
+      java.io.DataOutputStream(java.io.BufferedOutputStream(raw.outputStream())).use { sink ->
+      // Buffer IO: avoid a system call per sample on long recordings.
+      val buffer = ByteArray(8192 * alignment)
+      var frame = 0
+      while (frame < frames) {
+        cancellation.check()
+        val count = min(8192L, frames - frame).toInt()
+        input.readFully(buffer, 0, count * alignment)
+        for (i in 0 until count) {
+          var sum = 0
+          for (channel in 0 until channels) {
+            val p = i * alignment + channel * 2
+            sum += ((buffer[p].toInt() and 255) or (buffer[p + 1].toInt() shl 8)).toShort().toInt()
+          }
+          sink.writeFloat(sum / (32768f * channels))
+        }
+        frame += count
+      }
+      }
+      DiskAudio.resample(raw, rate, directory, cancellation)
+      } catch (error: Throwable) { raw.delete(); throw error }
+    }
+  }
+
+
   /** Windowed-sinc low-pass interpolation, with anti-aliasing when downsampling. */
   internal fun resample(source: FloatArray, rate: Int, cancellation: CancellationCheck): FloatArray {
     if (rate == 16000 || source.isEmpty()) return source

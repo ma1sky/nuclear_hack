@@ -1,0 +1,106 @@
+{
+  "platform": "Android 17 x86_64 ART app_process",
+  "source": "production Kotlin engine and sherpa 2.0.1 APK JNI",
+  "results": [
+    {
+      "mode": "diar",
+      "model": "eres2net",
+      "threads": 2,
+      "threshold": 0.8,
+      "duration_ms": 60000,
+      "prepare_ms": 117,
+      "available_processors": 6,
+      "heap_max_bytes": 201326592,
+      "elapsed_ms": 14757,
+      "case": "rec_0273",
+      "score": {
+        "der": 0.13520980832326024,
+        "miss_s": 2.14,
+        "false_alarm_s": 1.09,
+        "confusion_s": 4.6000000000000005,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "new_ids_after_120s": 0
+    },
+    {
+      "mode": "diar",
+      "model": "titanet",
+      "threads": 1,
+      "threshold": 0.75,
+      "duration_ms": 60000,
+      "prepare_ms": 116,
+      "available_processors": 6,
+      "heap_max_bytes": 201326592,
+      "elapsed_ms": 8792,
+      "case": "rec_0273",
+      "score": {
+        "der": 0.13520980832326024,
+        "miss_s": 2.14,
+        "false_alarm_s": 1.09,
+        "confusion_s": 4.6000000000000005,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "new_ids_after_120s": 0
+    },
+    {
+      "mode": "diar",
+      "model": "titanet",
+      "threads": 2,
+      "threshold": 0.75,
+      "duration_ms": 60000,
+      "prepare_ms": 116,
+      "available_processors": 6,
+      "heap_max_bytes": 201326592,
+      "elapsed_ms": 6663,
+      "case": "rec_0273",
+      "score": {
+        "der": 0.13520980832326024,
+        "miss_s": 2.14,
+        "false_alarm_s": 1.09,
+        "confusion_s": 4.6000000000000005,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "new_ids_after_120s": 0
+    },
+    {
+      "mode": "diar",
+      "model": "titanet",
+      "threads": 4,
+      "threshold": 0.75,
+      "duration_ms": 60000,
+      "prepare_ms": 120,
+      "available_processors": 6,
+      "heap_max_bytes": 201326592,
+      "elapsed_ms": 6439,
+      "case": "rec_0273",
+      "score": {
+        "der": 0.13520980832326024,
+        "miss_s": 2.14,
+        "false_alarm_s": 1.09,
+        "confusion_s": 4.6000000000000005,
+        "reference_speakers": 3,
+        "predicted_speakers": 3,
+        "collar_s": 0,
+        "overlap_included": true,
+        "frame_step_ms": 10,
+        "reference_speaker_time_s": 57.910000000000004
+      },
+      "new_ids_after_120s": 0
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+[
+  {
+    "case": {
+      "id": "golos",
+      "file": "recordings/benchmark/cases/t01-golos.wav",
+      "duration_s": 4,
+      "rttm": null,
+      "reference_text": "шестьдесят тысяч тенге сколько будет стоить",
+      "source": "https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd",
+      "sha256": "500d2e88a1634ee766fec46f83cb903f3a1c276b2cedb36f11db800a1c4c14d0",
+      "natural": true
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 6.72
+      }
+    ],
+    "sampled_peak_pss_kb": 777020,
+    "text_visible_s": 11.64,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 25.34,
+    "native_profile": [
+      "diarization sessions=1 extractor=0 loadMs=547"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 1,
+    "known_speakers": 1,
+    "unknown_turns": 0,
+    "unknown_turn_seconds": 0,
+    "asr_score": {
+      "reference_words": 6,
+      "edit_distance": 0,
+      "wer": 0.0
+    },
+    "summary_available": true,
+    "after_completion_pss_kb": 254149,
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-1spk",
+      "file": "recordings/ru-speed/ru-speed-1spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 1,
+      "rttm": "recordings/ru-speed/ru-speed-1spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0001",
+      "source_voice_ids": [
+        "nikolai_naumenko"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "6809013c7d2097eb537e1af53a56128d8c552c178ea1a525e62f830d5a546b6f"
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 6.78
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 65.56
+      }
+    ],
+    "sampled_peak_pss_kb": 851166,
+    "text_visible_s": 94.45,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 258.47,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=907",
+      "I/AudioEngine( 2464): diarization window=1/2 elapsedMs=40202",
+      "I/AudioEngine( 2464): diarization window=2/2 elapsedMs=18548"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 4,
+    "known_speakers": 1,
+    "unknown_turns": 0,
+    "unknown_turn_seconds": 0,
+    "exported_der": {
+      "der": 0.053199010250972074,
+      "miss_s": 0.35000000000000003,
+      "false_alarm_s": 8.68,
+      "confusion_s": 0.0,
+      "reference_speakers": 1,
+      "predicted_speakers": 1,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 169.74
+    },
+    "known_only_der_unknown_as_missed": {
+      "der": 0.053199010250972074,
+      "miss_s": 0.35000000000000003,
+      "false_alarm_s": 8.68,
+      "confusion_s": 0.0,
+      "reference_speakers": 1,
+      "predicted_speakers": 1,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 169.74
+    },
+    "summary_available": true,
+    "after_completion_pss_kb": 207065,
+    "full_completion_timing_valid": false,
+    "timing_note": "Completion detected after manual tab recovery; do not use full_completed_s for speed comparison. First text time remains a UI observation.",
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-2spk",
+      "file": "recordings/ru-speed/ru-speed-2spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 2,
+      "rttm": "recordings/ru-speed/ru-speed-2spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0056",
+      "source_voice_ids": [
+        "andrei_finagin",
+        "tanya_klavina"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "40931e41343c46504464aa58e15ae1e5a7de1d5a492f1ff216427c0c4e121ee4"
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 7.08
+      }
+    ],
+    "sampled_peak_pss_kb": 802007,
+    "text_visible_s": 90.36,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 223.58,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=992",
+      "I/AudioEngine( 2464): diarization window=1/2 elapsedMs=37891",
+      "I/AudioEngine( 2464): diarization window=2/2 elapsedMs=17468"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 45,
+    "known_speakers": 2,
+    "unknown_turns": 0,
+    "unknown_turn_seconds": 0,
+    "exported_der": {
+      "der": 0.04402007730917902,
+      "miss_s": 7.2,
+      "false_alarm_s": 0.43,
+      "confusion_s": 0.0,
+      "reference_speakers": 2,
+      "predicted_speakers": 2,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 173.33
+    },
+    "known_only_der_unknown_as_missed": {
+      "der": 0.04402007730917902,
+      "miss_s": 7.2,
+      "false_alarm_s": 0.43,
+      "confusion_s": 0.0,
+      "reference_speakers": 2,
+      "predicted_speakers": 2,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 173.33
+    },
+    "summary_available": true,
+    "after_completion_pss_kb": 241787,
+    "full_completion_timing_valid": false,
+    "timing_note": "Completion detected after manual tab recovery; do not use full_completed_s for speed comparison. First text time remains a UI observation.",
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-3spk",
+      "file": "recordings/ru-speed/ru-speed-3spk.wav",
+      "duration_s": 180,
+      "reference_speakers": 3,
+      "rttm": "recordings/ru-speed/ru-speed-3spk.rttm",
+      "source": "https://huggingface.co/datasets/mexus/ru-book-mix-10h",
+      "source_case": "rec_0275",
+      "source_voice_ids": [
+        "andrei_novokreshenov",
+        "konstantin_luzhkov",
+        "irina_bulekova"
+      ],
+      "natural": false,
+      "construction": "Same annotated 60s synthetic Russian mixture repeated 3 times; speaker IDs retained across repeats.",
+      "sha256": "d8550dc832d8c0ef55953e0b1f1084fbc3c604c99a27348cacff221228b61025"
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 7.14
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 72.59
+      }
+    ],
+    "sampled_peak_pss_kb": 766434,
+    "text_visible_s": 98.05,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 191.62,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=938",
+      "I/AudioEngine( 2464): diarization window=1/2 elapsedMs=37996",
+      "I/AudioEngine( 2464): diarization window=2/2 elapsedMs=18931"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 53,
+    "known_speakers": 5,
+    "unknown_turns": 2,
+    "unknown_turn_seconds": 2.2270000000000003,
+    "exported_der": {
+      "der": 0.2784130563161003,
+      "miss_s": 8.59,
+      "false_alarm_s": 6.23,
+      "confusion_s": 37.04,
+      "reference_speakers": 3,
+      "predicted_speakers": 6,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 186.27
+    },
+    "known_only_der_unknown_as_missed": {
+      "der": 0.2784130563161003,
+      "miss_s": 10.82,
+      "false_alarm_s": 6.23,
+      "confusion_s": 34.81,
+      "reference_speakers": 3,
+      "predicted_speakers": 5,
+      "collar_s": 0,
+      "overlap_included": true,
+      "frame_step_ms": 10,
+      "reference_speaker_time_s": 186.27
+    },
+    "summary_available": true,
+    "after_completion_pss_kb": 196856,
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-podcast-a",
+      "file": "recordings/ru-speed/ru-speed-podcast-a.wav",
+      "duration_s": 180,
+      "rttm": null,
+      "reference_speakers": null,
+      "source": "https://arzamas.academy/podcasts/333",
+      "source_case": "t09",
+      "natural": true,
+      "sha256": "2de4d57b7809a94fe53a085ab7c75d145db21e8f3102f545023288858a95159d"
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 6.83
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 71.5
+      }
+    ],
+    "sampled_peak_pss_kb": 919012,
+    "text_visible_s": 99.89,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "early_export_while_summary": true,
+    "full_completed_s": 179.62,
+    "early_export_unchanged_after_summary": true,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=897",
+      "I/AudioEngine( 2464): diarization window=1/2 elapsedMs=42744",
+      "I/AudioEngine( 2464): diarization window=2/2 elapsedMs=20100"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 19,
+    "known_speakers": 2,
+    "unknown_turns": 1,
+    "unknown_turn_seconds": 0.76,
+    "summary_available": true,
+    "after_completion_pss_kb": 254348,
+    "new_known_ids_after_120s": 0
+  },
+  {
+    "case": {
+      "id": "ru-speed-podcast-b",
+      "file": "recordings/ru-speed/ru-speed-podcast-b.wav",
+      "duration_s": 300,
+      "rttm": null,
+      "reference_speakers": null,
+      "source": "https://arzamas.academy/podcasts/333",
+      "source_case": "t10",
+      "natural": true,
+      "sha256": "4bd0a6b03bb045288a7740eaadf4844f1c6edb91aa1a44fa395d90b2b05c0af5"
+    },
+    "apk_sha256": "99180b3c5dcfc335d8041f14e5938d918bf92e00314d7709fefa6be55459392d",
+    "variant": "optimized",
+    "status": "completed",
+    "stages": [
+      {
+        "stage": "Определение участников",
+        "elapsed_s": 5.17
+      },
+      {
+        "stage": "Распознавание речи",
+        "elapsed_s": 115.0
+      }
+    ],
+    "sampled_peak_pss_kb": 927391,
+    "text_visible_s": 157.45,
+    "text_visible_while_summary": true,
+    "export_enabled_at_text_ready": true,
+    "full_completed_s": 339.11,
+    "native_profile": [
+      "diarization sessions=1 extractor=1 loadMs=990",
+      "I/AudioEngine( 2464): diarization window=1/3 elapsedMs=39964",
+      "I/AudioEngine( 2464): diarization window=2/3 elapsedMs=42483",
+      "I/AudioEngine( 2464): diarization window=3/3 elapsedMs=19842"
+    ],
+    "schema_and_bounds_ok": true,
+    "utterances": 29,
+    "known_speakers": 5,
+    "unknown_turns": 0,
+    "unknown_turn_seconds": 0,
+    "summary_available": true,
+    "after_completion_pss_kb": 268005,
+    "new_known_ids_after_120s": 1
+  }
+]

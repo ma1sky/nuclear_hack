@@ -1,0 +1,38 @@
+{
+  "schema_and_bounds_ok": true,
+  "utterances": 312,
+  "speakers": 73,
+  "text_words": 801,
+  "diarization_score": {
+    "der": 0.716177567494803,
+    "miss_s": 2231.27,
+    "false_alarm_s": 18.14,
+    "confusion_s": 995.9200000000001,
+    "reference_speakers": 4,
+    "predicted_speakers": 73,
+    "collar_s": 0,
+    "overlap_included": true,
+    "frame_step_ms": 10,
+    "reference_speaker_time_s": 4531.46
+  },
+  "diarization_scope": "Final exported turns, including ASR filtering, not isolated segmentation",
+  "wer": null,
+  "wer_note": "English input with Russian GigaAM; no claim about Russian ASR quality",
+  "json_share_ui": [
+    "Sharing 1 file",
+    "hour-ami-IN1016_export.json",
+    "No recommended people to share with",
+    "Quick Share",
+    "Drive",
+    "Gmail",
+    "Gmail",
+    "Chat"
+  ],
+  "summary_available": true,
+  "apk_sha256": "b5fb30861cf866ed39f990527a3400453c23cf405d2849a656b1c6bec0190fca",
+  "saved_transcript_reopened": true,
+  "saved_summary_reopened": true,
+  "post_processing_pss_kb": 289130,
+  "last_end_ms": 3546080,
+  "raw_ui_and_transcript": "Kept locally outside Git; only aggregate metrics are published."
+}

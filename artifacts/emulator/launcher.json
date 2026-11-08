@@ -1,6 +1,10 @@
 {
-  "apk": "artifacts/emulator/nuclear-stenographer-v1.2-figma-light.apk",
-  "sha256": "500818956eb33cab4b63b452b29e6af3226aabb77ffd65290e6086648eb75290",
-  "base_commit": "89a21b8",
-  "interface": "Figma light 2026-11-08"
+  "apk": "artifacts/releases/v1.2.3-runtime-preview.1/nuclear-stenographer-1.2.3-runtime-preview-arm64-x86_64.apk",
+  "sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7",
+  "base_commit": "0ac82a7",
+  "interface": "Figma light 2026-11-08",
+  "note": "Preview release: update install passed; final UI smoke blocked by emulator UiAutomation/ADB. Four full Russian WAV/M4A checks passed on candidate 1949fe7 with identical models/native libs. DER regression on rec_0275; Redmi untested.",
+  "version_name": "1.2.3",
+  "version_code": 12,
+  "release_tag": "v1.2.3-runtime-preview.1"
 }
