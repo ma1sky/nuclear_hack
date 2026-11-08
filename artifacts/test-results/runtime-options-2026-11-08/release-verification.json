@@ -50,6 +50,6 @@
   "signed_with_test_key": true,
   "update_install": "adb install -r: Success; existing data not cleared",
   "installed_version_confirmed": true,
-  "final_ui_smoke": "not completed: initial UiAutomation connection failed before inference; retry interrupted when restoring ADB; emulator remained offline after reboot",
-  "full_pipeline_evidence": "Four completed WAV/M4A cases on functional candidate 1949fe7457fb9abfeed62d331755ae39bbe8e801c6bb36a5c84d9488cb73a8d4; timings are not a repeat on final version metadata build"
+  "final_ui_smoke": "completed after emulator recovery: Golos WAV -> strict JSON -> local LLM; ten user scenario groups passed; see docs/submission/TESTS.md",
+  "full_pipeline_evidence": "Final APK Golos completed in 29.36s, text visible 20.83s, WER0 on6words. Earlier four longer cases remain tied to candidate1949fe7."
 }

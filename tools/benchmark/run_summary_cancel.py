@@ -1,7 +1,11 @@
-import sys,json,time,hashlib
+import sys,json,time,hashlib,argparse
 from pathlib import Path
 import android_ui as q
-q.OUT=q.ROOT/"recordings/ru-speed/results/summary-cancel"
+parser=argparse.ArgumentParser()
+parser.add_argument("--apk",type=Path,default=Path("artifacts/emulator/nuclear-stenographer-runtime-optimized.apk"))
+parser.add_argument("--out",type=Path,default=q.ROOT/"recordings/ru-speed/results/summary-cancel")
+args=parser.parse_args()
+q.OUT=args.out
 q.OUT.mkdir(parents=True,exist_ok=True)
 q.open_route("history")
 # History is newest-first; select the newest matching five-minute record.
@@ -35,7 +39,7 @@ after=json.loads(next(x for x in q.labels() if x.lstrip().startswith("{")))
 assert original==after,"Cancellation changed the transcript"
 q.tap("Назад к экспорту");q.tap("Закрыть")
 q.capture("transcript-preserved")
-result={"apk_sha256":hashlib.sha256(Path("artifacts/emulator/nuclear-stenographer-runtime-optimized.apk").read_bytes()).hexdigest(),"cancelled_regeneration":True,"transcript_unchanged":True,"final_cancel_message_verified":True,"utterances":len(after["transcript"])}
+result={"apk_sha256":hashlib.file_digest(args.apk.open('rb'),'sha256').hexdigest(),"cancelled_regeneration":True,"transcript_unchanged":True,"final_cancel_message_verified":True,"utterances":len(after["transcript"])}
 (q.OUT/"results.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
 print(result,flush=True)
 q.open_route("")

@@ -1,0 +1,16 @@
+{
+  "renderer": "Remotion 4.0.541",
+  "duration_s": 113.0,
+  "frames": 2712,
+  "fps": 24,
+  "width": 1280,
+  "height": 720,
+  "codec": "h264",
+  "bytes": 3186365,
+  "sha256": "c35e5091e6d835e352537e8a045de0bca9547c64a6b1bed6863c2ffcabca7112",
+  "scenes": 18,
+  "decode_check": "ffprobe count_frames: all 2712 frames read; no decoder errors",
+  "visual_check": "Intro and real screenrecord frames inspected",
+  "audio": "No audio track; Russian captions",
+  "apk_sha256": "28487befa57bae896c252ea30b8082a2bf11ae732799fb44b5ef7a3b43487af7"
+}
